@@ -38,6 +38,6 @@ public class Jugador{
 	String correo;
 	
 	/**
-	@Column(name="lista_amigos")
+	@Column(name="listaAmigos")
 	**/
 }
