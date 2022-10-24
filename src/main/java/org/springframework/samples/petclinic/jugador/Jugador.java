@@ -1,12 +1,13 @@
 package org.springframework.samples.petclinic.jugador;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Jugador{
 	String nombre;
 	
 	@Column(name = "apellidos")
-	@NotEmpty(message = "Los apellidos no pueden estar vacío")
+	@NotEmpty(message = "Los apellidos no pueden estar vacíos")
 	String apellidos;
 	
 	@Column(name = "contraseña")
@@ -32,11 +33,11 @@ public class Jugador{
 	String contraseña;
 	
 	@Column(name = "correo")
-	@javax.validation.constraints.Email(message = "El correo no es válido", regexp = ".*")
-	@NotEmpty
+	@Email(message = "El correo no es válido", regexp = ".*")
+	@NotEmpty(message = "El correo no puede estar vacío")
 	String correo;
 	
-	@Column(name = "listaAmigos")
-	List<String> listaAmigos;
-
+	/**
+	@Column(name="lista_amigos")
+	**/
 }
