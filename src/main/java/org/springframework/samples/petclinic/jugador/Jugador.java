@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
@@ -19,15 +20,15 @@ public class Jugador{
 	
 	@Id
 	@Column(name = "nombre")
-	@NotEmpty
+	@NotEmpty(message = "El nombre no puede estar vacío")
 	String nombre;
 	
 	@Column(name = "apellidos")
-	@NotEmpty
+	@NotEmpty(message = "Los apellidos no pueden estar vacío")
 	String apellidos;
 	
 	@Column(name = "contraseña")
-	@NotEmpty
+	//Habria que crear una clase de validez para la contraseña
 	String contraseña;
 	
 	@Column(name = "correo")
