@@ -18,7 +18,6 @@ import lombok.Setter;
 public class Jugador{
 	
 	@Id
-	
 	@Column(name = "nombre")
 	@NotEmpty
 	String nombre;
