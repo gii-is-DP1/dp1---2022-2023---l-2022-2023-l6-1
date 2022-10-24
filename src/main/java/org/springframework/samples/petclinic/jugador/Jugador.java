@@ -28,7 +28,7 @@ public class Jugador{
 	String apellidos;
 	
 	@Column(name = "contraseña")
-	//Habria que crear una clase de validez para la contraseña
+	//Habría que crear una clase de validez para la contraseña
 	String contraseña;
 	
 	@Column(name = "correo")
