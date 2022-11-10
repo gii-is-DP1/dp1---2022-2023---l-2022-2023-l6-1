@@ -5,12 +5,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.Digits;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 import org.springframework.samples.petclinic.card.Card;
+import org.springframework.samples.petclinic.model.BaseEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,14 +18,15 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Pile extends Card{
+@Table(name = "piles")
+public class Pile extends BaseEntity{
 	
-	@ManyToMany
-	private List<Card> pile;
+//	@ManyToMany
+//	private List<Card> pile;
 	
-	@Min(value = 1)
-	@Max(value = 7)
-	@Column(name = "numColumna")
-	private Integer numColumna;
+//	@Min(value = 1)
+//	@Max(value = 7)
+//	@Column(name = "numeroColumna")
+//	private Integer numeroColumna;
 	
 }
