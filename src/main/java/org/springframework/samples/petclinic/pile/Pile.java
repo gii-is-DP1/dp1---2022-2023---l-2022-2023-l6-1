@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.pile;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -21,12 +22,12 @@ import lombok.Setter;
 @Table(name = "piles")
 public class Pile extends BaseEntity{
 	
-//	@ManyToMany
-//	private List<Card> pile;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Card> pilePlay;
 	
-//	@Min(value = 1)
-//	@Max(value = 7)
-//	@Column(name = "numeroColumna")
-//	private Integer numeroColumna;
+	@Min(value = 1)
+	@Max(value = 7)
+	@Column(name = "numeroColumna")
+	private Integer numeroColumna;
 	
 }
