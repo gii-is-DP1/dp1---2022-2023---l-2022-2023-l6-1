@@ -21,8 +21,11 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +46,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class PlayerController {
 
 	private static final String VIEWS_PLAYER_CREATE_OR_UPDATE_FORM = "players/createOrUpdatePlayerForm";
+	private static final String VIEWS_MY_PROFILE = "players/myProfile";
+	private static final String VIEWS_HOME = "welcome";
+
 
 	private final PlayerService playerService;
 
@@ -108,7 +114,7 @@ public class PlayerController {
 			return "players/playersList";
 		}
 	}
-
+	
 	@GetMapping(value = "/players/{playerId}/edit")
 	public String initUpdatePlayerForm(@PathVariable("playerId") int playerId, Model model) {
 		Player player = this.playerService.findPlayerById(playerId);
@@ -128,6 +134,12 @@ public class PlayerController {
 			return "redirect:/players/{playerId}";
 		}
 	}
+	
+	@GetMapping(value = "/players/{playerId}/delete")
+	public String initDeletePlayerForm(@PathVariable("playerId") int playerId, Model model) {
+		this.playerService.deletePlayer(this.playerService.findPlayerById(playerId));
+		return VIEWS_HOME;
+	}
 
 	/**
 	 * Custom handler for displaying an player.
@@ -140,5 +152,28 @@ public class PlayerController {
 		mav.addObject(this.playerService.findPlayerById(playerId));
 		return mav;
 	}
+	
+	@GetMapping(value = "/players/myProfile")
+	public String initUpdatePlayerForm(Model model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = this.playerService.findByUsername(username);
+		model.addAttribute(player);
+		return VIEWS_MY_PROFILE;
+	}
+
+	@PostMapping(value = "/players/myProfile")
+	public String processUpdatePlayerForm(BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_MY_PROFILE;
+		}
+		else {
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			Player player = this.playerService.findByUsername(username);
+			player.setId(player.getId());
+			this.playerService.savePlayer(player);
+			return "redirect:/players/myProfile";
+		}
+	}
+
 
 }

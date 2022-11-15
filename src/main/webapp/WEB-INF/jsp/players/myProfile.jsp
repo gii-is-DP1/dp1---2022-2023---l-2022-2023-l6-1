@@ -23,20 +23,14 @@
         </tr>
     </table>
 	
-    <sec:authorize access="hasAuthority('admin')">
+
 		<spring:url value="{playerId}/edit" var="editUrl">
         	<spring:param name="playerId" value="${player.id}"/>
    	 	</spring:url>
     	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit player</a>
-	</sec:authorize>
-	
-	   <sec:authorize access="hasAuthority('admin')">
-		<spring:url value="{playerId}/delete" var="editUrl">
-        	<spring:param name="playerId" value="${player.id}"/>
-   	 	</spring:url>
-    	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Delete player</a>
-	</sec:authorize>    
+   
 
+	
     <spring:url value="{playerId}/friends/new" var="addUrl">
         <spring:param name="playerId" value="${player.id}"/>
     </spring:url>

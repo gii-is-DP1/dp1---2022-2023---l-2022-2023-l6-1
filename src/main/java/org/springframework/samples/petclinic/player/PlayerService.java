@@ -16,10 +16,13 @@
 package org.springframework.samples.petclinic.player;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
+import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +55,7 @@ public class PlayerService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Collection<Player> findByUsername(String username) throws DataAccessException {
+	public Player findByUsername(String username) throws DataAccessException {
 		return playerRepository.findByUsername(username);
 	}
 	
@@ -65,11 +68,19 @@ public class PlayerService {
 	@Transactional
 	public void savePlayer(Player player) throws DataAccessException {
 		//creating player
-		playerRepository.save(player);		
+		playerRepository.save(player);	
 		//creating user
 		userService.saveUser(player.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(player.getUser().getUsername(), "player");
-	}		
+	}	
+	
+	@Transactional
+	public void deletePlayer(Player player) throws DataAccessException {
+		//creating player
+		playerRepository.delete(player);	
+		
+	}	
+
 
 }

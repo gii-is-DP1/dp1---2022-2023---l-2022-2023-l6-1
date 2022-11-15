@@ -13,3 +13,7 @@
 <script src="${bootstrapJs}"></script>
 
 
+<footer>
+	<img src="<spring:url value="/resources/images/spring-pivotal-logo.png" />"align="right"
+</footer>
+
