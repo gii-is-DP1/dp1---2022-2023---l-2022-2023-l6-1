@@ -25,6 +25,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -60,10 +61,10 @@ public class Player extends Person {
 	@Email
 	private String email;
 
-	/*
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private Set<Player> friends;
-	*/
+	
 	
 	//
 	@OneToOne(cascade = CascadeType.ALL)
