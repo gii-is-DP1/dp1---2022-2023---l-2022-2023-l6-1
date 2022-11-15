@@ -1,11 +1,16 @@
 package org.springframework.samples.petclinic.playZone;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.springframework.samples.petclinic.card.Card;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
 import lombok.Getter;
@@ -26,4 +31,12 @@ public class PlayZone extends BaseEntity{
 	@Max(value = 7)
 	@Column(name = "numColumna")
 	private Integer numColumna;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@Min(value=7)
+	@Max(value=7)
+	private List<Card> playZoneCard;
+	
+	
 }
