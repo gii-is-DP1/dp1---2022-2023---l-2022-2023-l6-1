@@ -4,6 +4,7 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Table(name = "deck")
 public class Deck extends BaseEntity {
 
-    @OneToMany(mappedBy = "deck", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Card> deckPlay;
 
     @Min(value = 1)
