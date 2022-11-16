@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.player;
 import java.util.Collection;
 import java.util.Set;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.user.Authorities;
@@ -59,7 +60,7 @@ public class PlayerService {
 		return playerRepository.findByUsername(username);
 	}
 	
-
+	
 	@Transactional(readOnly = true)
 	public Collection<Player> findByLastName(String lastName) throws DataAccessException {
 		return playerRepository.findByLastName(lastName);
