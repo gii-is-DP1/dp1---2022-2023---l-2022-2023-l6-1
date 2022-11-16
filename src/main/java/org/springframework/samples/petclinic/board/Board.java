@@ -29,7 +29,6 @@ public class Board extends BaseEntity{
 	@Timespan
 	private LocalTime timer;
 	
-	
 	@OneToMany
 	@Min(value = 4)
 	@Max(value = 4)
