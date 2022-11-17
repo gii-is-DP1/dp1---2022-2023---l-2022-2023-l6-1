@@ -37,12 +37,20 @@
 				</petclinic:menuItem>
 				
 				<sec:authorize access="isAuthenticated()">
-				<petclinic:menuItem active="${name eq 'game'}" url="/startGame"
+				<petclinic:menuItem active="${name eq 'game'}" url="/difficult"
 					title="Start Game">
 					<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
 					<span>Start Game</span>
 				</petclinic:menuItem>
 				</sec:authorize>
+				
+				
+				<petclinic:menuItem active="${name eq 'rules'}" url="https://www.youtube.com/watch?v=5G-xi5QkCmo&ab_channel=JulenRedondo"
+					title="Rules">
+					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+					<span>Rules</span>
+				</petclinic:menuItem>
+				
 				
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
