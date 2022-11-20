@@ -16,14 +16,10 @@
 package org.springframework.samples.petclinic.player;
 
 import java.util.Collection;
-import java.util.Set;
 
-import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
-import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class PlayerService {
-
+	
 	private PlayerRepository playerRepository;	
 	
 	@Autowired
@@ -50,6 +46,12 @@ public class PlayerService {
 		this.playerRepository = playerRepository;
 	}	
 
+	@Transactional(readOnly = true)
+	public Collection<Player> findAllPlayer() throws DataAccessException {
+		return playerRepository.findAllPlayer();
+	}
+	
+	
 	@Transactional(readOnly = true)
 	public Player findPlayerById(int id) throws DataAccessException {
 		return playerRepository.findById(id);

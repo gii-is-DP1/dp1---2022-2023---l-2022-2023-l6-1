@@ -17,14 +17,9 @@ package org.springframework.samples.petclinic.player;
 
 import java.util.Collection;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.model.BaseEntity;
-import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.OwnerRepository;
 
 /**
  * Spring Data JPA OwnerRepository interface
@@ -44,5 +39,8 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
 	@Query("SELECT player FROM Player player WHERE player.id =:id")
 	public Player findById(@Param("id") int id);
+	
+	@Query("SELECT player FROM Player player")
+	public Collection<Player> findAllPlayer();
 
 }

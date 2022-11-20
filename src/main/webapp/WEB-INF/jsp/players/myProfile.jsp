@@ -47,7 +47,7 @@
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
     
-    <spring:url value="/players/myProfile/statistics" var="addUrl">
+    <spring:url value="/players/myStatistics" var="addUrl">
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Get Statistics</a>
 
