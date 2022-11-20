@@ -21,10 +21,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,9 +81,30 @@ public class PlayerController {
 	}
 
 	@GetMapping(value = "/players/find")
-	public String initFindForm(Map<String, Object> model) {
-		model.put("player", new Player());
-		return "players/findPlayers";
+	public String initFindForm(Player player,BindingResult result,Map<String, Collection<Player>> model) {
+		// find players by last name
+		// allow parameterless GET request for /players to return all records
+		if (player.getLastName() == null) {
+			player.setLastName(""); // empty string signifies broadest possible search
+		}
+
+		// find players by last name
+		Collection<Player> results = this.playerService.findByLastName(player.getLastName());
+		if (results.isEmpty()) {
+			// no players found
+			result.rejectValue("lastName", "notFound", "not found");
+			return "players/findPlayers";
+		}
+		else if (results.size() == 1) {
+			// 1 player found
+			player = results.iterator().next();
+			return "redirect:/players/" + player.getId();
+		}
+		else {
+			// multiple players found
+			model.put("selections", results);
+			return "players/playersList";
+		}
 	}
 
 	@GetMapping(value = "/players")
@@ -150,6 +169,13 @@ public class PlayerController {
 	public ModelAndView showPlayer(@PathVariable("playerId") int playerId) {
 		ModelAndView mav = new ModelAndView("players/playerDetails");
 		mav.addObject(this.playerService.findPlayerById(playerId));
+		return mav;
+	}
+	
+	@GetMapping("/players/all")
+	public ModelAndView showPlayerAll() {
+		ModelAndView mav = new ModelAndView("players/playerDetails");
+		mav.addObject(this.playerService.findAllPlayer());
 		return mav;
 	}
 	
