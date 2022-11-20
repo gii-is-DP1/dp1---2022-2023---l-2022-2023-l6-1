@@ -74,3 +74,6 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO cards(id,number) VALUES (1, 4);
 INSERT INTO cards(id,number) VALUES (2, 6);
+
+INSERT INTO statistics(games, games_won, games_lost, total_score, player_email) VALUES (30, 25, 5, 200, 'mariocasas69@gmail.com');
+

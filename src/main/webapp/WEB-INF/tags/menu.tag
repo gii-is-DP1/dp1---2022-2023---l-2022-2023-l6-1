@@ -36,8 +36,8 @@
 					<span>Find players</span>
 				</petclinic:menuItem>
 				
-				<sec:authorize access="isAuthenticated()">
-				<petclinic:menuItem active="${name eq 'game'}" url="/difficult"
+				<sec:authorize access="hasAuthority('player')">
+				<petclinic:menuItem active="${name eq 'game'}" url="/startGame"
 					title="Start Game">
 					<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
 					<span>Start Game</span>
@@ -49,13 +49,6 @@
 					title="Rules">
 					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
 					<span>Rules</span>
-				</petclinic:menuItem>
-				
-				
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
 				</petclinic:menuItem>
 
 			</ul>

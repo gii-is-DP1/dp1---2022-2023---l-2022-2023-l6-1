@@ -11,7 +11,7 @@
         	<div class="col-md-4">
             </div>
             <div class="col-md-4">
-            	<img src="<spring:url value="/resources/images/coollogo_com-241492106.png" htmlEscape="true" />"
+            	<img src="<spring:url value="/resources/images/logo.png" htmlEscape="true" />"
             	
             </div>
             <div class="col-md-4">
