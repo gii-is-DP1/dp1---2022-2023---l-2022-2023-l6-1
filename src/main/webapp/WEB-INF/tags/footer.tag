@@ -14,6 +14,8 @@
 
 
 <footer>
-	<img src="<spring:url value="/resources/images/spring-pivotal-logo.png" />"align="right"
+	<center>
+		<img src="<spring:url value="/resources/images/spring-pivotal-logo.png" />"
+	</center>
 </footer>
 

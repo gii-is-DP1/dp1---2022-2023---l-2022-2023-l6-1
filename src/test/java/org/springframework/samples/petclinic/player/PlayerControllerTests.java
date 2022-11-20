@@ -34,7 +34,7 @@ public class PlayerControllerTests {
 //	private PlayerController playerController;
 
 	@MockBean
-	private PlayerService clinicService;
+	private PlayerService playerService;
 
 	@MockBean
 	private UserService userService;
@@ -55,7 +55,7 @@ public class PlayerControllerTests {
 		george.setFirstName("George");
 		george.setLastName("Franklin");
 		george.setEmail("george@gmail.com");
-		given(this.clinicService.findPlayerById(TEST_PLAYER_ID)).willReturn(george);
+		given(this.playerService.findPlayerById(TEST_PLAYER_ID)).willReturn(george);
 
 	}
 
@@ -92,7 +92,7 @@ public class PlayerControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessFindFormSuccess() throws Exception {
-		given(this.clinicService.findByLastName("")).willReturn(Lists.newArrayList(george, new Player()));
+		given(this.playerService.findByLastName("")).willReturn(Lists.newArrayList(george, new Player()));
 
 		mockMvc.perform(get("/players")).andExpect(status().isOk()).andExpect(view().name("players/playersList"));
 	}
@@ -100,7 +100,7 @@ public class PlayerControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessFindFormByLastName() throws Exception {
-		given(this.clinicService.findByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
+		given(this.playerService.findByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
 
 		mockMvc.perform(get("/players").param("lastName", "Franklin")).andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/players/" + TEST_PLAYER_ID));
