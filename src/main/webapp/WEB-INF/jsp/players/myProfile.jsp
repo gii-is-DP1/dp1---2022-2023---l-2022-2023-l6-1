@@ -21,24 +21,20 @@
             <th>Email</th>
             <td><c:out value="${player.email}"/></td>
         </tr>
-        <tr>
-            <th>Games</th>
-            <td><c:out value="${statistics.games}"/></td>
-        </tr>
-        <tr>
-            <th>Games won</th>
-            <td><c:out value="${statistics.games_won}"/></td>
-        </tr>
-        <tr>
-            <th>Total Score</th>
-            <td><c:out value="${statistics.total_score}"/></td>
-        </tr>
+        <tbody>
+	        <c:forEach items="${selections}" var="statistics">
+		        <tr>
+		            <th>stasts</th>
+		            <td><c:out value="${statistics.games}"/></td>
+		        </tr>
+	        </c:forEach>
+		</tbody>
     </table>
 	
-		<spring:url value="{playerId}/edit" var="editUrl">
-        	<spring:param name="playerId" value="${player.id}"/>
-   	 	</spring:url>
-    	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit player</a>
+	<spring:url value="{playerId}/edit" var="editUrl">
+    	<spring:param name="playerId" value="${player.id}"/>
+ 	</spring:url>
+	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Profile</a>
    
 
 	
@@ -47,9 +43,8 @@
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
     
-    <spring:url value="/players/myStatistics" var="addUrl">
+    <spring:url value="/statistics" var="addUrl">
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Get Statistics</a>
-
-
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Get my Stats</a>
+   
 </petclinic:layout>

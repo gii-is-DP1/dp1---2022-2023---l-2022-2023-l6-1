@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.statistics;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.player.Player;
-import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +29,7 @@ public class Statistics extends BaseEntity{
 	@NotEmpty
 	@Min(value=0)
 	@Column(name="games_won")
-	private Integer gamesWon;
+	private Integer games_won;
 	
 	@NotEmpty
 	@Min(value=0)
@@ -44,7 +42,7 @@ public class Statistics extends BaseEntity{
 	private Integer totalScore;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_email", referencedColumnName = "email")
+    @JoinColumn(name = "player_id", referencedColumnName = "id")
 	private Player player;
 	
 

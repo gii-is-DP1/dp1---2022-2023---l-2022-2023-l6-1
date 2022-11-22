@@ -47,7 +47,6 @@ public class PlayerController {
 	private static final String VIEWS_MY_PROFILE = "players/myProfile";
 	private static final String VIEWS_HOME = "welcome";
 
-
 	private final PlayerService playerService;
 
 	@Autowired
