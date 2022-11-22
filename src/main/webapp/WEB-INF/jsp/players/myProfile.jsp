@@ -43,8 +43,5 @@
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
     
-    <spring:url value="/statistics" var="addUrl">
-    </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Get my Stats</a>
-   
+    
 </petclinic:layout>
