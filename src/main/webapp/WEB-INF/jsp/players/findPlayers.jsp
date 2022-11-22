@@ -34,9 +34,7 @@
     	
 
     <br/> 
-    <sec:authorize access="hasAuthority('admin')">
-		<a class="btn btn-default" href='<spring:url value="/players/new" htmlEscape="true"/>'>Add player</a>
-	</sec:authorize>
+    
 	
 	
 	<sec:authorize access="hasAuthority('admin')">

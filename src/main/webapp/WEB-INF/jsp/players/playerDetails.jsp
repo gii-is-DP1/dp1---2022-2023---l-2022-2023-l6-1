@@ -40,7 +40,8 @@
     <spring:url value="{playerId}/friends/new" var="addUrl">
         <spring:param name="playerId" value="${player.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
-
+    <sec:authorize access="hasAuthority('player')">
+    	<a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
+	</sec:authorize>
 
 </petclinic:layout>

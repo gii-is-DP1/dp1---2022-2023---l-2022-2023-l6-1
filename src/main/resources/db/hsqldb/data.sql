@@ -50,6 +50,7 @@ INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '
 INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'owner1');
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner1');
 
+
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (1, 'Mario', 'Casas', 'mariocasas69@gmail.com','player1');
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (2, 'Pablo', 'Iglesias', 'pablito29@gmail.com','player2');
 
@@ -75,5 +76,5 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 INSERT INTO cards(id,number) VALUES (1, 4);
 INSERT INTO cards(id,number) VALUES (2, 6);
 
-INSERT INTO statistics(games, games_won, games_lost, total_score, player_email) VALUES (30, 25, 5, 200, 'mariocasas69@gmail.com');
-
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 100, 32, 2);
