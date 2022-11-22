@@ -11,8 +11,6 @@
 <petclinic:layout pageName="statistics">
 	<h2> My Stats </h2>
 
-
-	
     <table id="playersTable" class="table table-striped">
         <thead>
         <tr>
@@ -41,5 +39,9 @@
 	        </c:forEach>
         </tbody>
     </table>
+    
+    <spring:url value="/achievements" var="addUrl">
+    </spring:url>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">See My Achievements</a>
     
 </petclinic:layout>

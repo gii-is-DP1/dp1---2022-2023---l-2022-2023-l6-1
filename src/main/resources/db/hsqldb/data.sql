@@ -78,3 +78,5 @@ INSERT INTO cards(id,number) VALUES (2, 6);
 
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 100, 32, 2);
+
+INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (1, 'Friki','Has alcanzado las 100 partidas' ,'hola', true, 'imagen_logro.png', 1)
