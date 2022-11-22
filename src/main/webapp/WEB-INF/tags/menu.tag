@@ -82,9 +82,11 @@
                         						</spring:url>
     											<a href="${fn:escapeXml(editUrl)}" class="btn btn-primary btn-block">My Profile</a>
                     						
-                    							<spring:url value="/statistics" var="addUrl">
-    											</spring:url>
-    											<a href="${fn:escapeXml(addUrl)}" class="btn btn-warning btn-block">Get my Stats</a>
+                    							<sec:authorize access="hasAuthority('player')">
+                    								<spring:url value="/statistics" var="addUrl">
+    												</spring:url>
+    												<a href="${fn:escapeXml(addUrl)}" class="btn btn-warning btn-block">Get my Stats</a>
+    											</sec:authorize>
     											
                     							<a href="<c:url value="/logout" />"
 													class="btn btn-danger btn-block">Logout</a>
