@@ -68,3 +68,14 @@ _site/
 .metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml
 
 .vscode/
+/.editorconfig
+/.gitignore
+/.mvn/
+/.settings/
+/.travis.yml
+/docker-compose.yml
+/mvnw
+/mvnw.cmd
+/pom.xml
+/readme.md
+/src/
