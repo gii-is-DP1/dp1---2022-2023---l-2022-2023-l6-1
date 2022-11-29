@@ -1,35 +1,108 @@
-# Spring PetClinic Sample Application 
+#Solitaires
 
-This is a fork of https://github.com/spring-projects/spring-petclinic to be used for the DP1 course. The main changes that have been performed were:
-- Trimming several parts of the application to keep the example low
-- Reorganize some parts of the code according to best practices introduced in the course
+![Solitaire](https://github.com/gii-is-DP1/dp1--2022-2023-l6-1/blob/master/src/main/resources/static/resources/images/ases_inicio.png)
 
-## Understanding the Spring Petclinic application with a few diagrams
-<a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
+Nuestro proyecto para la asignatura es el juego del Solitario que nació como entretenimiento personal por su simpleza y bajo coste,
+ya que solo se necesita una baraja de 52 cartas. Es un juego de cartas individual, por ello recibe dicho nombre. El objetivo del juego 
+es conseguir ordenar las cuatro pilas de cartas diferenciadas por su “palo” y de forma ascendente,
+comenzando por los ases(“unos” en la baraja española) hasta la K(“rey” en la baraja española). El Solitario es un juego apto para todo
+tipo de público.
+El desarrollo del juego consiste en tomar decisiones según qué cartas tengas disponibles.La duración del juego es indeterminada:
+Terminará cuando, o bien hayamos conseguido ordenar las cuatro pilas de cartas de distintos palos, es decir, ganemos, o nos quedemos sin posibles 
+movimientos para poder avanzar en la partida, perdamos. De forma orientativa, suele rondar los 10 minutos.
+	
+<a href = "https://www.youtube.com/watch?v=5G-xi5QkCmo&ab_channel=JulenRedondo"> Para mayor aclaración de cómo se desarrollaría el juego, haga clic aquí </a>
 
-## Running petclinic locally
-Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
+## Glosario
 
-```
-git clone https://github.com/gii-is-DP1/spring-petclinic.git
-cd spring-petclinic
-./mvnw package
-java -jar target/*.jar
-```
+ * **Baraja**: Conjunto de cartas con las que se desarrollará el juego, contiene 52 cartas.
+ * **Carta**: Tarjeta que tiene una cara frontal con números y dibujos que permiten identificar y diferenciarlas de otras cartas. Y al dorso un dibujo uniforme que no permite identificarla y diferenciarla de otras.
+ * **Palo**: Cada una de las diferentes categorías en las que se dividen las cartas de una baraja y se representan con un símbolo. Cada baraja contiene 4 palos.
+ * **Tablero**: Lugar donde se desarrolla el juego.
+ * **Montón**: Conjunto de cartas ordenadas ascendentemente, comenzando por el as y acabando por la K, y del mismo palo.
 
-You can then access petclinic here: http://localhost:8080/
+## Tipos de Usuario / Roles 
 
-<img width="1042" alt="petclinic-screenshot" src="https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png">
+**Jugador**: Persona que realiza los movimientos, para intentar ganar su partida.
 
-Or you can run it from Maven directly using the Spring Boot Maven plugin. If you do this it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):
+**Administrador**: Gerente del software que se encarga de gestionar la información.
 
-```
-./mvnw spring-boot:run
-```
+## <u>Historias de Usuario</u>
+### *H1-Registro*
+“**Como** jugador, **quiero** que el sistema me ofrezca un botón **para** poder realizar el registro.”
 
-## In case you find a bug/suggested improvement for Spring Petclinic
-Our issue tracker is available here: https://github.com/gii-is-DP1/spring-petclinic/issues
+**Escenarios positivos:**
+
+<u>H1 + E1 - Deja realizar el registro.</u>
+
+Dado el formulario de registro, el sistema acepta la solicitud de registro.
+
+**Escenarios negativos:**
+
+<u>H1 - E1 - Registro erróneo.</u>
+
+Dado el formulario de registro, el sistema no acepta la solicitud de registro debido a que existen campos del formulario que no son correctos.
+
+![Mockup1](https://cdn.discordapp.com/attachments/1025044659275321430/1029740236265230386/Registro.PNG)
+
+### *H2-Inicio sesión*
+“**Como** jugador, **quiero** poder acceder al sistema iniciando sesión **para** para jugar una partida.”
+
+**Escenarios positivos:**
+
+<u>H2 + E1 - Deja iniciar sesión.</u>
+
+Dado el formulario de inicio de sesión, el sistema reconoce los datos en la base de datos, y deja acceder al usuario.
+
+**Escenarios negativos:**
+
+<u>H1 - E1 - No deja iniciar sesión.</u>
+
+Dado el formulario de inicio de sesión, el sistema no reconoce los datos en la base de datos, y no le permite la entrada en el sistema al jugador.
+
+![Mockup2](https://cdn.discordapp.com/attachments/1025044659275321430/1029740233660571769/InicioSesion.PNG)
+
+### *H3-Iniciar una partida*
+“**Como** jugador, **quiero** que el sistema ofrezca un botón **para** poder iniciar una nueva partida.”
+
+**Escenarios positivos:**
+
+<u>H3 + E1 - Deja iniciar la partida con éxito.</u>
+
+Dado un jugador en el menú del juego, le aparecerán varios botones, si quiere iniciar una partida, el jugador pulsará el botón de “Iniciar partida” y seleccionará la dificultad (la dificultad determinará la cantidad de cartas que salen del mazo al pedirle carta a éste). Se le formará de manera exitosa una partida con el mazo con cartas aleatorias, la zona de juego con cartas aleatorias, y la zona donde se pondrá el montón de cartas del mismo palo.
+
+**Escenarios negativos:**
+
+<u>H3 - E1 - No deja iniciar la partida.</u>
+
+Dado un jugador no logueado en el sistema que quiera iniciar una partida, no podrá iniciar la partida por lo que tampoco le aparecerá la vista del tablero, y le aparecerá un mensaje de error “Debes iniciar sesión para poder jugar”.
+
+![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1029740234914668575/InicioPartida.PNG)
+
+### *H9-Editar perfil de usuario*
+“**Como** jugador, **quiero** poder acceder a mi perfil **para** poder editar los datos de mi perfil.”
+
+**Escenarios positivos:**
+
+<u>H9 + E1 - Ver mi perfil.</u>
+
+Dado un jugador logueado en el menú de inicio, al hacer click en su nombre le aparecerá una pestaña en la que pondrá “Modificar datos personales”, al hacer click se accederá a una vista con los datos personales para poder cambiarlos y seleccionar que se actualicen.
+
+### *H10-Actividades sobre el perfil de los jugadores como administrador*
+“**Como** administrador, **quiero** poder crear, leer, actualizar y eliminar los perfiles de los usuarios, **para** poder corregir posibles errores, ver los datos de dicho jugador, etc.”
+
+**Escenarios positivos:**
+
+<u>H10 + E1 - Ver la lista.</u>
+
+Dado un administrador, si éste desea acceder al apartado de “Herramientas de administrador”, accede a una vista donde podrá realizar las actividades dichas anteriormente.
+
+**Escenarios negativos:**
+
+<u>H10 - E1 - Intentar acceder a dichas actividades siendo usuario.</u>
+
+Dado un jugador logueado, si éste intenta acceder al apartado de “Herramientas de administrador”, salta un error de autenticación, ya que no tiene permisos para acceder a dicho apartado.
 
 
 ## Database configuration
@@ -54,7 +127,7 @@ The following items should be installed in your system:
 
 1) On the command line
 ```
-git clone https://github.com/gii-is-DP1/spring-petclinic.git
+git clone https://github.com/gii-is-DP1/dp1--2022-2023-l6-1
 ```
 2) Inside Eclipse or STS
 ```
@@ -100,6 +173,17 @@ that could be used to implement the Pet Clinic then please join the community th
 The [issue tracker](https://github.com/gii-is-DP1/spring-petclinic/issues) is the preferred channel for bug reports, features requests and submitting pull requests.
 
 For pull requests, editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org>. If you have not previously done so, please fill out and submit the [Contributor License Agreement](https://cla.pivotal.io/sign/spring).
+
+# Members
+* Cordero Diaz, Jesus Javier 
+* Couto , André Alves
+* Lorenzo Casas, Ángel
+* Navarro Sicre, Manuel
+* Ortiz Blanco, Manuel
+* Praça, Daniela Fonseca
+* Redondo Pacheco, Julen
+
+
 
 # License
 

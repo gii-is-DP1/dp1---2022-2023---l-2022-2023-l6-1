@@ -40,6 +40,10 @@
 @btn-default-bg:                 @spring-brown;
 @btn-default-border:             @spring-green;
 
+@btn-secondary-color:              @spring-green;
+@btn-secondary-bg:                 @spring-grey;
+@btn-secondary-border:             @spring-brown;
+
 @nav-tabs-active-link-hover-color:        @spring-light-grey;
 @nav-tabs-active-link-hover-bg:           @spring-brown;
 @nav-tabs-active-link-hover-border-color: @spring-brown;
@@ -81,7 +85,23 @@
   }
 }
 
+.btn-secondary {
+  border-width: 2px;
+  transition: border 0.15s;
+  -webkit-transition: border 0.15s;
+  -moz-transition: border 0.15s;
+  -o-transition: border 0.15s;
+  -ms-transition: border 0.15s;
 
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    background-color: @spring-brown;
+    border-color: @spring-brown;
+  }
+}
 .container .text-muted {
   margin: 20px 0;
 }
