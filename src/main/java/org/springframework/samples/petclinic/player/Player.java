@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.player;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,6 +29,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.solicitudAmistad.SolicitudAmistad;
 import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
@@ -54,6 +56,7 @@ public class Player extends Person {
 
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+	@Column(name = "friends")
 	private Set<Player> friends;
 	
 	
@@ -62,7 +65,8 @@ public class Player extends Person {
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
-	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<SolicitudAmistad> SolicitudAmistad;
 
 	@Override
 	public String toString() {

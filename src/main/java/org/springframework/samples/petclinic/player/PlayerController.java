@@ -15,12 +15,16 @@
  */
 package org.springframework.samples.petclinic.player;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.friends.Friends;
+import org.springframework.samples.petclinic.friends.FriendsService;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,12 +50,19 @@ public class PlayerController {
 	private static final String VIEWS_PLAYER_CREATE_OR_UPDATE_FORM = "players/createOrUpdatePlayerForm";
 	private static final String VIEWS_MY_PROFILE = "players/myProfile";
 	private static final String VIEWS_HOME = "welcome";
-
+	
+	private static final String VIEWS_FRIENDS = "friends/friendsList";
+	
+	private final FriendsService friendsService;
 	private final PlayerService playerService;
-
+	
+	
+	
 	@Autowired
-	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService) {
+	public PlayerController(PlayerService playerService,FriendsService friendsService, UserService userService, AuthoritiesService authoritiesService) {
 		this.playerService = playerService;
+		this.friendsService = friendsService;
+		
 	}
 
 	@InitBinder
@@ -199,6 +210,17 @@ public class PlayerController {
 			return "redirect:/players/myProfile";
 		}
 	}
+	
+	@GetMapping(value = "/players/{playerId}/friends")
+    public String initFriendsList(Map<String, Object> model) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        Friends friends = this.friendsService.findByName(name);
+        List<Friends> Friends = new ArrayList<>();
+        Friends.add(friends);
+        model.put("Friends",friends);
+        return VIEWS_FRIENDS;
+    }
+	
 
 
 }

@@ -73,10 +73,66 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO cards(id,number) VALUES (1, 4);
-INSERT INTO cards(id,number) VALUES (2, 6);
+INSERT INTO cards(id,number,suit, color) VALUES (1, 1, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (2, 2, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (3, 3, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (4, 4, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (5, 5, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (6, 6, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (7, 7, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (8, 8, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (9, 9, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (10, 10, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (11, 11, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (12, 12, 'DIAMONDS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (13, 13, 'DIAMONDS', 'RED');
+
+INSERT INTO cards(id,number,suit, color) VALUES (14, 1, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (15, 2, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (16, 3, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (17, 4, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (18, 5, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (19, 6, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (20, 7, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (21, 8, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (22, 9, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (23, 10, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (24, 11, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (25, 12, 'HEARTS', 'RED');
+INSERT INTO cards(id,number,suit, color) VALUES (26, 13, 'HEARTS', 'RED');
+
+INSERT INTO cards(id,number,suit, color) VALUES (27, 1, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (28, 2, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (29, 3, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (30, 4, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (31, 5, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (32, 6, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (33, 7, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (34, 8, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (35, 9, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (36, 10, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (37, 11, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (38, 12, 'SPADES', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (39, 13, 'SPADES', 'BLACK');
+
+INSERT INTO cards(id,number,suit, color) VALUES (40, 1, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (41, 2, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (42, 3, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (43, 4, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (44, 5, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (45, 6, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (46, 7, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (47, 8, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (48, 9, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (49, 10, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (50, 11, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (51, 12, 'CLUBS', 'BLACK');
+INSERT INTO cards(id,number,suit, color) VALUES (52, 13, 'CLUBS', 'BLACK');
+
 
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 100, 32, 2);
 
-INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (1, 'Friki','Has alcanzado las 100 partidas' ,'hola', true, 'imagen_logro.png', 1)
+INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (1, 'Friki','Has alcanzado las 100 partidas' ,'hola', true, 'imagen_logro.png', 1);
+
+INSERT INTO friends(id, name) VALUES (1, 'Iglesias')
