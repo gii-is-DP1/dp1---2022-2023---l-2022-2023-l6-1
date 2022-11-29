@@ -65,8 +65,7 @@ public class Player extends Person {
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<SolicitudAmistad> SolicitudAmistad;
+	
 
 	@Override
 	public String toString() {
