@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.player;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -52,6 +53,7 @@ public class PlayerService {
 	}
 	
 	
+	
 	@Transactional(readOnly = true)
 	public Player findPlayerById(int id) throws DataAccessException {
 		return playerRepository.findById(id);
@@ -84,6 +86,12 @@ public class PlayerService {
 		playerRepository.delete(player);	
 		
 	}	
+	
+	
+	@Transactional(readOnly = true)
+	public Set<Player> findFriends(String player) throws DataAccessException {
+		return playerRepository.findByUsername(player).getFriends();
+	}
 
 
 }

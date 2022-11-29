@@ -38,10 +38,10 @@
    
 
 	
-    <spring:url value="{playerId}/friends/new" var="addUrl">
+    <spring:url value="{playerId}/friends" var="addUrl">
         <spring:param name="playerId" value="${player.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Friends</a>
     
-    
+
 </petclinic:layout>

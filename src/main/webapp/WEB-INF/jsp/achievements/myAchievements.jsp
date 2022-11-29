@@ -31,7 +31,7 @@
 	                <td>
 	                    <c:if test="${achievement.image == ''}">none</c:if>
                     	<c:if test="${achievement.image != ''}">
-                        <img src="resources/images/${achievement.image}"  /> 
+                        <img src="/resources/images/imagen_logro.png"  /> 
                     	</c:if>
 	                </td>
 	            </tr>
