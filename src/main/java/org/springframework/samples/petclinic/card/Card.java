@@ -20,11 +20,11 @@ public class Card extends BaseEntity{
 
 	@NotEmpty
 	@Column(name = "color")
-	protected Color color;
+	protected String color;
 	
 	@NotEmpty
 	@Column(name = "suit")
-	protected Suit suit;
+	protected String suit;
 	
 	@NotEmpty
 	@Min(value = 1)
