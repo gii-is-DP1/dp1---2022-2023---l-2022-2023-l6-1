@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.solicitudAmistad;
+package org.springframework.samples.petclinic.friendRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,16 +16,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "SolicitudAmistad")
-public class SolicitudAmistad extends BaseEntity {
+@Table(name = "friendRequests")
+public class FriendRequest extends BaseEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "JugadorSolicita")
-    private Player JugadorSolicita;
+	@JoinColumn(name = "playerSender")
+    private Player playerSender;
     
 	@ManyToOne
-    @JoinColumn(name = "JugadorSolicitado")
-    private Player JugadorSolicitado;
+    @JoinColumn(name = "playerReceiver")
+    private Player playerReceiver;
 
     
 	
