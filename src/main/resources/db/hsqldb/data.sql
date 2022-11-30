@@ -135,4 +135,4 @@ INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALU
 
 INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (1, 'Friki','Has alcanzado las 100 partidas' ,'hola', true, 'imagen_logro.png', 1);
 
-INSERT INTO friends(id, name) VALUES (1, 'Iglesias')
+INSERT INTO friend_requests(id,player_receiver,player_sender) VALUES (1,2,1);

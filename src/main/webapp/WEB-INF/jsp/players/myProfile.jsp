@@ -36,12 +36,44 @@
  	</spring:url>
 	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Profile</a>
    
-
-	
-    <spring:url value="{playerId}/friends" var="addUrl">
+   
+   <spring:url value="{playerId}/friendRequest" var="addUrl">
         <spring:param name="playerId" value="${player.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Friends</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Friends Request</a>
+   
+    <br></br>
+    <h2>Friends Information</h2>
+	<table id="friendTable" class="table table-striped">
+		        <thead>
+		        <tr>
+		        	<th style="width: 150px;">Username</th>
+		            <th style="width: 150px;">Name</th>
+		            <th style="width: 200px;">Email</th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        
+		        <c:forEach items="${player.friends}" var="friend">
+		            <tr>
+		            	<td>
+		                    <c:out value="${friend.user.username}"/>
+		                </td>
+		                <td>
+		                    <spring:url value="/players/{friendId}" var="playerUrl">
+		                        <spring:param name="friendId" value="${friend.id}"/>
+		                    </spring:url>
+		                    <a href="${fn:escapeXml(playerUrl)}"><c:out value="${friend.firstName} ${friend.lastName}"/></a>
+		                </td>
+		                <td>
+		                    <c:out value="${friend.email}"/>
+		                </td>
+		            </tr>
+		        </c:forEach>
+		        </tbody>
+		    </table>
+		
+    
     
 
 </petclinic:layout>

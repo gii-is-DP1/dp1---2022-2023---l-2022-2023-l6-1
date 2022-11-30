@@ -37,11 +37,11 @@
     	<a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Delete player</a>
 	</sec:authorize>    
 
-    <spring:url value="{playerId}/friends/new" var="addUrl">
+    <spring:url value="{playerId}/friendRequest/new" var="addUrl">
         <spring:param name="playerId" value="${player.id}"/>
     </spring:url>
     <sec:authorize access="hasAuthority('player')">
-    	<a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Friend</a>
+    	<a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Send Friend Request</a>
 	</sec:authorize>
 
 </petclinic:layout>

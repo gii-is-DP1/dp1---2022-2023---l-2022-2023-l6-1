@@ -28,8 +28,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.samples.petclinic.friendRequest.FriendRequest;
 import org.springframework.samples.petclinic.model.Person;
-import org.springframework.samples.petclinic.solicitudAmistad.SolicitudAmistad;
 import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
