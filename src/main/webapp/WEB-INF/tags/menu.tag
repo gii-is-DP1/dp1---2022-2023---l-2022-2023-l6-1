@@ -44,8 +44,6 @@
 				</petclinic:menuItem>
 				</sec:authorize>
 				
-				
-				
 				<petclinic:menuItem active="${name eq 'rules'}" url="https://www.youtube.com/watch?v=5G-xi5QkCmo&ab_channel=JulenRedondo"
 					title="Rules">
 					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>

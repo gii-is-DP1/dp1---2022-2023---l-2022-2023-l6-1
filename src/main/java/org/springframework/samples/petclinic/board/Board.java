@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 
 import org.springframework.samples.petclinic.deck.Deck;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -42,4 +43,16 @@ public class Board extends BaseEntity{
 	
 	@OneToOne
 	private Player playerBoard;
+	
+	String background;
+	@Positive
+	int width;
+	@Positive
+	int height;
+	
+	public Board() {
+		this.background = "/resources/images/tablero.png";
+		this.width = 500;
+		this.height = 300;
+	}
 }
