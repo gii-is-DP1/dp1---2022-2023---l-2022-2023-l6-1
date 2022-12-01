@@ -41,12 +41,12 @@
 		            		<spring:url value="{playerSenderId}/friendRequest/accept" var="addFriendUrl">
         						<spring:param name="playerSenderId" value="${player.id}"/>
     						</spring:url>	                   
-    						<a href="${fn:escapeXml(addFriendUrl)}" class="btn btn-default">Accept Friend Request</a>
+    						<a href="${fn:escapeXml(addFriendUrl)}" class="btn btn-success">Accept</a>
     						
     						<spring:url value="{playerSenderId}/friendRequest/reject" var="rejectFriendUrl">
         						<spring:param name="playerSenderId" value="${player.id}"/>
     						</spring:url>	                   
-    						<a href="${fn:escapeXml(rejectFriendUrl)}" class="btn btn-default">Reject Friend Request</a>
+    						<a href="${fn:escapeXml(rejectFriendUrl)}" class="btn btn-danger">Reject</a>
 		                </td>
 		            </tr>
 		        </c:forEach>

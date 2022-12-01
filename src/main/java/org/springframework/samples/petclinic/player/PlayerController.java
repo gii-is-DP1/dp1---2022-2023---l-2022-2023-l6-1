@@ -215,9 +215,8 @@ public class PlayerController {
 	
 	@GetMapping("players/{playerId}/friendRequest/new")
 	public ModelAndView sendFriendRequest(@PathVariable("playerId") int playerId) {
-		ModelAndView mav = new ModelAndView("players/playerDetails");
+		ModelAndView mav = new ModelAndView("players/sendRequestSended");
 		mav.addObject(this.playerService.findPlayerById(playerId));
-		
 		
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Player playerSender = this.playerService.findByUsername(username);
