@@ -27,7 +27,8 @@ public class FriendRequest extends BaseEntity {
     @JoinColumn(name = "playerReceiver")
     private Player playerReceiver;
 
-    
+    @Column(name="state")
+    private Boolean state;
 	
     
 }

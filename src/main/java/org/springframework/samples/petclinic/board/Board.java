@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.board;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -28,7 +29,7 @@ import lombok.Setter;
 public class Board extends BaseEntity{
 	
 	@Timespan
-	private LocalTime timer;
+	private Duration timer;
 	
 	@OneToMany
 	@Min(value = 4)

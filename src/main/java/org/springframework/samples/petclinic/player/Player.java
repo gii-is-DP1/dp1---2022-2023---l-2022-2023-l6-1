@@ -22,6 +22,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,6 +30,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.samples.petclinic.friendRequest.FriendRequest;
+import org.springframework.samples.petclinic.friends.Friends;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.user.User;
 
@@ -53,20 +55,14 @@ public class Player extends Person {
 	@Email
 	@Column(name="email")
 	private String email;
-
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
-	@Column(name = "friends")
-	private Set<Player> friends;
-	
-	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Friends friends;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
-	
-
 	@Override
 	public String toString() {
 		return "Player [email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", id=" + id + "]";

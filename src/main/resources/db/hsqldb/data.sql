@@ -51,8 +51,8 @@ INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Mad
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner1');
 
 
-INSERT INTO players(id,first_name,last_name,email,username) VALUES (1, 'Mario', 'Casas', 'mariocasas69@gmail.com','player1');
-INSERT INTO players(id,first_name,last_name,email,username) VALUES (2, 'Pablo', 'Iglesias', 'pablito29@gmail.com','player2');
+INSERT INTO players(id,first_name,last_name,email,player_id,username) VALUES (1, 'Mario', 'Casas', 'mariocasas69@gmail.com','player1');
+INSERT INTO players(id,first_name,last_name,email,player_id,username) VALUES (2, 'Pablo', 'Iglesias', 'pablito29@gmail.com','player2');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
@@ -128,7 +128,6 @@ INSERT INTO cards(id,number,suit, color) VALUES (49, 10, 'CLUBS', 'BLACK');
 INSERT INTO cards(id,number,suit, color) VALUES (50, 11, 'CLUBS', 'BLACK');
 INSERT INTO cards(id,number,suit, color) VALUES (51, 12, 'CLUBS', 'BLACK');
 INSERT INTO cards(id,number,suit, color) VALUES (52, 13, 'CLUBS', 'BLACK');
-
 
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 100, 32, 2);
