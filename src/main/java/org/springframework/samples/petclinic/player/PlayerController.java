@@ -231,10 +231,9 @@ public class PlayerController {
 		
 		friendRequest.setPlayerReceiver(playerReceiver);
 		friendRequest.setPlayerSender(playerSender);
+		friendRequest.setState(false);
 		friendRequestService.saveFriendRequest(friendRequest);
-		
-		
-		
+	
 		return mav;
 	}
 	
@@ -255,11 +254,13 @@ public class PlayerController {
 		Player playerSender = this.playerService.findPlayerById(playerSenderId);
 		Player playerReceiver = this.playerService.findPlayerById(playerReceiverId);
 		
-		playerSender.getFriends().add(playerReceiver);
-		playerReceiver.getFriends().add(playerSender);
 		
-		this.playerService.savePlayer(playerReceiver);
-		this.playerService.savePlayer(playerSender);
+		
+		playerSender.getFriends().setFriend2(playerReceiverId);
+		
+		this.friendsService.saveFriend1(playerSenderId);
+		this.friendsService.saveFriend1(playerSenderId);
+
 		
 		String usernameR = playerReceiver.getUser().getUsername();
 	    String usernameS = playerSender.getUser().getUsername();
@@ -267,8 +268,6 @@ public class PlayerController {
 		FriendRequest friendRequest = this.friendRequestService.RequestByPlayerReceiverNameAndPlayerSenderName(usernameR, usernameS);
 		
 		friendRequestService.deleteFriendRequest(friendRequest);
-		
-		
 		
 		return VIEWS_HOME;
 	}
