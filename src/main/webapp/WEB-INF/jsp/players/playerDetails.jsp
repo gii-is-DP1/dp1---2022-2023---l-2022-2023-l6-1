@@ -18,6 +18,10 @@
             <td><b><c:out value="${player.firstName} ${player.lastName}"/></b></td>
         </tr>
         <tr>
+            <th>Username</th>
+            <td><c:out value="${player.user.username}"/></td>
+        </tr>
+        <tr>
             <th>Email</th>
             <td><c:out value="${player.email}"/></td>
         </tr>

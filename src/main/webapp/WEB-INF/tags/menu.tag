@@ -86,6 +86,8 @@
     												<a href="${fn:escapeXml(addUrl)}" class="btn btn-warning btn-block">Get my Stats</a>
     											</sec:authorize>
     											
+    											
+    											
                     							<a href="<c:url value="/logout" />"
 													class="btn btn-danger btn-block">Logout</a>
 												

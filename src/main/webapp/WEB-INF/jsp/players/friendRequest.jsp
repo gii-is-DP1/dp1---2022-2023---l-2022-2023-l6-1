@@ -10,11 +10,6 @@
 <petclinic:layout pageName="players">
     <h2>FriendRequests</h2>
 	
-		
-	
-	
-		
-		
 		    <table id="friendRequestTable" class="table table-striped">
 		        <thead>
 		        <tr>

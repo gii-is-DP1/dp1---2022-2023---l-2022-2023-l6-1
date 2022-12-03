@@ -12,6 +12,6 @@ import org.springframework.samples.petclinic.player.Player;
 public interface FriendsRepository extends CrudRepository<Friends,Integer> {
 
 	@Query("SELECT friendRequest FROM FriendRequest friendRequest WHERE friendRequest.playerReceiver.id =:friend1_id and friendRequest.playerSender.id =:friend2_id")
-    public Friends findByPlayerReceiverIdAndPlayerSenderId(@Param("friend1_id") Integer friend1,@Param("friend2_id") Integer friend2);
+    public Friends findByPlayerReceiverIdAndPlayerSenderId(@Param("friend1_id") Player friend1,@Param("friend2_id") Player friend2);
 	
 }

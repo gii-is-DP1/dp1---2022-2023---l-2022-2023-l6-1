@@ -267,8 +267,8 @@ public class PlayerController {
 		FriendRequest friendRequest = this.friendRequestService.RequestByPlayerReceiverNameAndPlayerSenderName(usernameR, usernameS);
 		
 		Friends friends = new Friends();
-		friends.setFriend1(playerSenderId);
-		friends.setFriend2(playerReceiverId);
+		friends.setFriend1(playerSender);
+		friends.setFriend2(playerReceiver);
 		
 		this.friendsService.saveFriends(friends);
 //		friendRequest.setState(true);
