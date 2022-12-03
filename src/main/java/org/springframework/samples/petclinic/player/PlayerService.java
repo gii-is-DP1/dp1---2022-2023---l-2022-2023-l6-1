@@ -87,11 +87,7 @@ public class PlayerService {
 		
 	}	
 	
-	
-	@Transactional(readOnly = true)
-	public Set<Player> findFriends(String player) throws DataAccessException {
-		return playerRepository.findByUsername(player).getFriends();
-	}
+
 
 
 }

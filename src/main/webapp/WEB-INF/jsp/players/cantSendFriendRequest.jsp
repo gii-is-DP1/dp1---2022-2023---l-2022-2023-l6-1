@@ -9,6 +9,6 @@
 
 <petclinic:layout pageName="players">
 
-    <h2>SENT</h2>
+    <h2>YOU CAN'T SEND FRIEND REQUEST TO YOURSELF</h2>
 
 </petclinic:layout>
