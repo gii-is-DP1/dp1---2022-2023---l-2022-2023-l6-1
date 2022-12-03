@@ -80,6 +80,18 @@ Dado un jugador no logueado en el sistema que quiera iniciar una partida, no pod
 
 ![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1029740234914668575/InicioPartida.PNG)
 
+### *H7-Ver estadísticas*
+“**Como** jugador, **quiero** que el sistema almacene el historial de partidas que he jugado, cuanntas he ganado y cuantas he perdido **para** poder verlos.”
+
+**Escenarios positivos:**
+
+<u>H7 + E1 - Ver mis estadísticas.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus estadísticas jugando al Solitario, deberá pulsar el botón "Get my Stats" en el menú, se le llevará a una vista en la que habrá un registro de todas las partidas disputadas por dicho jugador y podrá ver las que ha ganado y las que ha perdido, además, encontrará un botón "See my Achievements" en el podrá comprobar que logros ha conseguido el jugador.
+
+
+![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1029740234109358081/SalaPrincipal.PNG)
+
 ### *H9-Editar perfil de usuario*
 “**Como** jugador, **quiero** poder acceder a mi perfil **para** poder editar los datos de mi perfil.”
 

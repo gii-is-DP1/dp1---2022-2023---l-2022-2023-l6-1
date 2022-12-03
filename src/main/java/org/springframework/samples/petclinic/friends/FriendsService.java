@@ -22,7 +22,7 @@ public class FriendsService {
 
 
     @Transactional(readOnly = true)
-    public Friends RequestById(int id1, int id2) throws DataAccessException {
+    public Friends RequestById(Player id1, Player id2) throws DataAccessException {
         return friendsRepository.findByPlayerReceiverIdAndPlayerSenderId(id1, id2);
     }
     

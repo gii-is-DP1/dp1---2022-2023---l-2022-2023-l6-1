@@ -16,6 +16,10 @@
             <td><b><c:out value="${player.firstName} ${player.lastName}"/></b></td>
         </tr>
         <tr>
+            <th>Username</th>
+            <td><c:out value="${player.user.username}"/></td>
+        </tr>
+        <tr>
             <th>Email</th>
             <td><c:out value="${player.email}"/></td>
         </tr>
@@ -35,6 +39,8 @@
    
     <br></br>
     <h2>Friends Information</h2>
+	
+    
 	<table id="friendTable" class="table table-striped">
 		        <thead>
 		        <tr>
@@ -42,16 +48,21 @@
 		            <th style="width: 150px;">Name</th>
 		        </tr>
 		        </thead>
-		  			<c:forEach items="${friend1}" var="friend">
+		        <tbody>
+		        <c:forEach items="${selections}" var="friends">
 		            <tr>
 		            	<td>
-		                    <c:out value="${friend.friend1}"/>
+		                    <c:out value="${friends.friend1.player.user.username}"/>
 		                </td>
 		                <td>
-		                    <c:out value="${friend.friend2}"/>
+		                    <spring:url value="/players/{playerId}" var="playerUrl">
+		                        <spring:param name="playerId" value="${player.id}"/>
+		                    </spring:url>
+		                    <a href="${fn:escapeXml(playerUrl)}"><c:out value="${friends.friend1.firstName} ${friends.friend1.lastName}"/></a>
 		                </td>
 		            </tr>
 		        </c:forEach>
-		    </table>
+		        </tbody>
+	  </table>
 		    
 </petclinic:layout>
