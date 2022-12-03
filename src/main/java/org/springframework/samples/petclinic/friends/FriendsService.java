@@ -26,6 +26,11 @@ public class FriendsService {
         return friendsRepository.findByPlayerReceiverIdAndPlayerSenderId(id1, id2);
     }
     
+    @Transactional(readOnly = true)
+    public Collection<Friends> RequestByPlayer(Player player) throws DataAccessException {
+        return friendsRepository.findByPlayerAllFriends(player);
+    }
+    
     
     @Transactional
 	public void saveFriends(Friends friends) throws DataAccessException {
