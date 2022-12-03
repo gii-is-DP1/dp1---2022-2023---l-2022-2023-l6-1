@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -200,23 +201,49 @@ public class PlayerController {
 	public String initUpdatePlayerForm(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Player player = this.playerService.findByUsername(username);
+		
+		
+		
+		
 		model.addAttribute(player);
 		return VIEWS_MY_PROFILE;
 	}
-
-	@PostMapping(value = "/players/myProfile")
-	public String processUpdatePlayerForm(BindingResult result) {
-		if (result.hasErrors()) {
-			return VIEWS_MY_PROFILE;
+	
+	@GetMapping(value = "players/friends")
+	public String initPlayerFriendForm(Map<String, Collection<Player>> model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = this.playerService.findByUsername(username);
+		Integer playerId = player.getId();
+		Collection<Friends> collectionFriends = friendsService.RequestByPlayer(player);
+		
+		Collection<Player> friends = new ArrayList<Player>();
+		
+		for(Friends friend: collectionFriends) {
+			if(friend.getFriend1().getId().equals(playerId)) {
+				friends.add(friend.getFriend2());
+			}
+			else {
+				friends.add(friend.getFriend1());
+			}
 		}
-		else {
-			String username = SecurityContextHolder.getContext().getAuthentication().getName();
-			Player player = this.playerService.findByUsername(username);
-			player.setId(player.getId());
-			this.playerService.savePlayer(player);
-			return "redirect:/players/myProfile";
-		}
+		model.put("selections", friends);
+		
+		return "/players/friends";
 	}
+
+//	@PostMapping(value = "/players/myProfile")
+//	public String processUpdatePlayerForm(BindingResult result) {
+//		if (result.hasErrors()) {
+//			return VIEWS_MY_PROFILE;
+//		}
+//		else {
+//			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//			Player player = this.playerService.findByUsername(username);
+//			player.setId(player.getId());
+//			this.playerService.savePlayer(player);
+//			return "redirect:/players/myProfile";
+//		}
+//	}
 	
 	@GetMapping("players/{playerId}/friendRequest/new")
 	public ModelAndView sendFriendRequest(@PathVariable("playerId") int playerId) {
@@ -230,9 +257,20 @@ public class PlayerController {
 		Player playerSender = this.playerService.findByUsername(username);
 		Player playerReceiver = this.playerService.findPlayerById(playerId);
 		
+//		Friends friend1 = friendsService.RequestById(playerSender, playerReceiver);
+//		Friends friend2 = friendsService.RequestById(playerReceiver, playerSender);
+//		
+//		if(friend1!=null) {
+//			return mav3;
+//		}
+//		if(friend2!=null) {
+//			return mav3;
+//		}
+		
 		if (playerSender.equals(playerReceiver)) {
 			// same playerSender & Receiver
 			return mav3;
+			///players/{playerId}
 		}
 		
 		FriendRequest friendRequest = new FriendRequest();

@@ -36,33 +36,8 @@
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Friends Request</a>
    
-   
-    <br></br>
-    <h2>Friends Information</h2>
-	
-    
-	<table id="friendTable" class="table table-striped">
-		        <thead>
-		        <tr>
-		        	<th style="width: 150px;">Username</th>
-		            <th style="width: 150px;">Name</th>
-		        </tr>
-		        </thead>
-		        <tbody>
-		        <c:forEach items="${selections}" var="friends">
-		            <tr>
-		            	<td>
-		                    <c:out value="${friends.friend1.player.user.username}"/>
-		                </td>
-		                <td>
-		                    <spring:url value="/players/{playerId}" var="playerUrl">
-		                        <spring:param name="playerId" value="${player.id}"/>
-		                    </spring:url>
-		                    <a href="${fn:escapeXml(playerUrl)}"><c:out value="${friends.friend1.firstName} ${friends.friend1.lastName}"/></a>
-		                </td>
-		            </tr>
-		        </c:forEach>
-		        </tbody>
-	  </table>
-		    
+   <spring:url value="friends" var="friendUrl">       
+   </spring:url>
+   <a href="${fn:escapeXml(friendUrl)}" class="btn btn-default">Friends</a>
+    		    
 </petclinic:layout>
