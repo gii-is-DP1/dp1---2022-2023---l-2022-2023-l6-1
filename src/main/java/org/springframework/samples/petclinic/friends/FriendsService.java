@@ -23,40 +23,20 @@ public class FriendsService {
 
     @Transactional(readOnly = true)
     public Friends RequestById(int id1, int id2) throws DataAccessException {
-        return friendsRepository.findByPlayerReceiverNameAndPlayerSenderName(id1, id2);
-    }
-    
-    @Transactional(readOnly = true)
-    public Collection<Friends> RequestByPlayerReceiverName(String username) throws DataAccessException {
-        return friendsRepository.findByPlayerReceiverName(username);
-    }
-    
-    @Transactional(readOnly = true)
-    public Collection<Player> RequestPlayerSenderByPlayerReceiverName(String username) throws DataAccessException {
-        return friendsRepository.findPlayerSenderByPlayerReceiverName(username);
-    }
-    
-    @Transactional(readOnly = true)
-    public Friends RequestByPlayerReceiverNameAndPlayerSenderName(String usernameR,String usernameS) throws DataAccessException {
-        return friendsRepository.findByPlayerReceiverNameAndPlayerSenderName(usernameR, usernameS);
-    }
-    
-    @Transactional(readOnly = true)
-    public Collection<Friends> RequestByPlayerSenderName(String username) throws DataAccessException {
-        return friendsRepository.findByPlayerSenderName(username);
+        return friendsRepository.findByPlayerReceiverIdAndPlayerSenderId(id1, id2);
     }
     
     
     @Transactional
-	public void saveFriends(Friends Friends) throws DataAccessException {
+	public void saveFriends(Friends friends) throws DataAccessException {
 		//creating Friends
-    	friendsRepository.save(Friends);	
+    	friendsRepository.save(friends);	
 	}	
 	
 	@Transactional
-	public void deleteFriends(Friends Friends) throws DataAccessException {
+	public void deleteFriends(Friends friends) throws DataAccessException {
 		//deleting Friends
-		friendsRepository.delete(Friends);	
+		friendsRepository.delete(friends);	
 		
 	}	
     

@@ -30,5 +30,4 @@ public class FriendRequest extends BaseEntity {
     @Column(name="state")
     private Boolean state;
 	
-    
 }

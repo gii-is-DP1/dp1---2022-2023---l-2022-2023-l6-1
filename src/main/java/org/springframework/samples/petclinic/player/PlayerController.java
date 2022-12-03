@@ -26,6 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.friendRequest.FriendRequest;
 import org.springframework.samples.petclinic.friendRequest.FriendRequestService;
+import org.springframework.samples.petclinic.friends.Friends;
+import org.springframework.samples.petclinic.friends.FriendsService;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,19 +53,22 @@ public class PlayerController {
 	private static final String VIEWS_PLAYER_CREATE_OR_UPDATE_FORM = "players/createOrUpdatePlayerForm";
 	private static final String VIEWS_MY_PROFILE = "players/myProfile";
 	private static final String VIEWS_HOME = "welcome";
-	
-	private static final String VIEWS_FRIENDS = "friends/friendsList";
+	private static final String VIEWS_ACCEPT_REQUEST = "friends/acceptRequest";
+	private static final String VIEWS_REJECT_REQUEST = "friends/rejectRequest";
 	
 	private final PlayerService playerService;
 	
 	private final FriendRequestService friendRequestService;
 	
+	private final FriendsService friendsService;
+	
 	
 	
 	@Autowired
-	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService, FriendRequestService friendRequestService) {
+	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService, FriendRequestService friendRequestService, FriendsService friendsService) {
 		this.playerService = playerService;
 		this.friendRequestService = friendRequestService;
+		this.friendsService = friendsService;
 		
 	}
 
@@ -216,6 +221,9 @@ public class PlayerController {
 	@GetMapping("players/{playerId}/friendRequest/new")
 	public ModelAndView sendFriendRequest(@PathVariable("playerId") int playerId) {
 		ModelAndView mav = new ModelAndView("players/sendRequestSended");
+		ModelAndView mav2 = new ModelAndView("players/uAreFriend");
+		ModelAndView mav3 = new ModelAndView("players/cantSendFriendRequest");
+
 		mav.addObject(this.playerService.findPlayerById(playerId));
 		
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -224,7 +232,7 @@ public class PlayerController {
 		
 		if (playerSender.equals(playerReceiver)) {
 			// same playerSender & Receiver
-			return mav;
+			return mav3;
 		}
 		
 		FriendRequest friendRequest = new FriendRequest();
@@ -250,38 +258,32 @@ public class PlayerController {
 	@GetMapping("players/{playerReceiverId}/{playerSenderId}/friendRequest/accept")
 	public String acceptFriendRequest(@PathVariable("playerReceiverId") int playerReceiverId,@PathVariable("playerSenderId") int playerSenderId ) {
 		
-		
 		Player playerSender = this.playerService.findPlayerById(playerSenderId);
 		Player playerReceiver = this.playerService.findPlayerById(playerReceiverId);
-		
-		
-		
-		playerSender.getFriends().setFriend2(playerReceiverId);
-		
-		this.friendsService.saveFriend1(playerSenderId);
-		this.friendsService.saveFriend1(playerSenderId);
-
 		
 		String usernameR = playerReceiver.getUser().getUsername();
 	    String usernameS = playerSender.getUser().getUsername();
 		
 		FriendRequest friendRequest = this.friendRequestService.RequestByPlayerReceiverNameAndPlayerSenderName(usernameR, usernameS);
 		
-		friendRequestService.deleteFriendRequest(friendRequest);
+		Friends friends = new Friends();
+		friends.setFriend1(playerSenderId);
+		friends.setFriend2(playerReceiverId);
 		
-		return VIEWS_HOME;
+		this.friendsService.saveFriends(friends);
+//		friendRequest.setState(true);
+		
+		friendRequestService.deleteFriendRequest(friendRequest);
+			
+		return VIEWS_ACCEPT_REQUEST;
 	}
 	
 	@GetMapping("players/{playerReceiverId}/{playerSenderId}/friendRequest/reject")
 	public String rejectFriendRequest(@PathVariable("playerReceiverId") int playerReceiverId,@PathVariable("playerSenderId") int playerSenderId ) {
 		
-		
-		
-		
 		Player playerSender = this.playerService.findPlayerById(playerSenderId);
 		Player playerReceiver = this.playerService.findPlayerById(playerReceiverId);
 				
-		
 		String usernameR = playerReceiver.getUser().getUsername();
 	    String usernameS = playerSender.getUser().getUsername();
 		
@@ -289,12 +291,6 @@ public class PlayerController {
 		
 		friendRequestService.deleteFriendRequest(friendRequest);
 		
-		
-		
-		return VIEWS_HOME;
+		return VIEWS_REJECT_REQUEST;
 	}
-	
-	
-
-
 }
