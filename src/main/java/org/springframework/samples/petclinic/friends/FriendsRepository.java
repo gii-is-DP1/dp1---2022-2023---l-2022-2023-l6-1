@@ -17,4 +17,8 @@ public interface FriendsRepository extends CrudRepository<Friends,Integer> {
 	@Query("SELECT friend FROM Friends friend WHERE friend.friend1 =:player or friend.friend2 =:player")
     public Collection<Friends> findByPlayerAllFriends(@Param("player") Player player);
 	
+	
+	@Query("SELECT friend FROM Friends friend WHERE friend.id = :id")
+	public Friends findById(@Param("id") int id);
+	
 }

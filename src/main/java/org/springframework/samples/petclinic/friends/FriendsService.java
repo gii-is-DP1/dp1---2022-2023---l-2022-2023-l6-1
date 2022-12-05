@@ -31,6 +31,11 @@ public class FriendsService {
         return friendsRepository.findByPlayerAllFriends(player);
     }
     
+    @Transactional(readOnly = true)
+    public Friends findFriendById(int id) throws DataAccessException {
+        return friendsRepository.findById(id);
+    }
+    
     
     @Transactional
 	public void saveFriends(Friends friends) throws DataAccessException {

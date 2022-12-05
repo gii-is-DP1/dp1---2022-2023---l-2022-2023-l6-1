@@ -45,14 +45,7 @@
     	<a href='${playerId}/friendRequest/new' onclick= miFunc();>
     		<button class="btn btn-default" id="boton1" style="display:block;">Send Friend Request</button>
     	</a>
-    	<p id="vent" style="display:none;">Ya has solicitado amistad</p>
+    	
 	</sec:authorize>
-
-	<script>
-  			function miFunc() {
-    		document.getElementById("vent").style.display="block";
-            document.getElementById("boton1").style.display="none"; 
-  			}
-	</script>
 
 </petclinic:layout>

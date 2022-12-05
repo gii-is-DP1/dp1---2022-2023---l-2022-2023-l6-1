@@ -21,6 +21,7 @@
 		        	<th style="width: 150px;">Username</th>
 		            <th style="width: 150px;">Name</th>
 		            <th style="width: 150px;">Email</th>
+		            <th style="width: 30px;">Delete</th>
 		        </tr>
 		        </thead>
 		        <tbody>
@@ -38,6 +39,12 @@
 		                <td>
 		                    <c:out value="${friend.email}"/>
 		                </td>
+		                <td>
+		                	<spring:url value="/players/{friendId}/deleteFriend" var="FriendUrl">
+        						<spring:param name="friendId" value="${friend.id}"/>
+    						</spring:url>	                   
+    						<a href="${fn:escapeXml(FriendUrl)}" class="btn btn-danger">Remove</a>
+						</td>
 		            </tr>
 		        </c:forEach>
 		        </tbody>
