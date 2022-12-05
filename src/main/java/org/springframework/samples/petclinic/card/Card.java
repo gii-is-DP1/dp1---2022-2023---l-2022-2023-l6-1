@@ -20,18 +20,17 @@ public class Card extends BaseEntity{
 
 	@NotEmpty
 	@Column(name = "color")
-	protected String color;
+	private String color;
 	
 	@NotEmpty
 	@Column(name = "suit")
-	protected String suit;
+	private String suit;
 	
-	@NotEmpty
 	@Min(value = 1)
 	@Max(value = 13)
 	@Column(name = "number")
 	private Integer number;
 	
-	@NotEmpty
-	private Boolean estaDescubierta;
+//	@NotEmpty
+//	private Boolean estaDescubierta;
 }
