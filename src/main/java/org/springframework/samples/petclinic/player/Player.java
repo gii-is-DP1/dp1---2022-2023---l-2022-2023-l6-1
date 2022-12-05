@@ -51,8 +51,7 @@ public class Player extends Person {
 	@Column(name="email")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Friends friends;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
