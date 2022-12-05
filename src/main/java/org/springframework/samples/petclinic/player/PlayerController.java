@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -217,13 +218,15 @@ public class PlayerController {
 		Integer playerId = player.getId();
 		Collection<Friends> collectionFriends = friendsService.RequestByPlayer(player);
 		
-		Collection<Player> friends = new ArrayList<Player>();
 		
+		Collection<Player> friends = new ArrayList<Player>();
 		for(Friends friend: collectionFriends) {
 			if(friend.getFriend1().getId().equals(playerId)) {
+				friend.getFriend2().setFriendId(friend.getId());
 				friends.add(friend.getFriend2());
 			}
 			else {
+				friend.getFriend1().setFriendId(friend.getId());
 				friends.add(friend.getFriend1());
 			}
 		}
@@ -235,6 +238,7 @@ public class PlayerController {
 
 	@GetMapping(value = "/players/{friendId}/deleteFriend")
 	public String initDeleteFriendForm(@PathVariable("friendId") int friendId, Model model) {
+		
 		this.friendsService.deleteFriends(this.friendsService.findFriendById(friendId));
 		return VIEWS_HOME;
 	}
@@ -256,6 +260,25 @@ public class PlayerController {
 		Player playerSender = this.playerService.findByUsername(username);
 		Player playerReceiver = this.playerService.findPlayerById(playerId);
 
+		Collection<Friends> collectionFriends = friendsService.RequestByPlayer(playerSender);
+		
+		List<Player> friends = new ArrayList<Player>();
+		for(Friends friend: collectionFriends) {
+			if(friend.getFriend1().getId().equals(playerSender.getId())) {
+				
+				friends.add(friend.getFriend2());
+			}
+			else {
+				friends.add(friend.getFriend1());
+			}
+		}	
+		
+		for(Player playerFriend : friends) {
+			if(playerFriend.equals(playerReceiver)) {
+				return mav2;
+			}
+			
+		}
 		
 		if (playerSender.equals(playerReceiver)) {
 			// same playerSender & Receiver
