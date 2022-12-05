@@ -17,14 +17,11 @@ package org.springframework.samples.petclinic.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.friendRequest.FriendRequest;
 import org.springframework.samples.petclinic.friendRequest.FriendRequestService;
 import org.springframework.samples.petclinic.friends.Friends;
@@ -209,6 +206,10 @@ public class PlayerController {
 		return VIEWS_MY_PROFILE;
 	}
 	
+	
+	//=========================================================Friends==================================================================
+	
+	
 	@GetMapping(value = "players/friends")
 	public String initPlayerFriendForm(Map<String, Collection<Player>> model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -226,24 +227,22 @@ public class PlayerController {
 				friends.add(friend.getFriend1());
 			}
 		}
+		
 		model.put("selections", friends);
 		
 		return "/players/friends";
 	}
 
-//	@PostMapping(value = "/players/myProfile")
-//	public String processUpdatePlayerForm(BindingResult result) {
-//		if (result.hasErrors()) {
-//			return VIEWS_MY_PROFILE;
-//		}
-//		else {
-//			String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//			Player player = this.playerService.findByUsername(username);
-//			player.setId(player.getId());
-//			this.playerService.savePlayer(player);
-//			return "redirect:/players/myProfile";
-//		}
-//	}
+	@GetMapping(value = "/players/{friendId}/deleteFriend")
+	public String initDeleteFriendForm(@PathVariable("friendId") int friendId, Model model) {
+		this.friendsService.deleteFriends(this.friendsService.findFriendById(friendId));
+		return VIEWS_HOME;
+	}
+	
+	
+	
+	
+	//=========================================================FriendRequest==================================================================
 	
 	@GetMapping("players/{playerId}/friendRequest/new")
 	public ModelAndView sendFriendRequest(@PathVariable("playerId") int playerId) {
@@ -256,16 +255,7 @@ public class PlayerController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Player playerSender = this.playerService.findByUsername(username);
 		Player playerReceiver = this.playerService.findPlayerById(playerId);
-		
-//		Friends friend1 = friendsService.RequestById(playerSender, playerReceiver);
-//		Friends friend2 = friendsService.RequestById(playerReceiver, playerSender);
-//		
-//		if(friend1!=null) {
-//			return mav3;
-//		}
-//		if(friend2!=null) {
-//			return mav3;
-//		}
+
 		
 		if (playerSender.equals(playerReceiver)) {
 			// same playerSender & Receiver
