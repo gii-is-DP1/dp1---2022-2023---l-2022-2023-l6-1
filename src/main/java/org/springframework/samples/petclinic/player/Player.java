@@ -25,7 +25,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.samples.petclinic.friends.Friends;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.user.User;
 
@@ -51,8 +50,8 @@ public class Player extends Person {
 	@Column(name="email")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Friends friends;
+	private Integer friendId;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
