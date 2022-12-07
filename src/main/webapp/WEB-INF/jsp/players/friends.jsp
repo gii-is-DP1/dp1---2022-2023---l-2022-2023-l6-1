@@ -41,7 +41,7 @@
 		                </td>
 		                <td>
 		                	<spring:url value="/players/{friendId}/deleteFriend" var="FriendUrl">
-        						<spring:param name="friendId" value="${friend.id}"/>
+        						<spring:param name="friendId" value="${friend.friendId}"/>
     						</spring:url>	                   
     						<a href="${fn:escapeXml(FriendUrl)}" class="btn btn-danger">Remove</a>
 						</td>
