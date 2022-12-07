@@ -50,12 +50,13 @@ public class AchievementsController {
 		Iterable<Achievements> achievements = this.achievementsService.findAll();
 		
 		for(Achievements achievement:achievements) {
-			String condicionString = achievement.getCondition_unlocked().split(".")[1].split(">")[0];
+			String condicionString = achievement.getCondition_unlocked().split(".")[1];
+			String condicionStringC = condicionString.split(">")[0];
 			String condicionNumero = achievement.getCondition_unlocked().split("=")[1];
 			Integer condicionNumeroN = Integer.valueOf(condicionNumero);
 			AchievementsStatistics achievementsStatistics = new AchievementsStatistics();
 			
-			if(condicionString.equals("games")) {
+			if(condicionStringC.equals("games")) {
 				if(stats.getGames()>=condicionNumeroN) {
 					if(!achievementsList.contains(achievement)) {
 					achievementsStatistics.setAchievement(achievement);
@@ -65,7 +66,7 @@ public class AchievementsController {
 				}
 			}	
 			
-			else if(condicionString.equals("games_won")) {
+			else if(condicionStringC.equals("games_won")) {
 				if(!achievementsList.contains(achievement)) {
 					achievementsStatistics.setAchievement(achievement);
 					achievementsStatistics.setStatistics(stats);
@@ -73,7 +74,7 @@ public class AchievementsController {
 					}
 			}
 			
-			else if(condicionString.equals("games_lost")) {
+			else if(condicionStringC.equals("games_lost")) {
 				if(!achievementsList.contains(achievement)) {
 					achievementsStatistics.setAchievement(achievement);
 					achievementsStatistics.setStatistics(stats);
