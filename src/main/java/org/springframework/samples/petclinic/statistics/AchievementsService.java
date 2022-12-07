@@ -16,10 +16,13 @@ public class AchievementsService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Achievements findById(int id) throws DataAccessException{
+	public AchievementsStatistics findById(int id) throws DataAccessException{
 		return achievementsRepository.findById(id);
 	}
 	
-	
+	@Transactional(readOnly = true)
+	public Iterable<Achievements> findAll() throws DataAccessException{
+		return achievementsRepository.findAll();
+	}
 
 }

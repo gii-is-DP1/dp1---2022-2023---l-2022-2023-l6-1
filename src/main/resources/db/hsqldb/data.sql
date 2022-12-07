@@ -132,7 +132,18 @@ INSERT INTO cards(id,number,suit, color) VALUES (52, 13, 'CLUBS', 'BLACK');
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 100, 32, 2);
 
-INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (1, 'Friki','Has alcanzado las 100 partidas' ,'hola', true, 'imagen_logro.png', 1);
-INSERT INTO achievements(id, name, description,condition_unlocked,is_unlocked, image, statistics_id) VALUES (2, 'Tremendo','Has superado 30 puntos' ,'si', true, 'logro30.png', 2);
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (1, 'Principiante','Juega 1 partida' ,'statistics.games>=1', 'imagen_logro.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (2, 'Amateur','Juega 25 partidas' ,'statistics.games>=25', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (3, 'Experto','Juega 50 partidas' ,'statistics.games>=50', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (4, 'Elite','Juega 100 partidas' ,'statistics.games>=100', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (5, 'Primera Sangre','Gana 1 partida' ,'statistics.games_won>=1', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (6, 'Pentakillx2','Gana 10 partidas' ,'statistics.games_won>=10', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (7, 'Muchas victorias','Gana  50 partidas' ,'statistics.games_won>=50', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (8, 'PEROQUEMUCHASVICTORIAS','Gana 150 partidas' ,'statistics.games_won>=150', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (9, 'Perdedor primerizo','Pierde 10 partidas' ,'statistics.games_lost>=10', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (10, 'MUY PERDEDOR','Pierde 50 partidas' ,'statistics.games_lost>=50', 'logro30.png');
+INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (11, 'Perdedor Nato','Pierde 100 partidas' ,'statistics.games_lost>=100', 'logro30.png');
 
+INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (1,1,1);
+INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (2,2,2);
 INSERT INTO friend_requests(id, player_sender,player_receiver,state) VALUES (1,1,2,false)

@@ -32,17 +32,17 @@ public class Achievements extends BaseEntity{
 	@Column(name="condition_unlocked")
 	private String condition_unlocked;
 	
-	@NotEmpty
-	@Column(name="is_unlocked")
-	private Boolean is_unlocked;
+//	@NotEmpty
+//	@Column(name="is_unlocked")
+//	private Boolean is_unlocked;
 	
 	@NotEmpty
 	@Column(name="image")
 	private String image;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statistics_id", referencedColumnName = "id")
-	private Statistics statistics;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "statistics_id", referencedColumnName = "id")
+//	private Statistics statistics;
 	
 
 }

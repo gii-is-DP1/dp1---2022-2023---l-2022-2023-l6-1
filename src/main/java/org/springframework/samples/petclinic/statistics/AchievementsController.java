@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.statistics;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -19,14 +20,70 @@ public class AchievementsController {
 	private final AchievementsService achievementsService;
 	private final StatisticsService statisticsService;
 	private final PlayerService playerService;
+	private final AchievementsStatisticsService achievementsStatisticsService;
 
 	
 	@Autowired
-	public AchievementsController(AchievementsService achievementsService, StatisticsService statisticsService, PlayerService playerService) {
+	public AchievementsController(AchievementsStatisticsService achievementsStatisticsService,AchievementsService achievementsService, StatisticsService statisticsService, PlayerService playerService) {
+		this.achievementsStatisticsService = achievementsStatisticsService;
 		this.achievementsService = achievementsService;
 		this.statisticsService = statisticsService;
 		this.playerService = playerService;
+		 
 	} 
+	
+	
+	@GetMapping(value = "/achievements/achievementsStatistics")
+	public String initUnlockForm(Map<String, Object> model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = this.playerService.findByUsername(username);
+		Integer id = player.getId();
+		Statistics stats = this.statisticsService.findById(id);
+		Integer id_stats = stats.getId();
+		
+		Collection<AchievementsStatistics> achievementStatistics = this.achievementsStatisticsService.findById(id_stats);
+		List<Achievements> achievementsList = new ArrayList<>();
+		for(AchievementsStatistics achievementStatistic:achievementStatistics) {
+			achievementsList.add(achievementStatistic.getAchievement());
+		}
+		
+		Iterable<Achievements> achievements = this.achievementsService.findAll();
+		
+		for(Achievements achievement:achievements) {
+			String condicionString = achievement.getCondition_unlocked().split(".")[1];
+			String condicionStringC = condicionString.split(">")[0];
+			String condicionNumero = achievement.getCondition_unlocked().split("=")[1];
+			Integer condicionNumeroN = Integer.valueOf(condicionNumero);
+			AchievementsStatistics achievementsStatistics = new AchievementsStatistics();
+			
+			if(condicionStringC.equals("games")) {
+				if(stats.getGames()>=condicionNumeroN) {
+					if(!achievementsList.contains(achievement)) {
+					achievementsStatistics.setAchievement(achievement);
+					achievementsStatistics.setStatistics(stats);
+					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+					}
+				}
+			}	
+			
+			else if(condicionStringC.equals("games_won")) {
+				if(!achievementsList.contains(achievement)) {
+					achievementsStatistics.setAchievement(achievement);
+					achievementsStatistics.setStatistics(stats);
+					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+					}
+			}
+			
+			else if(condicionStringC.equals("games_lost")) {
+				if(!achievementsList.contains(achievement)) {
+					achievementsStatistics.setAchievement(achievement);
+					achievementsStatistics.setStatistics(stats);
+					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+					}
+			}
+		}
+		return "/achievements";
+	}
 
 	@GetMapping(value = "/achievements")
 	public String initCreationForm(Map<String, Object> model) {
@@ -35,9 +92,11 @@ public class AchievementsController {
 		Integer id = player.getId();
 		Statistics stats = this.statisticsService.findById(id);
 		Integer id_stats = stats.getId();
-		Achievements achievement = this.achievementsService.findById(id_stats);
+		Collection<AchievementsStatistics> achievementStatistics = this.achievementsStatisticsService.findById(id_stats);
 		List<Achievements> achievements = new ArrayList<>();
-		achievements.add(achievement);
+		for(AchievementsStatistics achievementStatistic:achievementStatistics) {
+			achievements.add(achievementStatistic.getAchievement());
+		}
 		model.put("achievements",achievements);
 		return VIEWS_ACHIEVEMENTS;
 	}

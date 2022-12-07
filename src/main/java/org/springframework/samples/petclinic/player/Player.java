@@ -50,7 +50,9 @@ public class Player extends Person {
 	@Column(name="email")
 	private String email;
 	
+
 	private Integer friendId;
+
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
