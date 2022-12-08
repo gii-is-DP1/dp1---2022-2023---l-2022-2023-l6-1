@@ -50,39 +50,45 @@ public class AchievementsController {
 		Iterable<Achievements> achievements = this.achievementsService.findAll();
 		
 		for(Achievements achievement:achievements) {
-			String condicionString = achievement.getCondition_unlocked().split(".")[1];
-			String condicionStringC = condicionString.split(">")[0];
-			String condicionNumero = achievement.getCondition_unlocked().split("=")[1];
+			String condicionStringC = achievement.getCondition_unlocked().split(">")[0];
+			String condicionNumero = achievement.getCondition_unlocked().trim().split("=")[1];
 			Integer condicionNumeroN = Integer.valueOf(condicionNumero);
 			AchievementsStatistics achievementsStatistics = new AchievementsStatistics();
-			
 			if(condicionStringC.equals("games")) {
 				if(stats.getGames()>=condicionNumeroN) {
 					if(!achievementsList.contains(achievement)) {
-					achievementsStatistics.setAchievement(achievement);
-					achievementsStatistics.setStatistics(stats);
-					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+						achievementsStatistics.setAchievement(achievement);
+						achievementsStatistics.setStatistics(stats);
+						
+						this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+						
 					}
 				}
 			}	
 			
-			else if(condicionStringC.equals("games_won")) {
-				if(!achievementsList.contains(achievement)) {
-					achievementsStatistics.setAchievement(achievement);
-					achievementsStatistics.setStatistics(stats);
-					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+			else if(condicionStringC.equals("gamesWon")) {
+				if(stats.getGamesWon() >= condicionNumeroN) {
+					if(!achievementsList.contains(achievement)) {
+						achievementsStatistics.setAchievement(achievement);
+						achievementsStatistics.setStatistics(stats);
+						this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
 					}
+				}
+				
 			}
 			
-			else if(condicionStringC.equals("games_lost")) {
-				if(!achievementsList.contains(achievement)) {
-					achievementsStatistics.setAchievement(achievement);
-					achievementsStatistics.setStatistics(stats);
-					this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
+			else if(condicionStringC.equals("gamesLost")) {
+				if(stats.getGamesLost() >= condicionNumeroN) {
+					if(!achievementsList.contains(achievement)) {
+						achievementsStatistics.setAchievement(achievement);
+						achievementsStatistics.setStatistics(stats);
+						this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStatistics);
 					}
+				}
+				
 			}
 		}
-		return "/achievements";
+		return "redirect:/achievements";
 	}
 
 	@GetMapping(value = "/achievements")
@@ -100,4 +106,7 @@ public class AchievementsController {
 		model.put("achievements",achievements);
 		return VIEWS_ACHIEVEMENTS;
 	}
+	
+	
+	
 }
