@@ -44,7 +44,7 @@ Dado el formulario de registro, el sistema acepta la solicitud de registro.
 
 Dado el formulario de registro, el sistema no acepta la solicitud de registro debido a que existen campos del formulario que no son correctos.
 
-![Mockup1](https://cdn.discordapp.com/attachments/1025044659275321430/1029740236265230386/Registro.PNG)
+![Mockup1](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471421878302/mockup_register.png)
 
 ### *H2-Inicio sesión*
 “**Como** jugador, **quiero** poder acceder al sistema iniciando sesión **para** para jugar una partida.”
@@ -61,7 +61,7 @@ Dado el formulario de inicio de sesión, el sistema reconoce los datos en la bas
 
 Dado el formulario de inicio de sesión, el sistema no reconoce los datos en la base de datos, y no le permite la entrada en el sistema al jugador.
 
-![Mockup2](https://cdn.discordapp.com/attachments/1025044659275321430/1029740233660571769/InicioSesion.PNG)
+![Mockup2](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472151683102/mockup_signin.png)
 
 ### *H3-Iniciar una partida*
 “**Como** jugador, **quiero** que el sistema ofrezca un botón **para** poder iniciar una nueva partida.”
@@ -78,7 +78,7 @@ Dado un jugador en el menú del juego, le aparecerán varios botones, si quiere 
 
 Dado un jugador no logueado en el sistema que quiera iniciar una partida, no podrá iniciar la partida por lo que tampoco le aparecerá la vista del tablero, y le aparecerá un mensaje de error “Debes iniciar sesión para poder jugar”.
 
-![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1029740234914668575/InicioPartida.PNG)
+![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1050388470352330772/mockup_difficult.png)
 
 ### *H7-Ver estadísticas*
 “**Como** jugador, **quiero** que el sistema almacene el historial de partidas que he jugado, cuanntas he ganado y cuantas he perdido **para** poder verlos.”
@@ -90,7 +90,8 @@ Dado un jugador no logueado en el sistema que quiera iniciar una partida, no pod
 Dado un jugador en el menú del juego, si quiere ver sus estadísticas jugando al Solitario, deberá pulsar el botón "Get my Stats" en el menú, se le llevará a una vista en la que habrá un registro de todas las partidas disputadas por dicho jugador y podrá ver las que ha ganado y las que ha perdido, además, encontrará un botón "See my Achievements" en el podrá comprobar que logros ha conseguido el jugador.
 
 
-![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1029740234109358081/SalaPrincipal.PNG)
+![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472491425872/mockup_stats.png)
+![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472860516362/mockup_stats2.png)
 
 ### *H9-Editar perfil de usuario*
 “**Como** jugador, **quiero** poder acceder a mi perfil **para** poder editar los datos de mi perfil.”
@@ -116,6 +117,79 @@ Dado un administrador, si éste desea acceder al apartado de “Herramientas de 
 
 Dado un jugador logueado, si éste intenta acceder al apartado de “Herramientas de administrador”, salta un error de autenticación, ya que no tiene permisos para acceder a dicho apartado.
 
+### *H11-Ver amigos*
+“**Como** jugador, **quiero** que el sistema me proporcione una lista de amigos **para** poder ver los nombres de mis amigos y sus puntuaciones.”
+
+**Escenarios positivos:**
+
+<u>H11 + E1 - Ver mis amigos.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus amigos, deberá pulsar el menú desplegable y después“My Profile” en el menú, y se le llevará a otra vista en la que habrá un botón “Friends” dedicado a enviarle a otra vista en la que habrá una tabla con los datos más significativos de sus amigos registro de todos los amigos de dicho jugador.
+
+![Mockup11](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471065358367/mockup_friends.png)
+
+### *H12-Mandar solucitud de amistad*
+“**Como** jugador, **quiero** que el sistema me proporcione un menú en el que pueda añadir amigos **para** añadirlo a mi lista de amigos.”
+
+**Escenarios positivos:**
+
+<u>H12 + E1 - Mandar solicitud de amistad.</u>
+
+Dado un jugador en el menú del juego, si quiere añadir un amigo, deberá pulsar el botón “Find Players” en el menú, se le llevará a otra vista, 
+donde deberá buscar el apellido del jugador al que se la quiere enviar, y al acceder en el perfil de dicho jugador aparecerá un botón “Send Friend Request” que
+permite mandar la solicitud de amistad al otro jugador.
+
+![Mockup12](https://cdn.discordapp.com/attachments/1025044659275321430/1050388473191870515/mockup_details.png)
+
+### *H13-Ver solucitud de amistad*
+“**Como** jugador, **quiero** que el sistema me proporcione un menú en el que pueda ver las solicitudes de amistad que recibí **para** poder aceptarlas o rechazarlas.”
+
+**Escenarios positivos:**
+
+<u>H14 + E1 - Ver mis solicitudes de amistad.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus solicitudes de amistad , deberá pulsar el botón “My Profile” en el menú desplegable, se le llevará a otra vista en
+la que habrá un botón “Friend Requests” que le llevará a otra vista con una lista de todas los solicitudes y quién la mandó y en dicha lista le aparecerán dos botones
+uno es “Accept” que al accionarlo desaparecerá la solicitud y se agregará dicho jugador a su lista de amigos.
+
+![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472491425872/mockup_stats.png)
+![Mockup13A](https://cdn.discordapp.com/attachments/1025044659275321430/1050433634567454822/image.png)
+![Mockup13](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471765803048/mockup_request.png)
+
+### *H14-Aceptar solucitud de amistad*
+“**Como** jugador, **quiero** que el sistema me proporcione un menú en el que pueda ver las solicitudes de amistad que recibí **para** poder aceptarlas.”
+
+**Escenarios positivos:**
+
+<u>H14 + E1 - Aceptar mis solicitudes de amistad.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus solicitudes de amistad , deberá pulsar el botón “My Profile” en el menú desplegable, se le llevará a otra vista en la que habrá un botón “Friend Requests” que le llevará a otra vista con una lista de todas los solicitudes y quién la mandó.
+
+![Mockup13](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471765803048/mockup_request.png)
+
+### *H15-Rechazar solucitud de amistad*
+“**Como** jugador, **quiero** que el sistema me proporcione un menú en el que pueda ver las solicitudes de amistad que recibí **para** poder rechazarlas.”
+
+**Escenarios positivos:**
+
+<u>H15 + E1 - Rechazar mis solicitudes de amistad.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus solicitudes de amistad , deberá pulsar el botón “My Profile” en el menú desplegable, 
+se le llevará a otra vista en la que habrá un botón “Friend Requests” que le llevará a otra vista con una lista de todas los solicitudes y quién 
+la mandó y en dicha lista le aparecerán dos botones uno es “Reject” que al accionarlo desaparecerá la solicitud y se agregará dicho jugador a su lista de amigos.
+
+![Mockup13](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471765803048/mockup_request.png)
+
+### *H16-Eliminar amigos*
+“**Como** jugador, **quiero** que el sistema me proporcione una lista de mis amigos **para** poder eliminarlos.”
+
+**Escenarios positivos:**
+
+<u>H16 + E1 - Eliminar amigo.</u>
+
+Dado un jugador en el menú del juego, si quiere ver sus amigos, deberá pulsar el menú desplegable y después“My Profile” en el menú, y se le llevará a otra vista en la que habrá un botón “Friends” dedicado a enviarle a otra vista en la que habrá una tabla con los datos más significativos de sus amigos registro de todos los amigos de dicho jugador y además un botón a su lado “Remove” que al accionarlo se eliminará la relación de amistad entre ambos jugadores.
+
+![Mockup13](https://cdn.discordapp.com/attachments/1025044659275321430/1050388471065358367/mockup_friends.png)
 
 ## Database configuration
 
