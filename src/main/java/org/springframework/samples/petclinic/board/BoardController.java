@@ -1,6 +1,11 @@
 package org.springframework.samples.petclinic.board;
 
+import java.util.Date;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,8 +16,10 @@ public class BoardController {
 	private static final String BOARD_1 = "board/board1";
 	private static final String BOARD_2 = "board/board2";
 	private static final String BOARD_3 = "board/board3";
-
 	
+	@Autowired
+	private BoardService boardService;
+
 	@GetMapping(value = "/startGame")
 	public String initCreationForm(Map<String, Object> model) {
 		Board board = new Board();
@@ -22,8 +29,9 @@ public class BoardController {
 	
 	@GetMapping(value = "/startGame/difficult1")
 	public String creationEasyMode(Map<String, Object> model) {
-		Board board = new Board();
-		model.put("board", board);
+		
+		model.put("now", new Date());
+		model.put("board", boardService.findById(1).get());
 		return BOARD_1;
 	}
 	

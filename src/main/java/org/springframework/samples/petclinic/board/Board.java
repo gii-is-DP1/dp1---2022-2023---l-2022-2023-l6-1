@@ -27,23 +27,23 @@ import lombok.Setter;
 @Setter
 @Table(name = "board")
 public class Board extends BaseEntity{
-	
-	@Timespan
-	private Duration timer;
-	
-	@OneToMany
-	@Min(value = 4)
-	@Max(value = 4)
-	private List<Pile> pileBoard;
-	
-	@OneToOne
-	private PlayZone playZoneBoard;
-	
-	@OneToOne
-	private Deck deckBoard;
-	
-	@OneToOne
-	private Player playerBoard;
+//	
+//	@Timespan
+//	private Duration timer;
+//	
+//	@OneToMany
+//	@Min(value = 4)
+//	@Max(value = 4)
+//	private List<Pile> pileBoard;
+//	
+//	@OneToOne
+//	private PlayZone playZoneBoard;
+//	
+//	@OneToOne
+//	private Deck deckBoard;
+//	
+//	@OneToOne
+//	private Player playerBoard;
 	
 	String background;
 	@Positive
@@ -52,8 +52,8 @@ public class Board extends BaseEntity{
 	int height;
 	
 	public Board() {
-		this.background = "/resources/images/tablero.png";
-		this.width = 500;
-		this.height = 300;
+		this.background = "/resources/images/background.jpg";
+		this.width = 1500;
+		this.height = 1000;
 	}
 }
