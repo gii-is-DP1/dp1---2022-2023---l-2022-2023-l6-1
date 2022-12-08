@@ -27,10 +27,10 @@
 	                    <c:out value="${statistics.games}"/>
 	                </td>
 	                <td>
-	                    <c:out value="${statistics.games_won}"/>
+	                    <c:out value="${statistics.gamesWon}"/>
 	                </td>
 	                <td>
-	                    <c:out value="${statistics.games_lost}"/>
+	                    <c:out value="${statistics.gamesLost}"/>
 	                </td>
 	                <td>
 	                    <c:out value="${statistics.totalScore}"/>
@@ -40,7 +40,7 @@
         </tbody>
     </table>
     
-    <spring:url value="/achievements" var="addUrl">
+    <spring:url value="/achievements/achievementsStatistics" var="addUrl">
     </spring:url>
     <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">See My Achievements</a>
     

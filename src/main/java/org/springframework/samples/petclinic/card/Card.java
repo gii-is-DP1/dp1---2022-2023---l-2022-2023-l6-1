@@ -32,5 +32,5 @@ public class Card extends BaseEntity{
 	private Integer number;
 	
 //	@NotEmpty
-//	private Boolean estaDescubierta;
+//	private Boolean isShowed;
 }

@@ -16,7 +16,6 @@
         <tr>
         	<th style="width: 150px;">Name</th>
             <th style="width: 150px;">Description</th>
-            <th style="width: 150px;">Image</th>
         </tr>
         </thead>
         <tbody>
@@ -27,12 +26,6 @@
 	                </td>
 	                <td>
 	                    <c:out value="${achievements.description}"/>
-	                </td>
-	                <td>
-	                    <c:if test="${achievement.image == ''}">none</c:if>
-                    	<c:if test="${achievement.image != ''}">
-                        <img src="/resources/images/imagen_logro.png"/> 
-                    	</c:if>
 	                </td>
 	            </tr>
 	        </c:forEach> 
