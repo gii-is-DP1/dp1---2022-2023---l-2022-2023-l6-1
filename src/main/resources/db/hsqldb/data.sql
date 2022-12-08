@@ -146,4 +146,6 @@ INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES
 
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (1,1,1);
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (2,2,2);
-INSERT INTO friend_requests(id, player_sender,player_receiver,state) VALUES (1,1,2,false)
+INSERT INTO friend_requests(id, player_sender,player_receiver,state) VALUES (1,1,2,false);
+
+INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/backgorund.jpg',1500,1000);
