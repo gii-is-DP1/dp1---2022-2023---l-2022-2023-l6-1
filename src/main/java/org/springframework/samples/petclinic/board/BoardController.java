@@ -18,7 +18,7 @@ public class BoardController {
 	private static final String BOARD_3 = "board/board3";
 	
 	@Autowired
-	private BoardService boardService;
+	BoardService boardService;
 
 	@GetMapping(value = "/startGame")
 	public String initCreationForm(Map<String, Object> model) {
@@ -28,10 +28,10 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/startGame/difficult1")
-	public String creationEasyMode(Map<String, Object> model) {
-		
+	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
+		//response.addHeader("Refresh", "20");
 		model.put("now", new Date());
-		model.put("board", boardService.findById(1).get());
+		model.put("board1", boardService.findById(1).get());
 		return BOARD_1;
 	}
 	
