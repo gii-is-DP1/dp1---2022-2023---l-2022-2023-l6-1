@@ -1,24 +1,17 @@
 package org.springframework.samples.petclinic.board;
 
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
-import org.springframework.samples.petclinic.deck.Deck;
+import org.springframework.samples.petclinic.card.Card;
 import org.springframework.samples.petclinic.model.BaseEntity;
-import org.springframework.samples.petclinic.pile.Pile;
-import org.springframework.samples.petclinic.playZone.PlayZone;
-import org.springframework.samples.petclinic.player.Player;
 
-import jdk.jfr.Timespan;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +38,8 @@ public class Board extends BaseEntity{
 //	@OneToOne
 //	private Player playerBoard;
 	
+
+	
 	String background;
 	@Positive
 	int width;
@@ -52,8 +47,12 @@ public class Board extends BaseEntity{
 	int height;
 	
 	public Board() {
-		this.background = "/resources/images/background.jpg";
-		this.width = 1500;
-		this.height = 1000;
+		this.background = "resources/static/resources/images/background.jpg";
+		this.width = 1900;
+		this.height = 1080;
 	}
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board", fetch = FetchType.EAGER)
+	List<Card> cards;
+	
 }
