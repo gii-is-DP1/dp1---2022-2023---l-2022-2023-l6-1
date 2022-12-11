@@ -19,6 +19,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
+import org.springframework.samples.petclinic.friendRequest.FriendRequestService;
+import org.springframework.samples.petclinic.friends.FriendsService;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -35,6 +37,12 @@ public class PlayerControllerTests {
 
 	@MockBean
 	private PlayerService playerService;
+	
+	@MockBean
+	private FriendRequestService friendRequestService;
+	
+	@MockBean
+	private FriendsService friendsService;
 
 	@MockBean
 	private UserService userService;
@@ -70,7 +78,7 @@ public class PlayerControllerTests {
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/players/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
-				.param("email", "george@gmail.com"))
+				.param("email", "joe@gmail.com").param("username", "Joe2").param("Password", "Joe1"))
 				.andExpect(status().is3xxRedirection());
 	}
 
@@ -152,7 +160,5 @@ public class PlayerControllerTests {
 				.andExpect(model().attribute("player", hasProperty("email", is("george@gmail.com"))))
 				.andExpect(view().name("players/playerDetails"));
 	}
-	
-	
 
 }
