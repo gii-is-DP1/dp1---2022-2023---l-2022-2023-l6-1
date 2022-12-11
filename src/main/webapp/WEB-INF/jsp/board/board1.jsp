@@ -8,19 +8,16 @@
 
 <petclinic:layout pageName="board">
 
-
     <h2>Partida Iniciada</h2>
     
     <p>	
     <h2><c:out value="${now}"/></h2>
 
-	<div class="row">
 		<div class="col-md-12">
 			<petclinic:board board="${board}">
-				<c:forEach items="${board.cards}" var="card">
-					<petclinic:card size="100" card="${card}" />
-				</c:forEach>
+			<c:forEach items="${board.cards}" var="card">
+				<petclinic:card size="100" card="${card}" />
+			</c:forEach>
 			</petclinic:board>
 		</div>
-	</div>
 </petclinic:layout>

@@ -12,7 +12,7 @@
 		
 		<br>
     	<center>
-    		<a href="/startGame/difficult1" class="btn btn-warning">Easy Mode</a>
+    		<a href="/difficult1" class="btn btn-warning">Easy Mode</a>
 		</center>
 		</br>
 		<br>

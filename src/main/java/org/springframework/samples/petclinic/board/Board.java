@@ -47,9 +47,9 @@ public class Board extends BaseEntity{
 	int height;
 	
 	public Board() {
-		this.background = "resources/static/resources/images/background.jpg";
-		this.width = 1900;
-		this.height = 1080;
+		this.background = "/resources/images/background.jpg";
+		this.width = 960;
+		this.height = 540;
 	}
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board", fetch = FetchType.EAGER)
