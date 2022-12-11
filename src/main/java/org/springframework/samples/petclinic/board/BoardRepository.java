@@ -15,14 +15,12 @@
  */
 package org.springframework.samples.petclinic.board;
 
-import java.util.Collection;
+
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.player.Player;
 
 /**
  * Spring Data JPA OwnerRepository interface
@@ -33,5 +31,6 @@ import org.springframework.samples.petclinic.player.Player;
 
 public interface BoardRepository extends CrudRepository<Board, Integer> {
 
-	
+	@Query("SELECT board FROM Board board WHERE board.id =:id")
+	public Optional<Board> findById(@Param("id") int id);
 }

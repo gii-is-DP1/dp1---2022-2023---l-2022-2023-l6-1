@@ -27,27 +27,43 @@ public class BoardController {
 		return VIEWS_BOARD;
 	}
 	
-	@GetMapping(value = "/startGame/difficult1")
+	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
-		//response.addHeader("Refresh", "20");
+		response.addHeader("Refresh", "1");
 		model.put("now", new Date());
-		model.put("board1", boardService.findById(1).get());
+		model.put("board", boardService.findById(1).get());
 		return BOARD_1;
 	}
 	
-	@GetMapping(value = "/startGame/difficult2")
+	@GetMapping(value = "/difficult2")
 	public String creationMediumMode(Map<String, Object> model) {
 		Board board = new Board();
 		model.put("board", board);
 		return BOARD_2;
 	}
 	
-	@GetMapping(value = "/startGame/difficult3")
+	@GetMapping(value = "/difficult3")
 	public String creationHardMode(Map<String, Object> model) {
 		Board board = new Board();
 		model.put("board", board);
 		return BOARD_3;
 	}
+	
+	
+//	====================================Play=================================================================
+	
+	
+//	@GetMapping(value = "/${cardId}")
+//	public void selectCard(@PathVariable("cardId") int cardId) {
+//		
+//	}
+//	
+//	
+//	@GetMapping(value = "/${cardId}")
+//	public void moveCard(@PathVariable("cardId") int cardId, Integer x, Integer y, Integer z) {
+//		
+//	}
+	
 	
 	
 

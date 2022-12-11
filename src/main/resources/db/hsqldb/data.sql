@@ -73,7 +73,7 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',1080,1920);
+INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',540,960);
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position, z_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 0 ,0 , 0, TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position, z_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , 1, FALSE, 1);
