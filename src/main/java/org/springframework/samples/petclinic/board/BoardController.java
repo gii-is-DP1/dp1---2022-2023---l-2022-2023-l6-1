@@ -6,8 +6,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.card.Card;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class BoardController {
@@ -29,7 +31,7 @@ public class BoardController {
 	
 	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
-		response.addHeader("Refresh", "1");
+//		response.addHeader("Refresh", "1");
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1).get());
 		return BOARD_1;
@@ -63,8 +65,15 @@ public class BoardController {
 //	public void moveCard(@PathVariable("cardId") int cardId, Integer x, Integer y, Integer z) {
 //		
 //	}
-	
-	
+//	@GetMapping(value = "/${cardId}")
+//	public void vistaCarta(@PathVariable("cardId") int cardId) {
+//		Card card = new Card();
+//		card.setId(cardId);
+//		if(card.getIsShowed() == false) {
+//			card.
+//		}
+//		
+//	}
 	
 
 }

@@ -6,3 +6,4 @@
  image = document.getElementById('${card.number}-${card.suit}-${card.color}');
  ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
  
+
