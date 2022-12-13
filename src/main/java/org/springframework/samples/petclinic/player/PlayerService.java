@@ -20,6 +20,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.statistics.Statistics;
+import org.springframework.samples.petclinic.statistics.StatisticsService;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,9 @@ public class PlayerService {
 	
 	@Autowired
 	private AuthoritiesService authoritiesService;
+	
+	@Autowired
+	private StatisticsService statisticsService;
 
 	@Autowired
 	public PlayerService(PlayerRepository playerRepository) {
@@ -78,6 +83,14 @@ public class PlayerService {
 		userService.saveUser(player.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(player.getUser().getUsername(), "player");
+		//creating statistics
+		Statistics statistics = new Statistics();
+		statistics.setGames(0);
+		statistics.setGamesLost(0);
+		statistics.setGamesWon(0);
+		statistics.setTotalScore(0);
+		statistics.setPlayer(player);
+		statisticsService.saveStatistics(statistics);
 	}	
 	
 	@Transactional

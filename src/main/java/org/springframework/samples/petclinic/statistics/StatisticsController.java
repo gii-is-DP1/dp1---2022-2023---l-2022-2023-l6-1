@@ -32,6 +32,8 @@ public class StatisticsController {
 		dataBinder.setDisallowedFields("id");
 	}
 	
+
+	
 	@GetMapping(value = "/statistics")
 	public String initCreationForm(Map<String, Object> model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
