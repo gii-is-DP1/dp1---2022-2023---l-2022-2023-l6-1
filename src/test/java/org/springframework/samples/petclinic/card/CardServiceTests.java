@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
-public class CardServiceTest {
+public class CardServiceTests {
 	
 	@Autowired
 	protected CardService cardService;	

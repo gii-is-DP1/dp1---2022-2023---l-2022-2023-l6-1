@@ -27,6 +27,7 @@ import org.springframework.samples.petclinic.friendRequest.FriendRequest;
 import org.springframework.samples.petclinic.friendRequest.FriendRequestService;
 import org.springframework.samples.petclinic.friends.Friends;
 import org.springframework.samples.petclinic.friends.FriendsService;
+import org.springframework.samples.petclinic.statistics.StatisticsService;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,14 +62,16 @@ public class PlayerController {
 	
 	private final FriendsService friendsService;
 	
+	private final StatisticsService statisticsService;
+	
 	
 	
 	@Autowired
-	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService, FriendRequestService friendRequestService, FriendsService friendsService) {
+	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService, FriendRequestService friendRequestService, FriendsService friendsService, StatisticsService statisticsService) {
 		this.playerService = playerService;
 		this.friendRequestService = friendRequestService;
 		this.friendsService = friendsService;
-		
+		this.statisticsService = statisticsService;		
 	}
 
 	@InitBinder

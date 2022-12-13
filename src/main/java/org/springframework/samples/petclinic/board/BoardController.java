@@ -39,7 +39,7 @@ public class BoardController {
 	
 	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
-		response.addHeader("Refresh", "3");
+//		response.addHeader("Refresh", "3");
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1).get());
 		return BOARD_1;
