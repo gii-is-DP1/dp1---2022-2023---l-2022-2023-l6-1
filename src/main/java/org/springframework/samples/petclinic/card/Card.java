@@ -35,14 +35,11 @@ public class Card extends BaseEntity{
 	private Integer number;
 	
 	//Columna
-	@Range(min=0,max=6)
+	@Range(min=0,max=7)
     int xPosition;
 	//Fila
-    @Range(min=0,max=1)
+    @Range(min=0,max=20)
     int yPosition;
-    //Profundidad
-    @Range(min=0,max=23)
-    int zPosition;
     
 	private Boolean isShowed;
 	
@@ -57,7 +54,5 @@ public class Card extends BaseEntity{
     	return (yPosition)*size;
     }
     
-    public Integer getPositionZInPixels(Integer size) {
-    	return (zPosition)*size;
-    }
+   
 }
