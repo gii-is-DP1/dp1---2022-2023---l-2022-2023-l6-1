@@ -33,6 +33,4 @@ private CardRepository cardRepository;
 		//creating card
 		cardRepository.save(card);	
 	}	
-	
-
 }
