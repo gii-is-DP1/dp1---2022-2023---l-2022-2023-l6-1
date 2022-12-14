@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.friendRequest;
 
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -28,7 +29,8 @@ public interface FriendRequestRepository extends CrudRepository<FriendRequest,In
 	@Query("SELECT friendRequest FROM FriendRequest friendRequest WHERE friendRequest.playerReceiver.user.username =:playerReceiverName and friendRequest.playerSender.user.username =:playerSenderName")
     public FriendRequest findByPlayerReceiverNameAndPlayerSenderName(@Param("playerReceiverName") String playerReceiverName,@Param("playerSenderName") String playerSenderName);
 	
-	
+	@Query("SELECT friendRequest FROM FriendRequest friendRequest")
+	public List<FriendRequest> findAll();
 	
 	
 	

@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.friendRequest;
 
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -45,6 +46,11 @@ public class FriendRequestService {
     public Collection<FriendRequest> RequestByPlayerSenderName(String username) throws DataAccessException {
         return friendRequestRepository.findByPlayerSenderName(username);
     }
+    
+    @Transactional(readOnly = true)	
+	public List<FriendRequest> findAll() throws DataAccessException {
+		return friendRequestRepository.findAll();
+	}
     
     
     @Transactional
