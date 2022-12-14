@@ -72,7 +72,7 @@ public class PlayerController {
 		this.friendRequestService = friendRequestService;
 		this.friendsService = friendsService;
 		this.statisticsService = statisticsService;		
-	}
+	} 
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
