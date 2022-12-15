@@ -7,13 +7,20 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.card.Card;
 import org.springframework.samples.petclinic.card.CardService;
+import org.springframework.samples.petclinic.pile.Pile;
 import org.springframework.samples.petclinic.playZone.PlayZone;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoardController {
@@ -33,7 +40,7 @@ public class BoardController {
 	public String initCreationForm(Map<String, Object> model) {
 		Board board = new Board();
 		model.put("board", board);
-		model.put("playzone", inicioPartida());
+		//model.put("playzone", inicioPartida());
 		return VIEWS_BOARD;
 	}
 	
@@ -61,27 +68,104 @@ public class BoardController {
 	
 	
 //	====================================Play=================================================================
-	//pincho la carta que quiero mover -> seleciono el lugar dnd quiero que vaya
 	
-//	@GetMapping(value = "/${cardId}")
-//	public void selectCard(@PathVariable("cardId") int cardId) {
-//		
-//	}
-//	
-//	
-//	@GetMapping(value = "/${cardId}")
-//	public void moveCard(@PathVariable("cardId") int cardId, Integer x, Integer y, Integer z) {
-//		
-//	}
-//	@GetMapping(value = "/${cardId}")
-//	public void vistaCarta(@PathVariable("cardId") int cardId) {
-//		Card card = new Card();
-//		card.setId(cardId);
-//		if(card.getIsShowed() == false) {
-//			card.
-//		}
-//		
-//	}
+	@GetMapping(value = "/board/showCard/{boardId}")
+	public String showCardBoard(@PathVariable("boardId") int boardId, Map<String, Object> model) {
+		List<Card> cartasBoard = this.cardService.findAllCardsBoardId(boardId);
+		List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(boardId);
+		model.put("cardsVisible", cartasBoard);
+		model.put("cardsNoVisibles", cartasF);
+		return "redirect: board/board1";
+		
+	}
+	
+	
+	@GetMapping(value = "/board/moveCard/{cardId}")
+	public ModelAndView moveCard(@PathVariable("cardId") int cardId, Map<String, Object> model ) {
+		Card card = this.cardService.findCardById(cardId);
+		Integer boardId = card.getBoard().getId();
+		//Cambiar logica para el resto de modos
+		List<Card> cartasBoard = this.cardService.findAllCardsBoardId(1);
+		List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(1);
+		Integer num = card.getNumber();
+		String color = card.getColor();
+		if(card.getNumber() == 1) {
+			switch(card.getSuit()) {
+			case "DIAMONDS" :
+				card.setXPosition(3);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			case "SPADES" :
+				card.setXPosition(4);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			case "HEARTS" :
+				card.setXPosition(5);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			default :
+				card.setXPosition(6);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			}
+			
+		}else{
+			for(Card c : cartasBoard) {
+				List<Card> listaAuxiliar = new ArrayList<>();
+				if(card.getXPosition() == c.getXPosition()) {
+					listaAuxiliar.add(c);
+				}
+				if(c.getNumber() == num+1 && c.getColor() != color) {
+					card.setXPosition(c.getXPosition());
+					card.setYPosition(c.getYPosition() + 1);
+					for(Card cartaAux : listaAuxiliar) {
+						cartaAux.setXPosition(c.getXPosition());
+						cartaAux.setYPosition(card.getYPosition() + 1);
+						this.cardService.saveCard(cartaAux);
+					}
+					this.cardService.saveCard(card);
+				}
+			}
+			
+			for(Card c : cartasF) {
+				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit())) {
+					card.setXPosition(c.getXPosition());
+					card.setYPosition(c.getYPosition());
+					card.setIsShowed(false);
+					this.cardService.saveCard(card);
+				}
+			}
+			model.put("board", boardService.findById(boardId));
+
+		}
+
+
+		return new ModelAndView("redirect:/difficult1");
+	}
+
+	
+	
+	
+	@GetMapping(value = "/board/moveCardDeck/{cardId}")
+	public ModelAndView moveCardDeck(@PathVariable("cardId") int cardId, Map<String, Object> model ) {
+		Card card = this.cardService.findCardById(cardId);
+		Integer boardId = card.getBoard().getId();
+		card.setXPosition(1);
+		card.setYPosition(0);
+		card.setIsShowed(true);
+		this.cardService.saveCard(card);
+		model.put("board", boardService.findById(boardId));
+		return new ModelAndView("redirect:/difficult1");
+}
+
 	
 //	====================================PlayZone=================================================================
 	
@@ -123,6 +207,39 @@ public class BoardController {
 	
 	
 	
+//	====================================Card=================================================================
+	
+	
+	@GetMapping(value = "/card/{cardId}/edit")
+	public String initUpdateCardForm(@PathVariable("cardId") int cardId, Model model) {
+		Card card = this.cardService.findCardById(cardId);
+		if(card.getNumber() == 1) {
+			return "redirect: /board/moveCard/{cardId}";
+		}else {
+			model.addAttribute(card);
+			return "card/createOrUpdateCardForm";
+		}
+		
+	}
+
+	@PostMapping(value = "/card/{cardId}/edit")
+	public String processUpdateCardForm(@Valid Card card, BindingResult result,
+			@PathVariable("cardId") int cardId) {
+		if (result.hasErrors()) {
+			return "card/createOrUpdateCardForm";
+		}
+		else {
+			card.setId(cardId);
+			this.cardService.saveCard(card);
+			return "redirect:/difficult1";
+			}
+			
+		}
+		
+	}
+	
+	
+
 	
 	
 	
@@ -140,13 +257,4 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+

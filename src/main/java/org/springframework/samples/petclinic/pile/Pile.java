@@ -25,9 +25,12 @@ public class Pile extends BaseEntity{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Card> pilePlay;
 	
-	@Min(value = 1)
-	@Max(value = 7)
+	@Min(value = 3)
+	@Max(value = 6)
 	@Column(name = "numeroColumna")
 	private Integer numeroColumna;
 	
+	public Integer getPositionXInPixelsPile(Integer size) {
+    	return (numeroColumna)*size;
+    }
 }
