@@ -51,6 +51,7 @@ INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Mad
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner1');
 
 
+
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (1, 'Mario', 'Casas', 'mariocasas69@gmail.com','player1');
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (2, 'Pablo', 'Iglesias', 'pablito29@gmail.com','player2');
 
@@ -75,61 +76,66 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',1080,960);
 
-INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (3, 3, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (4, 4, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (5, 5, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (6, 6, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (7, 7, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (8, 8, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (9, 9, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (10, 10, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (11, 11, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (12, 12, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (13, 13, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO piles(id, numero_columna) VALUES (1, 3); 
+INSERT INTO piles(id, numero_columna) VALUES (2, 4); 
+INSERT INTO piles(id, numero_columna) VALUES (3, 5); 
+INSERT INTO piles(id, numero_columna) VALUES (4, 6); 
 
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (14, 1, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 1,1 , TRUE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (3, 3, 'DIAMONDS', 'RED', 2,2 , TRUE , 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (4, 4, 'DIAMONDS', 'RED', 7,1 , FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (5, 5, 'DIAMONDS', 'RED', 5,4 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (6, 6, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (7, 7, 'DIAMONDS', 'RED', 6,1 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (8, 8, 'DIAMONDS', 'RED', 7,6 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (9, 9, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (10, 10, 'DIAMONDS', 'RED', 4,1 , FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (11, 11, 'DIAMONDS', 'RED', 7,5 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (12, 12, 'DIAMONDS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (13, 13, 'DIAMONDS', 'RED', 6,5 ,  FALSE, 1);
+
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (14, 1, 'HEARTS', 'RED', 3,3 ,  TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (15, 2, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (16, 3, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (16, 3, 'HEARTS', 'RED', 2,1 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (17, 4, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (18, 5, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (18, 5, 'HEARTS', 'RED', 5,3 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (19, 6, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (20, 7, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (20, 7, 'HEARTS', 'RED', 4,4 ,  TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (21, 8, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (22, 9, 'HEARTS', 'RED', 0 ,0 , FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (22, 9, 'HEARTS', 'RED', 7,2 , FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (23, 10, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (24, 11, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (24, 11, 'HEARTS', 'RED', 4,2 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (25, 12, 'HEARTS', 'RED', 0 ,0 , FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (26, 13, 'HEARTS', 'RED', 0 ,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (26, 13, 'HEARTS', 'RED', 7,4 ,  FALSE, 1);
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (27, 1, 'SPADES', 'BLACK', 0 ,0 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (28, 2, 'SPADES', 'BLACK', 0 ,0 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (29, 3, 'SPADES', 'BLACK',0,0,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (30, 4, 'SPADES', 'BLACK',0,0,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (31, 5, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (32, 6, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (33, 7, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (34, 8, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (32, 6, 'SPADES', 'BLACK',6,6 ,  TRUE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (33, 7, 'SPADES', 'BLACK',3,1 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (34, 8, 'SPADES', 'BLACK',5,5 ,  TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (35, 9, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (36, 10, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (36, 10, 'SPADES', 'BLACK',6,4 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (37, 11, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (38, 12, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (38, 12, 'SPADES', 'BLACK',5,2 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (39, 13, 'SPADES', 'BLACK',0,0 ,  FALSE, 1);
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (40, 1, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (41, 2, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (42, 3, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (43, 4, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (41, 2, 'CLUBS', 'BLACK',4,3 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (42, 3, 'CLUBS', 'BLACK',7,3 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (43, 4, 'CLUBS', 'BLACK',6,2 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (44, 5, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (45, 6, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (45, 6, 'CLUBS', 'BLACK',3,2 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (46, 7, 'CLUBS', 'BLACK', 0,0,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (47, 8, 'CLUBS', 'BLACK', 0,0,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (48, 9, 'CLUBS', 'BLACK', 0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (49, 10, 'CLUBS', 'BLACK', 0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (49, 10, 'CLUBS', 'BLACK', 5,1 ,  FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (50, 11, 'CLUBS', 'BLACK', 0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (51, 12, 'CLUBS', 'BLACK', 0,0 ,  FALSE, 1);
-INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (52, 13, 'CLUBS', 'BLACK',0,0 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (51, 12, 'CLUBS', 'BLACK', 6,3 ,  FALSE, 1);
+INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, board_id) VALUES (52, 13, 'CLUBS', 'BLACK',7,7 ,  TRUE, 1);
 
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 80, 32, 2);

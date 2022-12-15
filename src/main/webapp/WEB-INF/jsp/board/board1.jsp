@@ -15,10 +15,54 @@
 	<div class="row">
 		<div class="col-md-12">
 			<petclinic:board board="${board}">
-			<c:forEach items="${board.cards}" var="card">
-				<petclinic:card size="100" card="${card}" />
-			</c:forEach>
+				<c:forEach items="${board.cards}" var="card">
+					<petclinic:card size="100" card="${card}" />
+				</c:forEach>
 			</petclinic:board>
 		</div>
 	</div>
+	
+	<table id="board1Game"class="table table-striped">
+		<thead>
+		<tr>
+			<th>CartasAMover</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<petclinic:menuItem active="${name eq 'play'}" url="/"
+					title="Posibles Cartas Para Mover" dropdown="${true}">
+						<ul class="dropdown-menu">
+							<c:forEach items="${board.cards}" var="card">
+								<c:if test="${card.isShowed == true }">
+									<li>
+										<a href="<c:url value="/board/moveCard/${card.id}"/>" >${card.number}-${card.suit}</a>
+									</li>
+									
+								</c:if>
+							</c:forEach>
+								
+							</ul>
+					</petclinic:menuItem>
+					
+					
+					<petclinic:menuItem active="${name eq 'play'}" url="/"
+					title="Sacar Carta de la baraja" dropdown="${true}">
+						<ul class="dropdown-menu">
+							<c:forEach items="${board.cards}" var="card">
+								<c:if test="${card.isShowed == false && card.getXPosition() == 0 && card.getYPosition() == 0}">
+									<li>
+										<a href="<c:url value="/board/moveCardDeck/${card.id}"/>" >${card.number}-${card.suit}</a>
+									</li>
+									
+								</c:if>
+							</c:forEach>
+								
+							</ul>
+					</petclinic:menuItem>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </petclinic:layout>

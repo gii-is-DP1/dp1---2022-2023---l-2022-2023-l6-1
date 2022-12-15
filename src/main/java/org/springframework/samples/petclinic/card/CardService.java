@@ -24,6 +24,12 @@ private CardRepository cardRepository;
 	}	
 	
 	@Transactional(readOnly = true)	
+	public Card findCardById(int id) throws DataAccessException {
+		return cardRepository.findCardById(id);
+	}
+	
+	
+	@Transactional(readOnly = true)	
 	public List<Card> findAll() throws DataAccessException {
 		return cardRepository.findAll();
 	}
@@ -34,5 +40,13 @@ private CardRepository cardRepository;
 		cardRepository.save(card);	
 	}	
 	
+	@Transactional(readOnly = true)	
+	public List<Card> findAllCardsBoardId(int id) throws DataAccessException{
+		return cardRepository.findAllCardsBoardId(id);
+	}
+	@Transactional(readOnly = true)	
+	public List<Card> findAllCardsBoardIdfalse(int id) throws DataAccessException{
+		return cardRepository.findAllCardsBoardIdFalse(id);
+	}
 
 }
