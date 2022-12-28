@@ -136,7 +136,8 @@ public class BoardController {
 			}
 			
 			for(Card c : cartasF) {
-				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit())) {
+				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==3||
+						c.getXPosition()==4||c.getXPosition()==5||c.getXPosition( )==6)) {
 					card.setXPosition(c.getXPosition());
 					card.setYPosition(c.getYPosition());
 					card.setIsShowed(false);
