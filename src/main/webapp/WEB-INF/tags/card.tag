@@ -1,6 +1,6 @@
 <%@ attribute name="size" required="true" rtexprvalue="true" 
  description="Size of the card to show" %>
- <%@ attribute name="card" required="true" rtexprvalue="true" type="org.springframework.samples.petclinic.card.Card"
+ <%@ attribute name="card" required="true" rtexprvalue="true" type="org.springframework.samples.solitaire.card.Card"
  description="Card to be rendered" %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
@@ -29,5 +29,4 @@
 	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
 	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
 	</c:if>
-	
 	

@@ -13,6 +13,30 @@ INSERT INTO authorities(id,username,authority) VALUES (4,'player1','player');
 -- One player user, named player1 with passwor pl4y3r
 INSERT INTO users(username,password,enabled) VALUES ('player2','pl4y3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (5,'player2','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player3','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (6,'player3','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player4','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (7,'player4','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player5','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (8,'player5','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player6','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (9,'player6','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player7','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'player7','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player8','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (11,'player8','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player9','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (12,'player9','player');
+-- One player user, named player1 with passwor pl4y3r
+INSERT INTO users(username,password,enabled) VALUES ('player10','pl4y3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'player10','player');
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -54,6 +78,14 @@ INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Wa
 
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (1, 'Mario', 'Casas', 'mariocasas69@gmail.com','player1');
 INSERT INTO players(id,first_name,last_name,email,username) VALUES (2, 'Pablo', 'Iglesias', 'pablito29@gmail.com','player2');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (3, 'Pedro', 'Picapiedra', 'pedropicapiedra@gmail.com','player3');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (4, 'Manuel', 'Ortiz', 'manu@gmail.com','player4');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (5, 'Isco', 'Alarcon', 'perdedor1@gmail.com','player5');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (6, 'Federico', 'Lorca', 'tuLorquita@gmail.com','player6');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (7, 'Maria', 'Pavon', 'pavona@gmail.com','player7');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (8, 'Marta', 'zz', 'zz@gmail.com','player8');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (9, 'Juan', 'Magan', 'nosiguemodas@gmail.com','player9');
+INSERT INTO players(id,first_name,last_name,email,username) VALUES (10, 'Roger', 'Federer', 'rogerF@gmail.com','player10');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
@@ -76,10 +108,10 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',1080,960);
 
-INSERT INTO piles(id, numero_columna) VALUES (1, 3); 
-INSERT INTO piles(id, numero_columna) VALUES (2, 4); 
-INSERT INTO piles(id, numero_columna) VALUES (3, 5); 
-INSERT INTO piles(id, numero_columna) VALUES (4, 6); 
+INSERT INTO piles(id, numero_columna) VALUES (1, 5); 
+INSERT INTO piles(id, numero_columna) VALUES (2, 6); 
+INSERT INTO piles(id, numero_columna) VALUES (3, 7); 
+INSERT INTO piles(id, numero_columna) VALUES (4, 8); 
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 1,1 , TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
@@ -155,4 +187,12 @@ INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (1,1,1);
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (2,2,2);
 
-INSERT INTO friend_requests(id, player_sender,player_receiver,state) VALUES (1,1,2,false)
+INSERT INTO friends(id, friend1,friend2) VALUES (1,1,2);
+INSERT INTO friends(id, friend1,friend2) VALUES (2,1,3);
+INSERT INTO friends(id, friend1,friend2) VALUES (3,1,4);
+INSERT INTO friends(id, friend1,friend2) VALUES (4,1,5);
+INSERT INTO friends(id, friend1,friend2) VALUES (5,1,6);
+INSERT INTO friends(id, friend1,friend2) VALUES (6,1,7);
+INSERT INTO friends(id, friend1,friend2) VALUES (7,1,8);
+INSERT INTO friends(id, friend1,friend2) VALUES (8,1,9);
+INSERT INTO friends(id, friend1,friend2) VALUES (9,1,10);

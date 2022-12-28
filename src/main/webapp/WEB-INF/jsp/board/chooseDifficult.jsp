@@ -7,6 +7,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 
+<body style="background: url(/resources/images/background.jpg)">
 
 <petclinic:layout pageName="Difficult">
 		
@@ -27,3 +28,4 @@
 		</br>
 
 </petclinic:layout>
+</body>
