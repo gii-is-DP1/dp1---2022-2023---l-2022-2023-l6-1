@@ -20,25 +20,6 @@ import lombok.Setter;
 @Setter
 @Table(name = "board")
 public class Board extends BaseEntity{
-//	
-//	@Timespan
-//	private Duration timer;
-//	
-//	@OneToMany
-//	@Min(value = 4)
-//	@Max(value = 4)
-//	private List<Pile> pileBoard;
-//	
-//	@OneToOne
-//	private PlayZone playZoneBoard;
-//	
-//	@OneToOne
-//	private Deck deckBoard;
-//	
-//	@OneToOne
-//	private Player playerBoard;
-	
-
 	
 	String background;
 	@Positive
@@ -49,7 +30,7 @@ public class Board extends BaseEntity{
 	public Board() {
 		this.background = "/resources/images/background.jpg";
 		this.width = 960;
-		this.height = 1080;
+		this.height = 2500;
 	}
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board", fetch = FetchType.EAGER)

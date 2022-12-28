@@ -106,7 +106,7 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',1080,960);
+INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',2500,960);
 
 INSERT INTO piles(id, numero_columna) VALUES (1, 5); 
 INSERT INTO piles(id, numero_columna) VALUES (2, 6); 
