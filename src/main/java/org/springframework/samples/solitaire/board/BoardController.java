@@ -86,9 +86,16 @@ public class BoardController {
 		Integer boardId = card.getBoard().getId();
 		//Cambiar logica para el resto de modos
 		List<Card> cartasBoard = this.cardService.findAllCardsBoardId(1);
-		List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(1);
-		Integer num = card.getNumber();
-		String color = card.getColor();
+        List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(1);
+        List<Card> cartasPosicion = this.cardService.findCardByPocision(card.getXPosition());
+        Integer num = card.getNumber();
+        String color = card.getColor();
+        for(Card c1 : cartasPosicion) {
+            if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+                c1.setIsShowed(true);
+                this.cardService.saveCard(c1);
+            }
+        }
 		if(card.getNumber() == 1) {
 			switch(card.getSuit()) {
 			case "DIAMONDS" :
