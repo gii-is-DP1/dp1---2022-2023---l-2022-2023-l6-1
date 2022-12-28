@@ -108,10 +108,10 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 
 INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',1080,960);
 
-INSERT INTO piles(id, numero_columna) VALUES (1, 3); 
-INSERT INTO piles(id, numero_columna) VALUES (2, 4); 
-INSERT INTO piles(id, numero_columna) VALUES (3, 5); 
-INSERT INTO piles(id, numero_columna) VALUES (4, 6); 
+INSERT INTO piles(id, numero_columna) VALUES (1, 5); 
+INSERT INTO piles(id, numero_columna) VALUES (2, 6); 
+INSERT INTO piles(id, numero_columna) VALUES (3, 7); 
+INSERT INTO piles(id, numero_columna) VALUES (4, 8); 
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 1,1 , TRUE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);
