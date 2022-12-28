@@ -25,8 +25,8 @@ public class Pile extends BaseEntity{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Card> pilePlay;
 	
-	@Min(value = 3)
-	@Max(value = 6)
+	@Min(value = 5)
+	@Max(value = 8)
 	@Column(name = "numeroColumna")
 	private Integer numeroColumna;
 	

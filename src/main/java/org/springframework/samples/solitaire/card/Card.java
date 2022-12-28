@@ -35,7 +35,7 @@ public class Card extends BaseEntity{
 	private Integer number;
 	
 	//Columna
-	@Range(min=0,max=7)
+	@Range(min=0,max=8)
     int xPosition;
 	//Fila
     @Range(min=0,max=20)

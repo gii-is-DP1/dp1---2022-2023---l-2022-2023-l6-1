@@ -93,34 +93,53 @@ public class BoardController {
         List<Card> cartasPosicion = this.cardService.findCardByPocision(card.getXPosition());
         Integer num = card.getNumber();
         String color = card.getColor();
-        for(Card c1 : cartasPosicion) {
-            if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-                c1.setIsShowed(true);
-                this.cardService.saveCard(c1);
-            }
-        }
+
 		if(card.getNumber() == 1) {
 			switch(card.getSuit()) {
 			case "DIAMONDS" :
-				card.setXPosition(3);
-				card.setYPosition(0);
-				card.setIsShowed(false);
-				this.cardService.saveCard(card);
-				break;
-			case "SPADES" :
-				card.setXPosition(4);
-				card.setYPosition(0);
-				card.setIsShowed(false);
-				this.cardService.saveCard(card);
-				break;
-			case "HEARTS" :
+				for(Card c1 : cartasPosicion) {
+					if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+						c1.setIsShowed(true);
+						this.cardService.saveCard(c1);
+					}
+				}
 				card.setXPosition(5);
 				card.setYPosition(0);
 				card.setIsShowed(false);
 				this.cardService.saveCard(card);
 				break;
-			default :
+			case "SPADES" :
+				for(Card c1 : cartasPosicion) {
+					if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+						c1.setIsShowed(true);
+						this.cardService.saveCard(c1);
+					}
+				}
 				card.setXPosition(6);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			case "HEARTS" :
+				for(Card c1 : cartasPosicion) {
+					if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+						c1.setIsShowed(true);
+						this.cardService.saveCard(c1);
+					}
+				}
+				card.setXPosition(7);
+				card.setYPosition(0);
+				card.setIsShowed(false);
+				this.cardService.saveCard(card);
+				break;
+			default :
+				for(Card c1 : cartasPosicion) {
+					if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+						c1.setIsShowed(true);
+						this.cardService.saveCard(c1);
+					}
+				}
+				card.setXPosition(8);
 				card.setYPosition(0);
 				card.setIsShowed(false);
 				this.cardService.saveCard(card);
@@ -134,6 +153,12 @@ public class BoardController {
 					listaAuxiliar.add(c);
 				}
 				if(c.getNumber() == num+1 && c.getColor() != color) {
+					for(Card c1 : cartasPosicion) {
+						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+							c1.setIsShowed(true);
+							this.cardService.saveCard(c1);
+						}
+					}
 					card.setXPosition(c.getXPosition());
 					card.setYPosition(c.getYPosition() + 1);
 					for(Card cartaAux : listaAuxiliar) {
@@ -146,8 +171,8 @@ public class BoardController {
 			}
 			
 			for(Card c : cartasF) {
-				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==3||
-						c.getXPosition()==4||c.getXPosition()==5||c.getXPosition( )==6)) {
+				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
+						c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
 					card.setXPosition(c.getXPosition());
 					card.setYPosition(c.getYPosition());
 					card.setIsShowed(false);
