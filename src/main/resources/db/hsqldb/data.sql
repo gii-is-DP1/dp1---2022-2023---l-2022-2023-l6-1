@@ -171,6 +171,14 @@ INSERT INTO cards(id,number,suit, color, x_position, y_position,   is_showed, bo
 
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (1, 120, 20, 100, 32, 1);
 INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (2, 100, 20, 80, 32, 2);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (3, 100, 20, 80, 32, 3);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (4, 100, 20, 80, 32, 4);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (5, 100, 20, 80, 32, 5);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (6, 100, 20, 80, 32, 6);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (7, 100, 20, 80, 32, 7);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (8, 100, 20, 80, 32, 8);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (9, 100, 20, 80, 32, 9);
+INSERT INTO statistics(id,games,games_won,games_lost,total_score,player_id) VALUES (10, 100, 20, 80, 32, 10);
 
 INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (1, 'Principiante','Juega 1 partida' ,'games>=1', 'imagen_logro.png');
 INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES (2, 'Amateur','Juega 25 partidas' ,'games>=25', 'logro30.png');
