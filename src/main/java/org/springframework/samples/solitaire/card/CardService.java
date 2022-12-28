@@ -43,14 +43,14 @@ private CardRepository cardRepository;
 	@Transactional(readOnly = true)	
 	public List<Card> findAllCardsBoardId(int id) throws DataAccessException{
 		return cardRepository.findAllCardsBoardId(id);
-	}
+	} 
 	@Transactional(readOnly = true)	
 	public List<Card> findAllCardsBoardIdfalse(int id) throws DataAccessException{
 		return cardRepository.findAllCardsBoardIdFalse(id);
 	}
 	
 	@Transactional(readOnly = true)
-    public List<Card> findCardByPocision(int x) throws DataAccessException {
+    public List<Card> findCardByPosition(int x) throws DataAccessException {
         return cardRepository.findCardByPosition(x);
     }
 

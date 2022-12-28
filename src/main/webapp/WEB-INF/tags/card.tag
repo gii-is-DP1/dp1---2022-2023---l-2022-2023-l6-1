@@ -13,19 +13,19 @@
 	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
 	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
 	</c:if>
-	<c:if test="${card.getXPosition() == 3 && card.getYPosition() == 0}">
-	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
-	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
-	</c:if>
-	<c:if test="${card.getXPosition() == 4 && card.getYPosition() == 0}">
-	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
-	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
-	</c:if>
 	<c:if test="${card.getXPosition() == 5 && card.getYPosition() == 0}">
 	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
 	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
 	</c:if>
 	<c:if test="${card.getXPosition() == 6 && card.getYPosition() == 0}">
+	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
+	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
+	</c:if>
+	<c:if test="${card.getXPosition() == 7 && card.getYPosition() == 0}">
+	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
+	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
+	</c:if>
+	<c:if test="${card.getXPosition() == 8 && card.getYPosition() == 0}">
 	 image = document.getElementById('${card.number}-${card.suit}-${card.color}');
 	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
 	</c:if>
