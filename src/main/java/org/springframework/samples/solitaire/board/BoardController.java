@@ -43,10 +43,13 @@ public class BoardController {
 		//model.put("playzone", inicioPartida());
 		return VIEWS_BOARD;
 	}
-	
+	Integer i = 1;
 	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
-		response.addHeader("Refresh", "3");
+		while(i==1) {
+			response.addHeader("Refresh", "1");
+			i++;
+		}
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1).get());
 		return BOARD_1;
