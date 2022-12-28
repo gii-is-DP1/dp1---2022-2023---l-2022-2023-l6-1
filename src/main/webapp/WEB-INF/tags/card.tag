@@ -30,4 +30,3 @@
 	 ctx.drawImage(image,${card.getPositionXInPixels(size)},${card.getPositionYInPixels(size)},${size},${size});
 	</c:if>
 	
-	

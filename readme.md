@@ -72,13 +72,92 @@ Dado el formulario de inicio de sesión, el sistema no reconoce los datos en la 
 
 Dado un jugador en el menú del juego, le aparecerán varios botones, si quiere iniciar una partida, el jugador pulsará el botón de “Iniciar partida” y seleccionará la dificultad (la dificultad determinará la cantidad de cartas que salen del mazo al pedirle carta a éste). Se le formará de manera exitosa una partida con el mazo con cartas aleatorias, la zona de juego con cartas aleatorias, y la zona donde se pondrá el montón de cartas del mismo palo.
 
+![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1050388470352330772/mockup_difficult.png)
+![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1057585538170892298/image.png)
+
 **Escenarios negativos:**
 
 <u>H3 - E1 - No deja iniciar la partida.</u>
 
 Dado un jugador no logueado en el sistema que quiera iniciar una partida, no podrá iniciar la partida por lo que tampoco le aparecerá la vista del tablero, y le aparecerá un mensaje de error “Debes iniciar sesión para poder jugar”.
 
-![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1050388470352330772/mockup_difficult.png)
+
+### *H4-Añadir carta al montón de su palo*
+“**Como** jugador, **quiero** que haya un espacio dedicado a poner las cartas que pudiera añadir a los montones del mismo palo, **para** poder así avanzar en la partida.”
+
+**Escenarios positivos:**
+
+<u>H4 + E1 - Conseguir As de un palo.</u>
+
+Dado un jugador en partida, tras tener un As al descubierto, el juego debe dejar añadir ésta carta al montón que el jugador escoja.
+
+![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1057585859374874624/image.png)
+
+<u>H4 + E2 - Conseguir carta mayor para un montón.</u>
+
+Dado un jugador en partida, cuando éste tiene cartas posicionadas en un montón en orden ascendente, comenzando por el As, debe poder poner la siguiente carta inmediatamente superior, siempre que ésta esté disponible y sea del mismo palo, en dicho montón.
+
+**Escenarios negativos:**
+
+<u>H4 - E1 - Carta bloqueada por otras.</u>
+
+Dado un jugador en partida, si éste intenta mover una carta que no está descubierta no podrá.
+
+<u>H4 - E2 - Mover carta de otro palo.</u>
+
+Dado un jugador en partida, éste intenta colocar sobre un montón una carta de diferente palo al que corresponde dicho montón, la carta deberá volver a su posición anterior ya que este movimiento no cumple las reglas.
+
+<u>H4 - E3 - Mover una carta que no va en orden.</u>
+
+Dado un jugador en partida, éste intenta poner sobre un montón una carta que no es la que va justo después formando la escalera ascendente que debería formarse en dicho montón, la carta deberá volver a su posición anterior ya que este movimiento no cumple las reglas.
+
+### *H5-Mover cartas en la zona de juego*
+“**Como** jugador, **quiero** poder realizar los movimientos que crea pertinentes en la zona de juego, siempre respetando las reglas del mismo, **para** poder así avanzar en la partida.”
+
+**Escenarios positivos:**
+
+<u>H5 + E1 - Mover cartas que van en orden y son de distinto color.</u>
+
+Dado un jugador en partida, si éste quiere realizar un movimiento de carta en la zona de juego, que cumple que va en orden descendente con la otra carta sobre la que la queremos poner y es de otro color, tendrá la posibilidad de hacer dicho cambio ya que cumple las reglas.
+
+<u>H5 + E2 - Mover una escalera de cartas de una columna a otra para hacer una cadena mayor y liberar la siguiente carta.</u>
+
+Dado un jugador en partida, si éste quiere realizar un movimiento de una escalera de cartas en la zona de juego, que cumple que va en orden descendente con la otra carta o la otra escalera de cartas sobre la que la desea colocar, y cumple que las cartas de “unión” son de otro color, tendrá la posibilidad de hacer dicho cambio ya que cumple las reglas.
+
+<u>H5 + E3 - Mover la K cuando hay una columna libre en la zona de juego.</u>
+
+Dado un jugador en partida, si éste libera una columna de cartas, que por lo tanto quedará vacía y desea colocar una K en dicha posición o una escalera descendente que empieza por la K, tendrá la posibilidad de hacer dicho cambio ya que cumple las reglas.
+
+**Escenarios negativos:**
+
+<u>H5 - E1 - Mover cartas del mismo color.</u>
+
+Dado un jugador en partida, si éste quiere realizar un movimiento de carta en la zona de juego, que es del mismo color que la otra carta sobre la que la desea poner, no tendrá la posibilidad de hacer dicho cambio ya que no cumple las reglas y dicha carta deberá volver a su posición anterior.
+
+<u>H5 - E2 - Mover cartas que no van en orden.</u>
+
+Dado un jugador en partida, si éste quiere realizar un movimiento de cartas en la zona de juego, que no va en orden descendente con la otra carta sobre la que la desea poner, no tendrá la posibilidad de hacer dicho cambio ya que no cumple las reglas y dicha carta deberá volver a su posición anterior.
+
+<u>H5 - E3 - Mover una carta a una columna vacía que no sea la K.</u>
+
+Dado un jugador en partida, si éste libera una columna de cartas, que por lo tanto quedará vacía y desea poner una carta que no sea la K en dicha posición o una escalera descendente que no empieza por la K, no tendrá la posibilidad de hacer dicho cambio ya que no cumple las reglas y dicha carta o dicha escalera deberá volver a su posición anterior.
+
+### *H6-Pedir cartas a la baraja*
+“**Como** jugador, **quiero**  acceder al mazo de cartas cuando me quedo sin movimientos en la zona de juego, **para** seguir avanzando en la partida.”
+
+**Escenarios positivos:**
+
+<u>H6 + E1 - El mazo me ofrece las cartas solicitadas.</u>
+
+Dado un jugador en partida, si éste cree que no tiene más movimientos disponibles, y cree oportuno solicitar cartas al mazo de cartas, dependiendo el número de cartas del modo de juego elegido al comenzar la partida, éste nos ofrece el número de cartas pertinentes, siempre en el mismo orden.
+
+**Escenarios negativos:**
+
+<u>H6 - E1 - El mazo se queda sin cartas.</u>
+
+Dado un jugador en partida, si éste cree que no tiene más movimientos disponibles, y cree oportuno solicitar cartas al mazo de cartas, pero éste está vacío, se deberán coger todas las cartas que están de frente pero que pertenecen al mazo y colocarlas en el mismo orden anterior, siendo visible de nuevo el dorso de las cartas.
+
+![Mockup6](https://cdn.discordapp.com/attachments/1025044659275321430/1057587017686454312/image.png)
 
 ### *H7-Ver estadísticas*
 “**Como** jugador, **quiero** que el sistema almacene el historial de partidas que he jugado, cuanntas he ganado y cuantas he perdido **para** poder verlos.”
@@ -93,6 +172,23 @@ Dado un jugador en el menú del juego, si quiere ver sus estadísticas jugando a
 ![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472491425872/mockup_stats.png)
 ![Mockup7](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472860516362/mockup_stats2.png)
 
+### *H8-Terminar partida*
+“**Como** jugador, **quiero** que el juego nos informe de cuando una partida está finalizada ya sea con victoria o derrota, **para** terminar la partida.”
+
+**Escenarios positivos:**
+
+<u>H8 + E1 - Victoria.</u>
+
+Dado un jugador en partida, si éste consigue colocar todas las cartas en los montones del palo, ordenados ascendentemente, y completados con sus respectivas 13 cartas por palo, el juego deberá mostrar por pantalla que el juego ha finalizado, y que el jugador ha ganado.
+
+![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1029740235271180339/Victoria.PNG)
+
+<u>H8 - E2 - Derrota.</u>
+
+Dado un jugador en partida y dada una disposición de cartas en el tablero, tal que el jugador no pueda avanzar en la partida, el jugador deberá pulsar el botón “Rendirse”, para que finalice dicha partida.
+
+![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1029740235858386986/Derrota.PNG)
+
 ### *H9-Editar perfil de usuario*
 “**Como** jugador, **quiero** poder acceder a mi perfil **para** poder editar los datos de mi perfil.”
 
@@ -101,6 +197,10 @@ Dado un jugador en el menú del juego, si quiere ver sus estadísticas jugando a
 <u>H9 + E1 - Ver mi perfil.</u>
 
 Dado un jugador logueado en el menú de inicio, al hacer click en su nombre le aparecerá una pestaña en la que pondrá “Modificar datos personales”, al hacer click se accederá a una vista con los datos personales para poder cambiarlos y seleccionar que se actualicen.
+
+![Mockup9](https://cdn.discordapp.com/attachments/1025044659275321430/1050388472491425872/mockup_stats.png)
+![Mockup9](https://cdn.discordapp.com/attachments/1025044659275321430/1050433634567454822/image.png)
+![Mockup9](https://cdn.discordapp.com/attachments/1025044659275321430/1057587980971282502/image.png)
 
 ### *H10-Actividades sobre el perfil de los jugadores como administrador*
 “**Como** administrador, **quiero** poder crear, leer, actualizar y eliminar los perfiles de los usuarios, **para** poder corregir posibles errores, ver los datos de dicho jugador, etc.”
@@ -262,11 +362,9 @@ For pull requests, editor preferences are available in the [editor config](.edit
 
 # Members
 * Cordero Diaz, Jesus Javier 
-* Couto , André Alves
 * Lorenzo Casas, Ángel
 * Navarro Sicre, Manuel
 * Ortiz Blanco, Manuel
-* Praça, Daniela Fonseca
 * Redondo Pacheco, Julen
 
 
