@@ -23,6 +23,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.solitaire.statistics.Statistics;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
+import org.springframework.samples.solitaire.user.User;
 import org.springframework.samples.solitaire.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,19 +78,44 @@ public class PlayerService {
 
 	@Transactional
 	public void savePlayer(Player player) throws DataAccessException {
+
+//		Player OGPlayer = new Player();
+//		if(playerRepository.findById(player.getId()).isPresent()) {
+//			OGPlayer = playerRepository.findById(player.getId()).get();	
+//		}
+		
 		//creating player
 		playerRepository.save(player);	
+		
+		
+//		
+//		User OGUser = new User();
+//		User user = new User();
+//		if(userService.findUser(OGPlayer.getUser().getUsername()).isPresent()) {
+//			OGUser = userService.findUser(OGPlayer.getUser().getUsername()).get();
+//		    user = OGUser;
+//		}
+//		else {
+//			user = player.getUser();
+//		}
+		
 		//creating user
 		userService.saveUser(player.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(player.getUser().getUsername(), "player");
 		//creating statistics
 		Statistics statistics = new Statistics();
-		statistics.setGames(0);
-		statistics.setGamesLost(0);
-		statistics.setGamesWon(0);
-		statistics.setTotalScore(0);
-		statistics.setPlayer(player);
+		if(statisticsService.findByIdOptional(player.getId()).isEmpty()) {
+			statistics.setGames(0);
+			statistics.setGamesLost(0);
+			statistics.setGamesWon(0);
+			statistics.setTotalScore(0);
+			statistics.setPlayer(player);
+		}
+		else {
+			statistics = statisticsService.findByIdOptional(player.getId()).get();
+			statistics.setPlayer(player);
+		}
 		statisticsService.saveStatistics(statistics);
 	}	
 	

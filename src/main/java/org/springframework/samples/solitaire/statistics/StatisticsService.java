@@ -2,6 +2,8 @@ package org.springframework.samples.solitaire.statistics;
 
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.solitaire.friends.Friends;
@@ -22,6 +24,11 @@ public class StatisticsService {
 	@Transactional(readOnly = true)
 	public Statistics findById(int id) throws DataAccessException{
 		return statisticsRepository.findById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Optional<Statistics> findByIdOptional(int id) throws DataAccessException{
+		return statisticsRepository.findByPlayerIdOptional(id);
 	}
 	
 	@Transactional(readOnly = true)
