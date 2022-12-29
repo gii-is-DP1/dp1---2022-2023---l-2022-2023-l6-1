@@ -195,7 +195,8 @@ INSERT INTO achievements(id, name, description,condition_unlocked, image) VALUES
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (1,1,1);
 INSERT INTO achievements_statistics(id,achievement_id,statistics_id) VALUES (2,2,2);
 
-INSERT INTO friends(id, friend1,friend2) VALUES (1,1,2);
+INSERT INTO friend_requests(id,player_sender,player_receiver,state) VALUES (1,1,2,FALSE);
+
 INSERT INTO friends(id, friend1,friend2) VALUES (2,1,3);
 INSERT INTO friends(id, friend1,friend2) VALUES (3,1,4);
 INSERT INTO friends(id, friend1,friend2) VALUES (4,1,5);
