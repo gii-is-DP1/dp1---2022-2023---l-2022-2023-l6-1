@@ -17,7 +17,7 @@ package org.springframework.samples.solitaire.player;
 
 import java.util.Collection;
 
-import java.util.Set;
+
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
