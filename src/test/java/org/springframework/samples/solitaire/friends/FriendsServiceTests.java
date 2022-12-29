@@ -10,6 +10,9 @@ import org.springframework.samples.solitaire.friendRequest.FriendRequest;
 import org.springframework.samples.solitaire.friends.Friends;
 import org.springframework.samples.solitaire.friends.FriendsService;
 import org.springframework.samples.solitaire.player.Player;
+import org.springframework.samples.solitaire.player.PlayerService;
+import org.springframework.samples.solitaire.user.User;
+import org.springframework.samples.solitaire.user.UserService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -18,20 +21,36 @@ public class FriendsServiceTests {
 	@Autowired
 	protected FriendsService friendsService;
 
-	Player pl1;
-	Player pl2;
-	
+	@Autowired
+	protected PlayerService playerService;
 	
 	@Test
 	void shouldRequestById() {
-		Friends friends = this.friendsService.RequestById(pl1, pl2);
-		friends.setFriend1(pl2);
-		friends.setFriend2(pl1);
-		System.out.println(friends);
-		assertThat(friends.getFriend1());
+		Player player = new Player();
+		player.setFirstName("Sam");
+		player.setLastName("Schultz");
+		player.setEmail("sam@gmail.com");
+		player.setId(11);
+		User user=new User();
+        user.setUsername("Sam");
+        user.setPassword("supersecretpassword");
+        user.setEnabled(true);
+        player.setUser(user);
+        
+		Player player2 = new Player();
+		player2.setFirstName("PEdro");
+		player2.setLastName("pele");
+		player2.setEmail("pele@gmail.com");
+		player2.setId(12);
+		User user2=new User();
+        user2.setUsername("PEdro");
+        user2.setPassword("supersecretpassword");
+        user2.setEnabled(true);
+        player2.setUser(user2);
+		
+		Friends friends = this.friendsService.RequestById(player, player2);
+		assertThat(friends.getFriend1().equals(player));
 
-//		friends = this.friendsService.RequestById(pl2, pl1);
-//		assertThat(friends.getFriend2().getLastName()).isEqualTo(pl1.getLastName());
 	}
 
 	
