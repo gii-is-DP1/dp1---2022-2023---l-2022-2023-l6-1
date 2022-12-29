@@ -149,7 +149,6 @@ public class BoardController {
 
 		}else if(card.getNumber() == 13){
 			for(Card c:cartasPosicionY) {
-
 				if(c.getXPosition()!=1) {
 					for(Card c1 : cartasPosicion) {
 						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
@@ -167,7 +166,7 @@ public class BoardController {
 							this.cardService.saveCard(c1);
 						}
 					}
-					card.setXPosition(2);
+					card.setXPosition(5);
 					card.setYPosition(1);
 					this.cardService.saveCard(card);
 				}else if(c.getXPosition()!=3) {
@@ -222,7 +221,7 @@ public class BoardController {
 					this.cardService.saveCard(card);
 				}
 
-			}
+		}
 			}else{ 
 				for(Card c : cartasBoard) {
 					List<Card> listaAuxiliar = new ArrayList<>();
@@ -230,6 +229,7 @@ public class BoardController {
 						listaAuxiliar.add(c);
 					}
 					if(c.getNumber() == num+1 && c.getColor() != color) {
+						//Poner comprobacion si hay una carta en esta pos ya para que no se amontonen 
 						for(Card c1 : cartasPosicion) {
 							if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
 								c1.setIsShowed(true);
