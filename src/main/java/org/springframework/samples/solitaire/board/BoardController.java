@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.solitaire.card.Card;
 import org.springframework.samples.solitaire.card.CardService;
-import org.springframework.samples.solitaire.pile.Pile;
 import org.springframework.samples.solitaire.playZone.PlayZone;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class BoardController {
 
+	
 	private static final String VIEWS_BOARD = "board/chooseDifficult";
 	private static final String BOARD_1 = "board/board1";
 	private static final String BOARD_2 = "board/board2";
