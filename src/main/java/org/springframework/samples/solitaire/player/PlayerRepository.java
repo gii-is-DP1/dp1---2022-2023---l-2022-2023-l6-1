@@ -16,8 +16,11 @@
 package org.springframework.samples.solitaire.player;
 
 import java.util.Collection;
+
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -43,6 +46,8 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
 	
 	@Query("SELECT player FROM Player player")
 	public Collection<Player> findAllPlayer();
+
+	Page<Player> findAll(Pageable pageable);
 
 	
 }
