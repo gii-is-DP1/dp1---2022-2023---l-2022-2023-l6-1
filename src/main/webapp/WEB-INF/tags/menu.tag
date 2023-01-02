@@ -77,10 +77,11 @@
 											</p>
 											<br/>
 											<p class="text-left">
-												<spring:url value="/players/myProfile" var="editUrl">                           		
-                        						</spring:url>
-    											<a href="${fn:escapeXml(editUrl)}" class="btn btn-primary btn-block">My Profile</a>
-                    						
+												<sec:authorize access="hasAuthority('player')">
+													<spring:url value="/players/myProfile" var="editUrl">                           		
+	                        						</spring:url>
+	    											<a href="${fn:escapeXml(editUrl)}" class="btn btn-primary btn-block">My Profile</a>
+                    							</sec:authorize>
                     							<sec:authorize access="hasAuthority('player')">
                     								<spring:url value="/statistics" var="addUrl">
     												</spring:url>
