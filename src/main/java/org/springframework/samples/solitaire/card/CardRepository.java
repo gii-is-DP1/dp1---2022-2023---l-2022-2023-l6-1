@@ -15,7 +15,7 @@ public interface CardRepository extends CrudRepository<Card, Integer>{
 	@Query("SELECT card FROM Card card")
 	public List<Card> findAll();
 	
-	@Query("SELECT card FROM Card card WHERE card.board.id =:boardId and card.isShowed = TRUE")
+	@Query("SELECT card FROM Card card WHERE card.board.id =:boardId and card.isShowed = TRUE ORDER BY card.number DESC")
 	public List<Card> findAllCardsBoardId(@Param("boardId") int boardId);
 	
 	@Query("SELECT card FROM Card card WHERE card.board.id =:boardId and card.isShowed = FALSE")
@@ -26,4 +26,7 @@ public interface CardRepository extends CrudRepository<Card, Integer>{
 	
 	@Query("SELECT card FROM Card card WHERE card.xPosition =:x")
     public List<Card> findCardByPosition(@Param("x") int id);
+	
+	@Query("SELECT card FROM Card card WHERE card.yPosition =:y")
+    public List<Card> findCardByPositionY(@Param("y") int id);
 }

@@ -53,5 +53,10 @@ private CardRepository cardRepository;
     public List<Card> findCardByPosition(int x) throws DataAccessException {
         return cardRepository.findCardByPosition(x);
     }
+	
+	@Transactional(readOnly = true)
+    public List<Card> findCardByPositionY(int y) throws DataAccessException {
+        return cardRepository.findCardByPositionY(y);
+    }
 
 }
