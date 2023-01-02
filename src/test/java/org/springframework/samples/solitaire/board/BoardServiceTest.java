@@ -20,7 +20,7 @@ public class BoardServiceTest {
 		@Test
 		void shouldFindBoardById() {
 			Optional<Board> board = this.boardService.findById(1);
-			assertThat(board.get()).isEqualTo(1);
+			assertThat(board.get().getId()).isEqualTo(1);
 
 		}
 

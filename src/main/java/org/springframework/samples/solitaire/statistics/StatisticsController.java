@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class StatisticsController {
@@ -46,6 +47,16 @@ public class StatisticsController {
 		return VIEWS_STATISTICS;
 	}
 	
+	@GetMapping(value = "/statistics/{playerId}")
+	public String initStatsForm(@PathVariable("playerId") int playerId, Map<String, Object> model) {
+		Player player = this.playerService.findPlayerById(playerId);
+		Integer id = player.getId();
+		Statistics stats = this.statisticsService.findById(id);
+		List<Statistics> statistics = new ArrayList<>();
+		statistics.add(stats);
+		model.put("statistics",statistics);
+		return "statistics/friendsStatistics";
+	}
 	
 	
 	
