@@ -42,10 +42,10 @@ public class BoardController {
 
 
 	@GetMapping(value = "/startGame")
-	public String initCreationForm(Map<String, Object> model) {
+	public String initCreationForm(Map<String, Object> model) { 
 		Board board = new Board();
 		model.put("board", board);
-		//model.put("playzone", inicioPartida());
+		model.put("playzone", inicioPartida());
 		return VIEWS_BOARD;
 	}
 	Integer i = 1;
@@ -56,10 +56,10 @@ public class BoardController {
 			i++;
 		}
 		model.put("now", new Date());
-		model.put("board", boardService.findById(1).get());
+		model.put("board", boardService.findById(1).get()); 
 		return BOARD_1;
 	}
-
+ 
 	@GetMapping(value = "/difficult2")
 	public String creationMediumMode(Map<String, Object> model) {
 		Board board = new Board();
@@ -310,9 +310,15 @@ public class BoardController {
 			Card cardAux = new Card();
 			PlayZone playzone = new PlayZone();
 			List<Card> listaAuxResultado = new ArrayList<>();
+			for(Card c1:cards) {
+				c1.setXPosition(0);
+				c1.setYPosition(0);
+				c1.setIsShowed(false);
+				this.cardService.saveCard(c1); 
+			}
 			for(int c = 1; c<8;c++) {
 				Integer nF = 1;
-				for(int f = 1; f<8;f++) {
+				for(int f = 1; f<=8;f++) {
 					if(nF == c ) {
 						Random numRandom = new Random();
 						cardAux = cards.get(numRandom.nextInt(cards.size()+1));
