@@ -17,13 +17,14 @@ package org.springframework.samples.solitaire.player;
 
 import java.util.Collection;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.solitaire.friendRequest.FriendRequestRepository;
+import org.springframework.samples.solitaire.friends.FriendsRepository;
 import org.springframework.samples.solitaire.statistics.Statistics;
+import org.springframework.samples.solitaire.statistics.StatisticsRepository;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
 import org.springframework.samples.solitaire.user.UserService;
@@ -39,7 +40,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PlayerService {
 	
-	private PlayerRepository playerRepository;	
+	private PlayerRepository playerRepository;
+	
 	
 	@Autowired
 	private UserService userService;
@@ -124,6 +126,7 @@ public class PlayerService {
 	@Transactional
 	public void deletePlayer(Player player) throws DataAccessException {
 		//deleting player
+		
 		playerRepository.delete(player);	
 		
 	}
