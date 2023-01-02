@@ -54,8 +54,15 @@
 								
 								</ul>
 							</petclinic:menuItem>
-						</td>
-					</tr>
+						
+							<br>
+							<center>
+								<a href="/board/giveup" class="btn btn-danger">Give up!</a>
+							</center>
+							</br>
+							
+							</td>
+						</tr>
 				</tbody>
 			</table>
 			</div>

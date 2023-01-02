@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
@@ -68,7 +69,12 @@ public class BoardController {
 		model.put("board", board);
 		return BOARD_3;
 	}
-
+	
+	@GetMapping(value = "/board/giveup")
+	public String creationGiveUp(Map<String, Object> model) {
+		return "/board/giveUp";
+	}
+	
 
 	//	====================================Play=================================================================
 
