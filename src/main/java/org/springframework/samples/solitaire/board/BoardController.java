@@ -1,11 +1,15 @@
 package org.springframework.samples.solitaire.board;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -97,10 +101,10 @@ public class BoardController {
 		List<Card> cartasBoard = this.cardService.findAllCardsBoardId(1);
 		List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(1);
 		List<Card> cartasPosicion = this.cardService.findCardByPosition(card.getXPosition());
-		List<Card> cartasPosicionY = this.cardService.findCardByPosition(card.getYPosition());
+		List<Card> cartasPosicionY = this.cardService.findCardByPositionY(1);
 		Integer num = card.getNumber();
 		String color = card.getColor();
-
+		
 		if(card.getNumber() == 1) {
 			switch(card.getSuit()) {
 			case "DIAMONDS" :
@@ -153,18 +157,19 @@ public class BoardController {
 				break;
 			}
 
-		}else if(card.getNumber() == 13){
+		}else if(card.getNumber() == 13){ 
 			for(Card c:cartasPosicionY) {
-				if(c.getXPosition()!=1) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
-						}
-					}
-					card.setXPosition(1);
-					card.setYPosition(1); 
-					this.cardService.saveCard(card);
+				if(c.getXPosition()==1) { 
+//					for(Card c1 : cartasPosicion) {
+//						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+//							c1.setIsShowed(true);
+//							this.cardService.saveCard(c1);
+//						}
+//					}
+//					card.setXPosition(1);
+//					card.setYPosition(1); 
+//					this.cardService.saveCard(card);
+					
 				}else if(c.getXPosition()!=2) {
 					for(Card c1 : cartasPosicion) {
 						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
@@ -172,7 +177,7 @@ public class BoardController {
 							this.cardService.saveCard(c1);
 						}
 					}
-					card.setXPosition(5);
+					card.setXPosition(2);
 					card.setYPosition(1);
 					this.cardService.saveCard(card);
 				}else if(c.getXPosition()!=3) {
@@ -183,7 +188,7 @@ public class BoardController {
 						}
 					}
 					card.setXPosition(3);
-					card.setYPosition(1);
+					card.setYPosition(1); 
 					this.cardService.saveCard(card);
 				}else if(c.getXPosition()!=4) {
 					for(Card c1 : cartasPosicion) {
@@ -229,11 +234,14 @@ public class BoardController {
 
 		}
 			}else{ 
+				List<Card> listaAuxiliar = new ArrayList<>();
 				for(Card c : cartasBoard) {
-					List<Card> listaAuxiliar = new ArrayList<>();
-					if(card.getXPosition() == c.getXPosition()) {
+					if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
+							&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
 						listaAuxiliar.add(c);
 					}
+				}
+				for(Card c : cartasBoard) {
 					if(c.getNumber() == num+1 && c.getColor() != color) {
 						//Poner comprobacion si hay una carta en esta pos ya para que no se amontonen 
 						for(Card c1 : cartasPosicion) {
@@ -242,15 +250,18 @@ public class BoardController {
 								this.cardService.saveCard(c1);
 							}
 						}
+						
 						card.setXPosition(c.getXPosition());
-						card.setYPosition(c.getYPosition() + 1);
+						card.setYPosition(c.getYPosition() + 1); 
+						this.cardService.saveCard(card);
+						Integer i = 1;
 						for(Card cartaAux : listaAuxiliar) {
 							cartaAux.setXPosition(c.getXPosition());
-							cartaAux.setYPosition(card.getYPosition() + 1);
+							cartaAux.setYPosition(card.getYPosition()+i);
 							this.cardService.saveCard(cartaAux);
-						}
-						this.cardService.saveCard(card);
-					}
+							i++;
+						} 						
+					} 
 				}
 
 				for(Card c : cartasF) {
