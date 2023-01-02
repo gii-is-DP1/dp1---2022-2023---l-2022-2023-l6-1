@@ -18,9 +18,10 @@
 	<table id="friendTable" class="table table-striped">
 		        <thead>
 		        <tr>
-		        	<th style="width: 150px;">Username</th>
-		            <th style="width: 150px;">Name</th>
-		            <th style="width: 150px;">Email</th>
+		        	<th style="width: 90px;">Username</th>
+		            <th style="width: 90px;">Name</th>
+		            <th style="width: 120px;">Email</th>
+		            <th style="width: 30px;">Statistics</th>
 		            <th style="width: 30px;">Delete</th>
 		        </tr>
 		        </thead>
@@ -39,7 +40,14 @@
 		                <td>
 		                    <c:out value="${friend.email}"/>
 		                </td>
+		                
 		                <td>
+							<spring:url value="/statistics/{playerId}" var="addUrl">
+								<spring:param name="playerId" value="${friend.id}"/>
+							</spring:url>
+							<a href="${fn:escapeXml(addUrl)}" class="btn btn-warning">Stats</a>
+						</td>
+						<td>
 		                	<spring:url value="/players/{friendId}/deleteFriend" var="FriendUrl">
         						<spring:param name="friendId" value="${friend.friendId}"/>
     						</spring:url>	                   
