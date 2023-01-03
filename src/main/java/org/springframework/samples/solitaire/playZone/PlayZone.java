@@ -24,13 +24,13 @@ public class PlayZone extends BaseEntity{
 	
 	@Min(value = 1)
 	@Max(value = 20)
-	@Column(name = "numFila")
-	private Integer numFila;
+	@Column(name = "numFile")
+	private Integer numFile;
 	
 	@Min(value = 1)
 	@Max(value = 7)
-	@Column(name = "numColumna")
-	private Integer numColumna;
+	@Column(name = "numColumn")
+	private Integer numColumn;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
