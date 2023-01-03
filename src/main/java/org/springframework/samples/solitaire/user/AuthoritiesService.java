@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.solitaire.player.Player;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +58,14 @@ public class AuthoritiesService {
 			authoritiesRepository.save(authority);
 		}else
 			throw new DataAccessException("User '"+username+"' not found!") {};
+	}
+	
+	@Transactional
+	public void deleteAuthorities(Authorities authorities) throws DataAccessException {
+		//deleting authorities
+		
+		authoritiesRepository.delete(authorities);	
+		
 	}
 
 

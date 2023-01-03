@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.solitaire.friends.Friends;
+import org.springframework.samples.solitaire.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +41,14 @@ public class StatisticsService {
 	public void saveStatistics(Statistics statistics) throws DataAccessException {
 		//creating Friends
     	statisticsRepository.save(statistics);	
+	}
+	
+	@Transactional
+	public void deleteStatistics(Statistics statistics) throws DataAccessException {
+		//deleting statistics
+		
+		statisticsRepository.delete(statistics);	
+		
 	}
 	
 }

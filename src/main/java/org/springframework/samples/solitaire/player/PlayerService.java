@@ -21,8 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.solitaire.friendRequest.FriendRequest;
 import org.springframework.samples.solitaire.friendRequest.FriendRequestRepository;
+import org.springframework.samples.solitaire.friendRequest.FriendRequestService;
+import org.springframework.samples.solitaire.friends.Friends;
 import org.springframework.samples.solitaire.friends.FriendsRepository;
+import org.springframework.samples.solitaire.friends.FriendsService;
+import org.springframework.samples.solitaire.statistics.AchievementsStatistics;
+import org.springframework.samples.solitaire.statistics.AchievementsStatisticsService;
 import org.springframework.samples.solitaire.statistics.Statistics;
 import org.springframework.samples.solitaire.statistics.StatisticsRepository;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
@@ -51,6 +57,15 @@ public class PlayerService {
 	
 	@Autowired
 	private StatisticsService statisticsService;
+	
+	@Autowired
+	private FriendsService friendsService;
+	
+	@Autowired
+	private FriendRequestService friendRequestService;
+	
+	@Autowired
+	private AchievementsStatisticsService achievementsStatisticsService;
 
 	@Autowired
 	public PlayerService(PlayerRepository playerRepository) {
@@ -125,8 +140,32 @@ public class PlayerService {
 	
 	@Transactional
 	public void deletePlayer(Player player) throws DataAccessException {
-		//deleting player
 		
+		Collection<Friends> friends = friendsService.RequestByPlayer(player);
+		Collection<FriendRequest> friendRequests = friendRequestService.RequestByPlayerAllFriendRequest(player);
+		Collection<AchievementsStatistics> achievementsStatistics = achievementsStatisticsService.findById(player.getId());
+		Statistics statistics = statisticsService.findById(player.getId());
+		
+		//deleting  friends
+		for(Friends friend: friends) {
+			friendsService.deleteFriends(friend);
+		}
+		
+		//deleting friendRequest
+		for(FriendRequest friendRequest: friendRequests) {
+			friendRequestService.deleteFriendRequest(friendRequest);
+		}
+		
+		//deleting achievementsStatistics
+		for(AchievementsStatistics achievementsStatistic: achievementsStatistics) {
+			achievementsStatisticsService.deleteAchievementsStatistics(achievementsStatistic);
+		}
+		
+		//deleting statistics
+		statisticsService.deleteStatistics(statistics);
+		
+		
+		//deleting player
 		playerRepository.delete(player);	
 		
 	}

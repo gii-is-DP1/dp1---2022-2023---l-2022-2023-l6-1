@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.solitaire.player.Player;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +43,14 @@ public class UserService {
 	public void saveUser(User user) throws DataAccessException {
 		user.setEnabled(true);
 		userRepository.save(user);
+	}
+	
+	@Transactional
+	public void deleteUser(User user) throws DataAccessException {
+		//deleting user
+		
+		userRepository.delete(user);	
+		
 	}
 	
 	public Optional<User> findUser(String username) {

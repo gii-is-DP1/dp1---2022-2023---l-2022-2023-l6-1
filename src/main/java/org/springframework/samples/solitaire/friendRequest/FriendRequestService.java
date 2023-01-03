@@ -47,6 +47,11 @@ public class FriendRequestService {
         return friendRequestRepository.findByPlayerSenderName(username);
     }
     
+    @Transactional(readOnly = true)
+    public Collection<FriendRequest> RequestByPlayerAllFriendRequest(Player player) throws DataAccessException {
+        return friendRequestRepository.findByPlayerAllFriendRequest(player);
+    }
+    
     @Transactional(readOnly = true)	
 	public List<FriendRequest> findAll() throws DataAccessException {
 		return friendRequestRepository.findAll();
