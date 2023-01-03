@@ -29,6 +29,7 @@ import org.springframework.samples.solitaire.friends.Friends;
 import org.springframework.samples.solitaire.friends.FriendsService;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
+import org.springframework.samples.solitaire.user.User;
 import org.springframework.samples.solitaire.user.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -168,6 +169,9 @@ public class PlayerController {
 		}
 		else {
 			player.setId(playerId);
+			//Needs User username be set before saving
+			Player playerOG = playerService.findPlayerById(playerId);
+		    player.getUser().setUsername(playerOG.getUser().getUsername());
 			this.playerService.savePlayer(player);
 			return "redirect:/players/{playerId}";
 		}
