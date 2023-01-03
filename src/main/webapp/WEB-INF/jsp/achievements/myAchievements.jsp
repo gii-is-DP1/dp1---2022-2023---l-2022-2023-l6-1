@@ -15,7 +15,9 @@
         <thead>
         <tr>
         	<th style="width: 150px;">Name</th>
-            <th style="width: 150px;">Description</th>
+            <th style="width: 400px;">Description</th>
+            <th style="width: 50px;">Image</th>
+            
         </tr>
         </thead>
         <tbody>
@@ -27,6 +29,11 @@
 	                <td>
 	                    <c:out value="${achievements.description}"/>
 	                </td>
+	         
+	                <td>
+                        <img src="resources/images/${achievements.image}" width="50" height="50" /> 
+	                </td>
+	                
 	            </tr>
 	        </c:forEach> 
         </tbody>
