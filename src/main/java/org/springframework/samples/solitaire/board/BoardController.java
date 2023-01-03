@@ -236,10 +236,13 @@ public class BoardController {
 			}else{ 
 				List<Card> listaAuxiliar = new ArrayList<>();
 				for(Card c : cartasBoard) {
-					if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
-							&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
-						listaAuxiliar.add(c);
+					if(card.getYPosition()!=0) {
+						if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
+								&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
+							listaAuxiliar.add(c);
+						}
 					}
+					
 				}
 				for(Card c : cartasBoard) {
 					if(c.getNumber() == num+1 && c.getColor() != color) {
