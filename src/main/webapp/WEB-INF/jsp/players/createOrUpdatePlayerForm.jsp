@@ -15,7 +15,9 @@
             <petclinic:inputField label="First Name" name="firstName"/>
             <petclinic:inputField label="Last Name" name="lastName"/>
             <petclinic:inputField label="Email" name="email"/>
+            <c:if test="${player['new']}">
             <petclinic:inputField label="Username" name="user.username"/>
+            </c:if>
             <petclinic:inputField label="Password" name="user.password"/>
         </div>
         <div class="form-group">
