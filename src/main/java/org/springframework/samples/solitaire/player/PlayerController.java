@@ -173,7 +173,7 @@ public class PlayerController {
 			Player playerOG = playerService.findPlayerById(playerId);
 		    player.getUser().setUsername(playerOG.getUser().getUsername());
 			this.playerService.savePlayer(player);
-			return "redirect:/players/{playerId}";
+			return "redirect:/players/myProfile";
 		}
 	}
 	
