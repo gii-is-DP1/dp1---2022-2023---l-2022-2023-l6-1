@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.solitaire.card.Card;
 import org.springframework.samples.solitaire.card.CardService;
 import org.springframework.samples.solitaire.playZone.PlayZone;
+import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +40,8 @@ public class BoardController {
 	BoardService boardService;
 	@Autowired
 	CardService cardService;
+	@Autowired
+	StatisticsService statisticsService;
 
 
 	@GetMapping(value = "/startGame")
@@ -54,6 +57,16 @@ public class BoardController {
 		while(i==1) {
 			response.addHeader("Refresh", "1");
 			i++;
+		}
+		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
+		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
+		List<Card> monton3 = cardService.findAllCardsDeck(7, 0);
+		List<Card> monton4 = cardService.findAllCardsDeck(8, 0);
+		
+		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
+		
+		if(TotalSize == 52) {
+			return "board/youwin";
 		}
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1).get()); 
@@ -77,6 +90,12 @@ public class BoardController {
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
 		return "/board/giveUp";
+	}
+	
+	@GetMapping(value = "/board/youwin")
+	public String creationYouWin(Map<String, Object> model) {
+		
+		return "/board/youWin";
 	}
 	
 
