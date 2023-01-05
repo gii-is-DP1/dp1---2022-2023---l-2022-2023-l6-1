@@ -31,41 +31,4 @@
 	        </div>
 	
    	 	</form:form>
-	
-	
-		
-		<sec:authorize access="hasAuthority('admin')">
-		    <table id="playersTable" class="table table-striped">
-		        <thead>
-		        <tr>
-		        	<th style="width: 150px;">Username</th>
-		            <th style="width: 150px;">Name</th>
-		            <th style="width: 200px;">Email</th>
-		          	<th style="width: 150px;">Password</th>
-		        </tr>
-		        </thead>
-		        <tbody>
-		        
-		        <c:forEach items="${selections}" var="player">
-		            <tr>
-		            	<td>
-		                    <c:out value="${player.user.username}"/>
-		                </td>
-		                <td>
-		                    <spring:url value="/players/{playerId}" var="playerUrl">
-		                        <spring:param name="playerId" value="${player.id}"/>
-		                    </spring:url>
-		                    <a href="${fn:escapeXml(playerUrl)}"><c:out value="${player.firstName} ${player.lastName}"/></a>
-		                </td>
-		                <td>
-		                    <c:out value="${player.email}"/>
-		                </td>
-		            	<td>
-		                    <a value="${player.user.password}"/><span class="glyphicon glyphicon glyphicon-duplicate warning" aria-hidden="true"></span></a>
-		                </td>
-		            </tr>
-		        </c:forEach>
-		        </tbody>
-		    </table>
-	    </sec:authorize>
 </petclinic:layout>
