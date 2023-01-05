@@ -23,6 +23,9 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.samples.solitaire.friendRequest.FriendRequest;
 import org.springframework.samples.solitaire.friendRequest.FriendRequestService;
 import org.springframework.samples.solitaire.friends.Friends;
@@ -34,6 +37,7 @@ import org.springframework.samples.solitaire.user.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -351,4 +355,18 @@ public class PlayerController {
 		
 		return VIEWS_REJECT_REQUEST;
 	}
+	
+	//=========================================================Pageable==================================================================
+	@GetMapping(value = "/allPlayers/{PageId}")
+	public String showGamePerson(ModelMap modelMap, @PathVariable("PageId") int PageId) {
+		String view = "players/listAllPlayers";
+		Pageable pageable = PageRequest.of(PageId, 5);
+		Page<Player> players = playerService.findAll(pageable);
+		modelMap.addAttribute("total_pages", players.getTotalPages());
+		modelMap.addAttribute("page_id", PageId);
+
+		modelMap.addAttribute("players", players.toList());
+		return view;
+	}
+
 }
