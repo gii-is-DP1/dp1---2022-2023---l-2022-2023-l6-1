@@ -101,7 +101,7 @@ public class BoardController {
 		List<Card> cartasBoard = this.cardService.findAllCardsBoardId(1);
 		List<Card> cartasF = this.cardService.findAllCardsBoardIdfalse(1);
 		List<Card> cartasPosicion = this.cardService.findCardByPosition(card.getXPosition());
-		List<Card> cartasPosicionY = this.cardService.findCardByPositionY(1);
+//		List<Card> cartasPosicionY = this.cardService.findCardByPositionY(1);
 		Integer num = card.getNumber();
 		String color = card.getColor();
 		
@@ -158,132 +158,86 @@ public class BoardController {
 			}
 
 		}else if(card.getNumber() == 13){ 
-			for(Card c:cartasPosicionY) {
-				if(c.getXPosition()==1) { 
-//					for(Card c1 : cartasPosicion) {
-//						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-//							c1.setIsShowed(true);
-//							this.cardService.saveCard(c1);
-//						}
-//					}
-//					card.setXPosition(1);
-//					card.setYPosition(1); 
-//					this.cardService.saveCard(card);
-					
-				}else if(c.getXPosition()!=2) {
+			for(i=1;i<8;i++) {
+				Card k = this.cardService.findAllCardsVacia(i,1);
+				if(k == null){
 					for(Card c1 : cartasPosicion) {
 						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
 							c1.setIsShowed(true);
 							this.cardService.saveCard(c1);
 						}
 					}
-					card.setXPosition(2);
-					card.setYPosition(1);
-					this.cardService.saveCard(card);
-				}else if(c.getXPosition()!=3) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
+					List<Card> listaAuxiliar = new ArrayList<>();
+					for(Card c : cartasBoard) {
+						if(card.getYPosition()!=0) {
+							if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
+									&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
+								listaAuxiliar.add(c);
+							}
 						}
 					}
-					card.setXPosition(3);
+					card.setXPosition(i);
 					card.setYPosition(1); 
 					this.cardService.saveCard(card);
-				}else if(c.getXPosition()!=4) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
-						}
+					Integer v = 1;
+					for(Card cartaAux : listaAuxiliar) {
+						cartaAux.setXPosition(card.getXPosition());
+						cartaAux.setYPosition(card.getYPosition()+v);
+						this.cardService.saveCard(cartaAux);
+						v++;
 					}
-					card.setXPosition(4);
-					card.setYPosition(1);
-					this.cardService.saveCard(card);
-				}else if(c.getXPosition()!=5) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
-						}
-					}
-					card.setXPosition(5);
-					card.setYPosition(1);
-					this.cardService.saveCard(card);
-				}else if(c.getXPosition()!=6) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
-						}
-					}
-					card.setXPosition(6);
-					card.setYPosition(1);
-					this.cardService.saveCard(card);
-				}else if(c.getXPosition()!=7) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
-						}
-					}
-					card.setXPosition(7);
-					card.setYPosition(1);
-					this.cardService.saveCard(card);
+					break;
 				}
+			}
+		}else{ 
+			List<Card> listaAuxiliar = new ArrayList<>();
+			for(Card c : cartasBoard) {
+				if(card.getYPosition()!=0) {
+					if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
+							&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
+						listaAuxiliar.add(c);
+					}
+				}
+			}
+			for(Card c : cartasBoard) {
+				if(c.getNumber() == num+1 && c.getColor() != color) {
+					//Poner comprobacion si hay una carta en esta pos ya para que no se amontonen 
+					for(Card c1 : cartasPosicion) {
+						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+							c1.setIsShowed(true);
+							this.cardService.saveCard(c1);
+						}
+					}
+					card.setXPosition(c.getXPosition());
+					card.setYPosition(c.getYPosition() + 1); 
+					this.cardService.saveCard(card);
+					Integer i = 1;
+					for(Card cartaAux : listaAuxiliar) {
+						cartaAux.setXPosition(c.getXPosition());
+						cartaAux.setYPosition(card.getYPosition()+i);
+						this.cardService.saveCard(cartaAux);
+						i++;
+					}
+				} 
+			}
 
-		}
-			}else{ 
-				List<Card> listaAuxiliar = new ArrayList<>();
-				for(Card c : cartasBoard) {
-					if(card.getYPosition()!=0) {
-						if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
-								&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
-							listaAuxiliar.add(c);
+			for(Card c : cartasF) {
+				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
+						c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
+					for(Card c1 : cartasPosicion) {
+						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+							c1.setIsShowed(true);
+							this.cardService.saveCard(c1);
 						}
 					}
-					
+					card.setXPosition(c.getXPosition());
+					card.setYPosition(c.getYPosition());
+					card.setIsShowed(false);
+					this.cardService.saveCard(card);
 				}
-				for(Card c : cartasBoard) {
-					if(c.getNumber() == num+1 && c.getColor() != color) {
-						//Poner comprobacion si hay una carta en esta pos ya para que no se amontonen 
-						for(Card c1 : cartasPosicion) {
-							if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-								c1.setIsShowed(true);
-								this.cardService.saveCard(c1);
-							}
-						}
-						
-						card.setXPosition(c.getXPosition());
-						card.setYPosition(c.getYPosition() + 1); 
-						this.cardService.saveCard(card);
-						Integer i = 1;
-						for(Card cartaAux : listaAuxiliar) {
-							cartaAux.setXPosition(c.getXPosition());
-							cartaAux.setYPosition(card.getYPosition()+i);
-							this.cardService.saveCard(cartaAux);
-							i++;
-						} 						
-					} 
-				}
-
-				for(Card c : cartasF) {
-					if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
-							c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
-						for(Card c1 : cartasPosicion) {
-							if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-								c1.setIsShowed(true);
-								this.cardService.saveCard(c1);
-							}
-						}
-						card.setXPosition(c.getXPosition());
-						card.setYPosition(c.getYPosition());
-						card.setIsShowed(false);
-						this.cardService.saveCard(card);
-					}
-				}
-				model.put("board", boardService.findById(boardId));
-
+			}
+			model.put("board", boardService.findById(boardId));
+			
 			}
 
 
@@ -382,7 +336,6 @@ public class BoardController {
 		}
 
 	}
-
 
 
 
