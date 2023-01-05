@@ -247,15 +247,50 @@ public class BoardController {
 
 
 
-		@GetMapping(value = "/board/moveCardDeck/{cardId}")
-		public ModelAndView moveCardDeck(@PathVariable("cardId") int cardId, Map<String, Object> model ) {
-			Card card = this.cardService.findCardById(cardId);
-			Integer boardId = card.getBoard().getId();
-			card.setXPosition(1);
-			card.setYPosition(0);
-			card.setIsShowed(true);
-			this.cardService.saveCard(card);
-			model.put("board", boardService.findById(boardId));
+		@GetMapping(value = "/board/moveCardDeck")
+		public ModelAndView moveCardDeck(Map<String, Object> model ) {
+//			Card card = this.cardService.findCardById(cardId);
+//			Integer boardId = card.getBoard().getId();
+			List<Card> BarajaInicial = this.cardService.findAllCardsDeck(0, 0);
+			List<Card> Carta10 = this.cardService.findAllCardsDeck(1, 0);
+			if(BarajaInicial.size() > 0) {
+				int num = (int) (Math.random() * (BarajaInicial.size())) ;
+				Card initCard = BarajaInicial.get(num);
+				if(Carta10.isEmpty()) {
+					initCard.setXPosition(1);
+					initCard.setYPosition(0);
+					initCard.setIsShowed(true);
+					this.cardService.saveCard(initCard);
+					Carta10.add(initCard);
+					BarajaInicial.remove(initCard);
+				}else {
+					Card c = Carta10.get(0);
+					c.setXPosition(0);
+					c.setYPosition(0);
+					c.setIsShowed(false);
+					this.cardService.saveCard(c);
+					initCard.setXPosition(1);
+					initCard.setYPosition(0);
+					initCard.setIsShowed(true);
+					this.cardService.saveCard(initCard);
+					BarajaInicial.add(c);
+					Carta10.remove(c);
+				}
+			}
+				
+//			}else if(BarajaInicial.size() == 0) {
+//					lsAuxiliar = this.cardService.findAllCardsDeck(1, 0);
+//					for(int i = 0; i< lsAuxiliar.size();i++) {
+//						Card c = lsAuxiliar.get(i);
+//						c.setXPosition(0);
+//						c.setYPosition(0);
+//						c.setIsShowed(false);
+//						this.cardService.saveCard(c);
+//						
+//					}
+//			}
+			
+			model.put("board", boardService.findById(1));
 			return new ModelAndView("redirect:/difficult1");
 		}
 

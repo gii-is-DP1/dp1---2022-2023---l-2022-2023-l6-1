@@ -32,4 +32,7 @@ public interface CardRepository extends CrudRepository<Card, Integer>{
 	
 	@Query("SELECT card FROM Card card WHERE card.xPosition =:x and card.yPosition =:y")
 	public Card findAllCardsVacia(@Param("x") int x, @Param("y") int y);
+	
+	@Query("SELECT card FROM Card card WHERE card.xPosition =:x and card.yPosition =:y")
+	public List<Card> findAllCardsDeck(@Param("x") int x, @Param("y") int y);
 }

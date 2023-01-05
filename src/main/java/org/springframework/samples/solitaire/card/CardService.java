@@ -63,5 +63,10 @@ private CardRepository cardRepository;
     public Card findAllCardsVacia(int x, int y) throws DataAccessException {
         return cardRepository.findAllCardsVacia(x,y);
     }
+	
+	@Transactional(readOnly = true)
+    public List<Card> findAllCardsDeck(int x ,int y) throws DataAccessException {
+        return cardRepository.findAllCardsDeck(x,y);
+    }
 
 }
