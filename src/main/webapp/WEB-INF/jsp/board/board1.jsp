@@ -40,21 +40,10 @@
 							</petclinic:menuItem>
 					
 					
-							<petclinic:menuItem active="${name eq 'play'}" url="/"
-								title="Take Card From Deck" dropdown="${true}">
-								<ul class="dropdown-menu">
-									<c:forEach items="${board.cards}" var="card">
-										<c:if test="${card.isShowed == false && card.getXPosition() == 0 && card.getYPosition() == 0}">
-											<li>
-												<a href="<c:url value="/board/moveCardDeck/${card.id}"/>" >${card.number}-${card.suit}</a>
-											</li>
-									
-										</c:if>
-									</c:forEach>
-								
-								</ul>
-							</petclinic:menuItem>
-						
+							<left>
+								<a href="/board/moveCardDeck" class="btn btn-danger">Take card from deck</a>
+							</left>
+							
 							<br>
 							<center>
 								<a href="/board/giveup" class="btn btn-danger">Give up!</a>
