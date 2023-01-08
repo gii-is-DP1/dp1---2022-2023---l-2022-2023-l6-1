@@ -2,7 +2,9 @@ package org.springframework.samples.solitaire.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +95,26 @@ public class PlayerServiceTests {
 			assertThat(player.getFirstName()).isEqualTo(newLastName);
 		}
 		
+		@Test
+		@Transactional
+		public void shouldDeletePlayer() {
+			Player player = new Player();
+			player.setFirstName("Sam");
+			player.setLastName("Schultz");
+			player.setEmail("sam@gmail.com");
+	                User user=new User();
+	                user.setUsername("Sam");
+	                user.setPassword("supersecretpassword");
+	                user.setEnabled(true);
+	                player.setUser(user);                
+	         
+			this.playerService.savePlayer(player);
+			Collection<Player> l = this.playerService.findByLastName("Schultz");
+			l.add(player);
+		
+			this.playerService.deletePlayer(player);
+			assertThat(l.size()==0);
+		}
 		
 		
 }
