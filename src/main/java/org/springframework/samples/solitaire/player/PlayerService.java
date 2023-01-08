@@ -98,27 +98,10 @@ public class PlayerService {
 
 	@Transactional
 	public void savePlayer(Player player) throws DataAccessException {
-
-//		Player OGPlayer = new Player();
-//		if(playerRepository.findById(player.getId()).isPresent()) {
-//			OGPlayer = playerRepository.findById(player.getId()).get();	
-//		}
 		
 		//creating player
 		playerRepository.save(player);	
-		
-		
-//		
-//		User OGUser = new User();
-//		User user = new User();
-//		if(userService.findUser(OGPlayer.getUser().getUsername()).isPresent()) {
-//			OGUser = userService.findUser(OGPlayer.getUser().getUsername()).get();
-//		    user = OGUser;
-//		}
-//		else {
-//			user = player.getUser();
-//		}
-		
+
 		//creating user
 		userService.saveUser(player.getUser());
 		//creating authorities
