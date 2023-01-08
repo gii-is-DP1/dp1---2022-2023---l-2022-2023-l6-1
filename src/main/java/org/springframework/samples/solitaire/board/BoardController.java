@@ -84,7 +84,7 @@ public class BoardController {
 	
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
-		return "/board/giveUp";
+		return "/board/giveUp";  
 	}
 	
 	@GetMapping(value = "/board/youwin")
