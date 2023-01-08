@@ -62,5 +62,14 @@
 				</spring:url> <a href="${fn:escapeXml(urlBoton)}">${variable + 1}</a></td>
 		</c:forEach>
 		
+		<br>
+		<div class="form-group">
+	            <div class="col-sm-offset-10 col-sm-10">
+	            		<right>
+							<a class="btn btn-default" href='<spring:url value="/players/new" htmlEscape="true"/>'>Add player</a>
+						</right>
+	            </div>
+	        </div>
+		
 </petclinic:layout>
 	    

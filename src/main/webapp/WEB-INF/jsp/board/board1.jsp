@@ -34,22 +34,17 @@
 										</li>
 									
 									</c:if>
-								</c:forEach>
+									</c:forEach>
+								</div>
 								
 								</ul>
 							</petclinic:menuItem>
 					
-					
-							<left>
-								<a href="/board/moveCardDeck" class="btn btn-danger">Take card from deck</a>
-							</left>
-							
-							<br>
-							<center>
+						<br>
+						<center>
+								<a href="/board/moveCardDeck" class="btn btn-warning">Take card from deck</a>
 								<a href="/board/giveup" class="btn btn-danger">Give up!</a>
-							</center>
-							</br>
-							
+						</center>
 							</td>
 						</tr>
 				</tbody>

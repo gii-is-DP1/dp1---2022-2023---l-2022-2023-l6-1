@@ -24,9 +24,6 @@
 	        <div class="form-group">
 	            <div class="col-sm-offset-2 col-sm-10">
 	                <button type="submit" class="btn btn-default">Find Player</button>
-	           		<sec:authorize access="hasAuthority('admin')">
-						<a class="btn btn-default" href='<spring:url value="/players/new" htmlEscape="true"/>'>Add player</a>
-					</sec:authorize>
 	            </div>
 	        </div>
 	

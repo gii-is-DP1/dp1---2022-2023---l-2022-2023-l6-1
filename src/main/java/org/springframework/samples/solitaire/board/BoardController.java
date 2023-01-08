@@ -219,7 +219,8 @@ public class BoardController {
 				}
 			}
 			for(Card c : cartasBoard) {
-				if(c.getNumber() == num+1 && c.getColor() != color) {
+				Card k = this.cardService.findAllCardsVacia(c.getXPosition(),c.getYPosition()+1);
+				if(c.getNumber() == num+1 && c.getColor() != color && k==null) {
 					//Poner comprobacion si hay una carta en esta pos ya para que no se amontonen 
 					for(Card c1 : cartasPosicion) {
 						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
@@ -241,18 +242,21 @@ public class BoardController {
 			}
 
 			for(Card c : cartasF) {
-				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
-						c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
-					for(Card c1 : cartasPosicion) {
-						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
-							c1.setIsShowed(true);
-							this.cardService.saveCard(c1);
+				Card k = this.cardService.findAllCardsVacia(card.getXPosition(),card.getYPosition()+1);
+				if((card.getYPosition()==0 && card.getXPosition()==1) || k==null) {
+					if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
+							c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
+						for(Card c1 : cartasPosicion) {
+							if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+								c1.setIsShowed(true);
+								this.cardService.saveCard(c1);
+							}
 						}
+						card.setXPosition(c.getXPosition());
+						card.setYPosition(c.getYPosition()); 
+						card.setIsShowed(false);
+						this.cardService.saveCard(card);
 					}
-					card.setXPosition(c.getXPosition());
-					card.setYPosition(c.getYPosition());
-					card.setIsShowed(false);
-					this.cardService.saveCard(card);
 				}
 			}
 			model.put("board", boardService.findById(boardId));
@@ -390,23 +394,4 @@ public class BoardController {
 		}
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

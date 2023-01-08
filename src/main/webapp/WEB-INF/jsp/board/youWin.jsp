@@ -8,19 +8,16 @@
 
 <body style="background: url(/resources/images/background.jpg)">
 <petclinic:layout pageName="board">
-    <div align="center" style="margin-left: 50px; margin-top: 50px;">
-            <spring:url value="/resources/images/Ganar.png"
-                htmlEscape="true" var="perder" />
+    <div align="center" style="margin-left: 50px; margin-top: -80px;">
+            <spring:url value="/resources/images/ganar.png"
+                htmlEscape="true" var="ganar" />
             <img id="f2" class="img-responsive"
-                src="${perder}" width="960" height="1020" />
+                src="${ganar}" width="750" height="750" />
     </div>
 		<br>
 		</br>
-		<br>
-		</br>
-		<br>
 		<center>
-			<a href="/startGame" class="btn btn-warning">Try again?</a>
+			<a href="/startGame" class="btn btn-warning">Play again, you are on a roll!</a>
 		</center>
 		</br>
 
