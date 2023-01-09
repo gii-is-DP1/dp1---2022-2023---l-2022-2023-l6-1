@@ -67,13 +67,14 @@ public class PlayerController {
 	
 	private final FriendsService friendsService;
 	
-	@SuppressWarnings("unused")
 	private final StatisticsService statisticsService;
 	
 	
 	
 	@Autowired
-	public PlayerController(PlayerService playerService, UserService userService, AuthoritiesService authoritiesService, FriendRequestService friendRequestService, FriendsService friendsService, StatisticsService statisticsService) {
+	public PlayerController(PlayerService playerService, UserService userService, 
+			AuthoritiesService authoritiesService, FriendRequestService friendRequestService, 
+			FriendsService friendsService, StatisticsService statisticsService) {
 		this.playerService = playerService;
 		this.friendRequestService = friendRequestService;
 		this.friendsService = friendsService;
@@ -181,21 +182,23 @@ public class PlayerController {
 			return "redirect:/players/myProfile";
 		}
 	}
-		
+	
+	@GetMapping(value = "/players/{playerId}/delete")
+	public String initDeletePlayerForm(@PathVariable("playerId") int playerId, Model model) {
+		this.playerService.deletePlayer(this.playerService.findPlayerById(playerId));
+		return VIEWS_HOME;
+	}
+
+	/**
+	 * Custom handler for displaying an player.
+	 * @param playerId the ID of the player to display
+	 * @return a ModelMap with the model attributes for the view
+	 */
 	@GetMapping("/players/{playerId}")
 	public ModelAndView showPlayer(@PathVariable("playerId") int playerId) {
 		ModelAndView mav = new ModelAndView("players/playerDetails");
 		mav.addObject(this.playerService.findPlayerById(playerId));
 		return mav;
-	}
-	
-	/*
-	 * Desde esta url hasta abajo faltan los tests
-	*/
-	@GetMapping(value = "/players/{playerId}/delete")
-	public String initDeletePlayerForm(@PathVariable("playerId") int playerId, Model model) {
-		this.playerService.deletePlayer(this.playerService.findPlayerById(playerId));
-		return VIEWS_HOME;
 	}
 	
 	@GetMapping("/players/all")
