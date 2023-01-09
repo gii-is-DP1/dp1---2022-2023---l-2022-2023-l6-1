@@ -43,7 +43,7 @@ public class BoardController {
 	public String initCreationForm(Map<String, Object> model) { 
 		Board board = new Board();
 		model.put("board", board);
-		model.put("playzone", inicioPartida());
+		model.put("playzone", startGame());
 		return VIEWS_BOARD;
 	}
 	Integer i = 1;
@@ -64,7 +64,7 @@ public class BoardController {
 			return "board/youwin";
 		}
 		model.put("now", new Date());
-		model.put("board", boardService.findById(1).get()); 
+		model.put("board", boardService.findById(1)); 
 		return BOARD_1;
 	}
  
@@ -331,7 +331,7 @@ public class BoardController {
 
 		//	====================================PlayZone=================================================================
 
-		public PlayZone inicioPartida() {
+		public PlayZone startGame() {
 			List<Card> cards = cardService.findAll();
 			Card cardAux = new Card();
 			PlayZone playzone = new PlayZone();

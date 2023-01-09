@@ -16,7 +16,6 @@
 package org.springframework.samples.solitaire.board;
 
 
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -32,5 +31,5 @@ import org.springframework.data.repository.query.Param;
 public interface BoardRepository extends CrudRepository<Board, Integer> {
 
 	@Query("SELECT board FROM Board board WHERE board.id =:id")
-	public Optional<Board> findById(@Param("id") int id);
+	public Board findById(@Param("id") int id);
 }

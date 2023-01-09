@@ -67,6 +67,7 @@ public class PlayerController {
 	
 	private final FriendsService friendsService;
 	
+	@SuppressWarnings("unused")
 	private final StatisticsService statisticsService;
 	
 	
