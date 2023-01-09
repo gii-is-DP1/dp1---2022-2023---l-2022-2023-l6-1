@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 import org.springframework.samples.solitaire.card.Card;
@@ -23,8 +24,10 @@ public class Board extends BaseEntity{
 	
 	String background;
 	@Positive
+	@NotEmpty
 	int width;
 	@Positive
+	@NotEmpty
 	int height;
 	
 	public Board() {

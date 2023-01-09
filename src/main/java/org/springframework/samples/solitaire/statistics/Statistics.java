@@ -21,22 +21,18 @@ import lombok.Setter;
 @Table(name = "statistics")
 public class Statistics extends BaseEntity{
 	
-//	@NotEmpty
 	@Min(value=0)
 	@Column(name="games")
 	private Integer games;
 	
-//	@NotEmpty
 	@Min(value=0)
 	@Column(name="games_won")
 	private Integer gamesWon;
 	
-//	@NotEmpty
 	@Min(value=0)
 	@Column(name="games_lost")
 	private Integer gamesLost ;
 	
-//	@NotEmpty
 	@Min(value=0)
 	@Column(name="total_score")
 	private Integer totalScore;

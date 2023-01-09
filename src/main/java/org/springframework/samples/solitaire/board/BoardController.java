@@ -186,8 +186,8 @@ public class BoardController {
 					card.setIsShowed(false);
 					this.cardService.saveCard(card);
 				}else{
-					for(i=1;i<8;i++) {
-						Card k = this.cardService.findAllCardsVacia(i,1);
+					for(i=2;i<9;i++) {
+						Card k = this.cardService.findAllCardsVacia(i,2);
 						if(k == null){
 							for(Card c1 : cartasPosicion) {
 								if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
@@ -205,7 +205,7 @@ public class BoardController {
 								}
 							}
 							card.setXPosition(i);
-							card.setYPosition(1); 
+							card.setYPosition(2); 
 							this.cardService.saveCard(card);
 							Integer v = 1;
 							for(Card cartaAux : listaAuxiliar) {
@@ -342,9 +342,9 @@ public class BoardController {
 				c1.setIsShowed(false);
 				this.cardService.saveCard(c1); 
 			}
-			for(int c = 1; c<8;c++) {
-				Integer nF = 1;
-				for(int f = 1; f<=8;f++) {
+			for(int c = 2; c<9;c++) {
+				Integer nF = 2;
+				for(int f = 2; f<=9;f++) {
 					if(nF == c ) {
 						Random numRandom = new Random();
 						cardAux = cards.get(numRandom.nextInt(cards.size()+1));
