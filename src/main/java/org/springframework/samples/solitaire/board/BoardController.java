@@ -177,35 +177,51 @@ public class BoardController {
 			}
 
 		}else if(card.getNumber() == 13){ 
-			for(i=1;i<8;i++) {
-				Card k = this.cardService.findAllCardsVacia(i,1);
-				if(k == null){
+			for(Card c : cartasF) {
+				if(c.getNumber() == num -1 && c.getSuit().equals(card.getSuit()) && c.getYPosition()==0 && (c.getXPosition()==5||
+						c.getXPosition()==6||c.getXPosition()==7||c.getXPosition( )==8)) {
 					for(Card c1 : cartasPosicion) {
 						if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
 							c1.setIsShowed(true);
 							this.cardService.saveCard(c1);
 						}
 					}
-					List<Card> listaAuxiliar = new ArrayList<>();
-					for(Card c : cartasBoard) {
-						if(card.getYPosition()!=0) {
-							if(card.getXPosition() == c.getXPosition() && card.getYPosition() < c.getYPosition() 
-									&& card.getNumber() > c.getNumber() && c.getIsShowed()==true) {
-								listaAuxiliar.add(c);
+					card.setXPosition(c.getXPosition());
+					card.setYPosition(c.getYPosition()); 
+					card.setIsShowed(false);
+					this.cardService.saveCard(card);
+				}else{
+					for(i=1;i<8;i++) {
+						Card k = this.cardService.findAllCardsVacia(i,1);
+						if(k == null){
+							for(Card c1 : cartasPosicion) {
+								if(c1.getYPosition() == card.getYPosition()-1 && c1.getIsShowed()== false) {
+									c1.setIsShowed(true);
+									this.cardService.saveCard(c1);
+								}
 							}
+							List<Card> listaAuxiliar = new ArrayList<>();
+							for(Card c2 : cartasBoard) {
+								if(card.getYPosition()!=0) {
+									if(card.getXPosition() == c2.getXPosition() && card.getYPosition() < c2.getYPosition() 
+											&& card.getNumber() > c2.getNumber() && c2.getIsShowed()==true) {
+										listaAuxiliar.add(c2);
+									}
+								}
+							}
+							card.setXPosition(i);
+							card.setYPosition(1); 
+							this.cardService.saveCard(card);
+							Integer v = 1;
+							for(Card cartaAux : listaAuxiliar) {
+								cartaAux.setXPosition(card.getXPosition());
+								cartaAux.setYPosition(card.getYPosition()+v);
+								this.cardService.saveCard(cartaAux);
+								v++;
+							}
+							break;
 						}
 					}
-					card.setXPosition(i);
-					card.setYPosition(1); 
-					this.cardService.saveCard(card);
-					Integer v = 1;
-					for(Card cartaAux : listaAuxiliar) {
-						cartaAux.setXPosition(card.getXPosition());
-						cartaAux.setYPosition(card.getYPosition()+v);
-						this.cardService.saveCard(cartaAux);
-						v++;
-					}
-					break;
 				}
 			}
 		}else{ 
@@ -394,4 +410,5 @@ public class BoardController {
 		}
 
 	}
+
 
