@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -112,7 +113,8 @@ public class PlayerControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitFindForm() throws Exception {
-		mockMvc.perform(get("/players/find")).andExpect(status().isOk()).andExpect(model().attributeExists("player"))
+		mockMvc.perform(get("/players/find")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("player"))
 				.andExpect(view().name("players/findPlayers"));
 	}
 
@@ -177,6 +179,46 @@ public class PlayerControllerTests {
 				.andExpect(model().attribute("player", hasProperty("firstName", is("George"))))
 				.andExpect(model().attribute("player", hasProperty("email", is("george@gmail.com"))))
 				.andExpect(view().name("players/playerDetails"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testDeletePlayer() throws Exception {
+		mockMvc.perform(delete("/players/{playerId}/delete", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk());
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testShowPlayerAll() throws Exception {
+		mockMvc.perform(get("/players/all", TEST_PLAYER_ID)).andExpect(status().isOk())
+				.andExpect(model().attribute("player", hasProperty("lastName", is("Franklin"))))
+				.andExpect(model().attribute("player", hasProperty("firstName", is("George"))))
+				.andExpect(model().attribute("player", hasProperty("email", is("george@gmail.com"))))
+				.andExpect(view().name("players/playerDetails"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testInitPlayerFriendForm() throws Exception {
+		mockMvc.perform(get("/players/friends")).andExpect(status().isOk())
+		.andExpect(view().name("players/friends"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testDeleteFriendForm() throws Exception {
+		mockMvc.perform(delete("/players/{friendId}/deleteFriend", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk());
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testSendFriendRequest() throws Exception {
+		mockMvc.perform(get("/players/{playerId}/friendRequest/new", 2)).andExpect(status().isOk())
+		.andExpect(view().name("players/sendRequestSended"))
+		.andExpect(view().name("players/uAreFriend"))
+		.andExpect(view().name("players/cantSendFriendRequest"));
 	}
 
 }
