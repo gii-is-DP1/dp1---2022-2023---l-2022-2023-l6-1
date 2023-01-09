@@ -1,10 +1,7 @@
 package org.springframework.samples.solitaire.statistics;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,17 +28,10 @@ public class Achievements extends BaseEntity{
 	@Column(name="condition_unlocked")
 	private String condition_unlocked;
 	
-//	@NotEmpty
-//	@Column(name="is_unlocked")
-//	private Boolean is_unlocked;
 	
 	@NotEmpty
 	@Column(name="image")
 	private String image;
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "statistics_id", referencedColumnName = "id")
-//	private Statistics statistics;
 	
 
 }

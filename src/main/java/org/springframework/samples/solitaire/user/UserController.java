@@ -20,8 +20,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.solitaire.owner.Owner;
-import org.springframework.samples.solitaire.owner.OwnerService;
 import org.springframework.samples.solitaire.player.Player;
 import org.springframework.samples.solitaire.player.PlayerService;
 import org.springframework.stereotype.Controller;

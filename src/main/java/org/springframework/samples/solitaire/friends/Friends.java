@@ -1,6 +1,5 @@
 package org.springframework.samples.solitaire.friends;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
