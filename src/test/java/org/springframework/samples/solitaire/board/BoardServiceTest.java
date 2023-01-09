@@ -2,7 +2,6 @@ package org.springframework.samples.solitaire.board;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class BoardServiceTest {
 
 		@Test
 		void shouldFindBoardById() {
-			Optional<Board> board = this.boardService.findById(1);
-			assertThat(board.get().getId()).isEqualTo(1);
+			Board board = this.boardService.findById(1);
+			assertThat(board.getId()).isEqualTo(1);
 
 		}
 

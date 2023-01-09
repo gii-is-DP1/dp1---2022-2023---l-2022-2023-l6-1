@@ -16,7 +16,6 @@
 package org.springframework.samples.solitaire.board;
 
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -36,8 +35,13 @@ public class BoardService {
 	private BoardRepository boardRepository;
 
 	@Transactional(readOnly = true)
-	public Optional<Board> findById(int id) throws DataAccessException {
+	public Board findById(int id) throws DataAccessException {
 		return boardRepository.findById(id);
 	}
-
+	
+	@Transactional(readOnly = true)
+	public Board save(Board board) throws DataAccessException {
+		return boardRepository.save(board);
+	}
+	
 }

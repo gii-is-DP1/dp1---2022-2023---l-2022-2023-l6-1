@@ -11,6 +11,6 @@ public interface AchievementsStatisticsRepository extends CrudRepository<Achieve
 	@Query("SELECT achievements FROM AchievementsStatistics achievements WHERE achievements.statistics.player.id= :id")
 	public Collection<AchievementsStatistics> findById(@Param("id") int id);
 	
-
-
+	
+	
 }
