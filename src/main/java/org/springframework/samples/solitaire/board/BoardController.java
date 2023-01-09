@@ -1,15 +1,10 @@
 package org.springframework.samples.solitaire.board;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -89,7 +84,7 @@ public class BoardController {
 	
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
-		return "/board/giveUp";
+		return "/board/giveUp";  
 	}
 	
 	@GetMapping(value = "/board/youwin")

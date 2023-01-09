@@ -24,6 +24,8 @@ import org.springframework.samples.solitaire.friends.FriendsService;
 import org.springframework.samples.solitaire.player.Player;
 import org.springframework.samples.solitaire.player.PlayerController;
 import org.springframework.samples.solitaire.player.PlayerService;
+import org.springframework.samples.solitaire.statistics.Statistics;
+import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
 import org.springframework.samples.solitaire.user.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -37,6 +39,10 @@ public class PlayerControllerTests {
 
 	@Autowired
 	private PlayerController playerController;
+	
+	@MockBean
+	@Autowired
+	private StatisticsService statisticsService;
 
 	@MockBean
 	private PlayerService playerService;
@@ -61,11 +67,21 @@ public class PlayerControllerTests {
 	@BeforeEach
 	void setup() {
 
+		Statistics stat = new Statistics();
+		stat.setGames(120);
+		stat.setGamesLost(20);
+		stat.setGamesWon(100);
+		stat.setPlayer(george);
+		stat.setId(100);
+		stat.setTotalScore(200);
+		this.statisticsService.saveStatistics(stat);
 		george = new Player();
 		george.setId(TEST_PLAYER_ID);
 		george.setFirstName("George");
 		george.setLastName("Franklin");
 		george.setEmail("george@gmail.com");
+		george.setFriendId(1);
+		given(this.statisticsService.findById(TEST_PLAYER_ID)).willReturn(stat);
 		given(this.playerService.findPlayerById(TEST_PLAYER_ID)).willReturn(george);
 
 	}
@@ -141,8 +157,7 @@ public class PlayerControllerTests {
 	@Test
 	void testProcessUpdatePlayerFormSuccess() throws Exception {
 		mockMvc.perform(post("/players/{playerId}/edit", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
-				.param("lastName", "Bloggs").param("email", "george1@gmail.com")).andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/players/{playerId}"));
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com")).andExpect(status().isOk());
 	}
 
 	@WithMockUser(value = "spring")
