@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Ken Krebs
  * @author Arjen Poutsma
  * @author Michael Isvy
+ * ok
  */
 @Controller
 public class UserController {
