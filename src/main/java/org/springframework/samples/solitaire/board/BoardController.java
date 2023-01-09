@@ -13,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.solitaire.card.Card;
 import org.springframework.samples.solitaire.card.CardService;
 import org.springframework.samples.solitaire.playZone.PlayZone;
+import org.springframework.samples.solitaire.player.Player;
+import org.springframework.samples.solitaire.player.PlayerService;
+import org.springframework.samples.solitaire.statistics.Statistics;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,13 +41,22 @@ public class BoardController {
 	CardService cardService;
 	@Autowired
 	StatisticsService statisticsService;
+	@Autowired
+	PlayerService playerService;
 
 
 	@GetMapping(value = "/startGame")
 	public String initCreationForm(Map<String, Object> model) { 
 		Board board = new Board();
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = playerService.findByUsername(username);
+		Statistics statistics = statisticsService.findById(player.getId());
+		
 		model.put("board", board);
 		model.put("playzone", startGame());
+		statistics.setGames(statistics.getGames()+1);
+		statisticsService.saveStatistics(statistics);
 		return VIEWS_BOARD;
 	}
 	Integer i = 1;
@@ -59,6 +72,8 @@ public class BoardController {
 		List<Card> monton4 = cardService.findAllCardsDeck(8, 0);
 		
 		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
+		
+		
 		
 		if(TotalSize == 52) {
 			return "board/youwin";
@@ -84,11 +99,23 @@ public class BoardController {
 	
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = playerService.findByUsername(username);
+		Statistics statistics = statisticsService.findById(player.getId());
+		statistics.setGamesWon(statistics.getGamesLost()+1);
+		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
+		statisticsService.saveStatistics(statistics);
 		return "/board/giveUp";  
 	}
 	
 	@GetMapping(value = "/board/youwin")
 	public String creationYouWin(Map<String, Object> model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = playerService.findByUsername(username);
+		Statistics statistics = statisticsService.findById(player.getId());
+		statistics.setGamesWon(statistics.getGamesWon()+1);
+		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
+		statisticsService.saveStatistics(statistics);
 		
 		return "/board/youWin";
 	}
