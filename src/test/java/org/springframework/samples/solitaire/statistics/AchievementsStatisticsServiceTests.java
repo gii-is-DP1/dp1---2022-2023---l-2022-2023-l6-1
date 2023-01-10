@@ -27,12 +27,19 @@ public class AchievementsStatisticsServiceTests {
 	
 	@Autowired
 	protected PlayerService playerService;
+	
+	@Autowired
+	protected StatisticsService statisticsService;
+	
+	@Autowired
+	protected AchievementsService achievementsService;
 
 
 	@Test
 	@Transactional
 	void shouldFindAchievementsStatistics() {
-		Collection<AchievementsStatistics> achievementsStatistics = this.achievementsStatisticsService.findById(1);
+		Collection<AchievementsStatistics> achievementsStatistics = 
+				this.achievementsStatisticsService.findById(1);
 		assertThat(achievementsStatistics);
 	}
 	
@@ -63,7 +70,8 @@ public class AchievementsStatisticsServiceTests {
 		achievementsStastistics.setStatistics(stats); 
 		achievementsStastistics.setAchievement(ach);
 		             
-                
+        this.statisticsService.saveStatistics(stats);
+        this.achievementsService.saveAchievements(ach);
 		this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStastistics);
 		assertThat(achievementsStastistics.getAchievement().getDescription());
 	}
