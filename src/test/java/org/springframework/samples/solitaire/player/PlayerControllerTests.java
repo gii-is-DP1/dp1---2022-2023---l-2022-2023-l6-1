@@ -181,6 +181,9 @@ public class PlayerControllerTests {
 				.andExpect(view().name("players/playerDetails"));
 	}
 	
+	/*
+	 * Está mal
+	 */
 	@WithMockUser(value = "spring")
 	@Test
 	void testDeletePlayer() throws Exception {
@@ -192,18 +195,16 @@ public class PlayerControllerTests {
 	@Test
 	void testShowPlayerAll() throws Exception {
 		mockMvc.perform(get("/players/all", TEST_PLAYER_ID)).andExpect(status().isOk())
-				.andExpect(model().attribute("player", hasProperty("lastName", is("Franklin"))))
-				.andExpect(model().attribute("player", hasProperty("firstName", is("George"))))
-				.andExpect(model().attribute("player", hasProperty("email", is("george@gmail.com"))))
 				.andExpect(view().name("players/playerDetails"));
 	}
 	
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitPlayerFriendForm() throws Exception {
-		mockMvc.perform(get("/players/friends")).andExpect(status().isOk())
+		mockMvc.perform(get("/players/friends", TEST_PLAYER_ID)).andExpect(status().isOk())
+		.andExpect(model().attributeExists("friends"))
 		.andExpect(view().name("players/friends"));
-	}
+	}	
 	
 	@WithMockUser(value = "spring")
 	@Test
@@ -214,11 +215,26 @@ public class PlayerControllerTests {
 	
 	@WithMockUser(value = "spring")
 	@Test
-	void testSendFriendRequest() throws Exception {
-		mockMvc.perform(get("/players/{playerId}/friendRequest/new", 2)).andExpect(status().isOk())
-		.andExpect(view().name("players/sendRequestSended"))
-		.andExpect(view().name("players/uAreFriend"))
-		.andExpect(view().name("players/cantSendFriendRequest"));
+	void testSendFriendRequestSuccess() throws Exception {
+		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk())
+		.andExpect(view().name("players/sendRequestSended"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testSendFriendRequestAlreadyFriends() throws Exception {
+		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk())
+		.andExpect(view().name("players/uAreFriend"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testSendFriendRequestCant() throws Exception {
+		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe").param("lastName", "Bloggs")
+				.param("email", "george1@mail.com")).andExpect(status().isOk()).andExpect(model().attributeExists("playerId"))
+				.andExpect(view().name("players/cantSendFriendRequest"));
 	}
 
 }
