@@ -2,9 +2,7 @@ package org.springframework.samples.solitaire.statistics;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,20 +68,11 @@ public class StatisticsControllerTests {
 		mockMvc.perform(get("/statistics")).andExpect(status().isOk());
 	}
 
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testProcessCreationFormSuccess() throws Exception {
-//		mockMvc.perform(post("/players/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
-//				.param("email", "joe@gmail.com").param("username", "Joe2").param("Password", "Joe1"))
-//				.andExpect(status().is3xxRedirection());
-//	}
-//
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testProcessCreationFormHasErrors() throws Exception {
-//		mockMvc.perform(post("/players/new").with(csrf()).param("firstName", "Joe").param("lastName", "Bloggs")
-//				.param("email", "georgemail.com")).andExpect(status().isOk()).andExpect(model().attributeHasErrors("player"))
-//				.andExpect(view().name("players/createOrUpdatePlayerForm"));
-//	}
-//	
+	@WithMockUser(value = "spring")
+	@Test
+	void testInitStatsFormSuccess() throws Exception {
+		mockMvc.perform(get("/statistics/{playerId}", 8)).andExpect(status().isOk())
+		.andReturn();
+	}
+
 }
