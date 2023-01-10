@@ -71,7 +71,7 @@ public class AchievementsStatisticsServiceTests {
 		achievementsStastistics.setAchievement(ach);
 		             
         this.statisticsService.saveStatistics(stats);
-        this.achievementsService.saveAchievements(ach);
+        this.achievementsService.save(ach);
 		this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStastistics);
 		assertThat(achievementsStastistics.getAchievement().getDescription());
 	}
