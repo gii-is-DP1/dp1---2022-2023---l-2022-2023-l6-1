@@ -25,4 +25,8 @@ public class AchievementsService {
 		return achievementsRepository.findAll();
 	}
 
+	@Transactional(readOnly = true)
+	public Achievements save(Achievements achievements) throws DataAccessException{
+		return achievementsRepository.save(achievements);
+	}
 }
