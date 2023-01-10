@@ -15,6 +15,9 @@
  */
 package org.springframework.samples.solitaire.user;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -68,6 +71,21 @@ public class UserController {
 
 	@PostMapping(value = "/users/new")
 	public String processCreationForm(@Valid Player player, BindingResult result) {
+		List<String> usernames = new ArrayList<>();
+		Collection<Player> players = this.playerService.findAllPlayer();
+		for(Player p:players) {
+			usernames.add(p.getUser().getUsername());
+			if(result.hasErrors()) {
+				return VIEWS_PLAYER_CREATE_FORM;
+			}else if(player.getUser().getUsername().isEmpty()){
+				return "users/needUsername";
+			}else if(usernames.contains(player.getUser().getUsername())) {
+				return "users/sameUsername";
+	
+			}else if(player.getUser().getPassword().equals("")) {
+				return "users/needPassword";
+			}
+		}
 		if (result.hasErrors()) {
 			return VIEWS_PLAYER_CREATE_FORM;
 		}

@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.samples.solitaire.model.Person;
@@ -41,18 +42,18 @@ import lombok.Setter;
 @Table(name = "players")
 public class Player extends Person {
 	
-	@NotEmpty
-	@Email
+	
+	@Email(message = "It's not a valid email")
+	@NotEmpty(message = "May not be empty")
 	@Column(name="email")
 	private String email;
 	
 
 	private Integer friendId;
-
-	
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
+	@Valid
 	private User user;
 	
 	@Override
