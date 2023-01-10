@@ -181,13 +181,13 @@ Dado un jugador en el menú del juego, si quiere ver sus estadísticas jugando a
 
 Dado un jugador en partida, si éste consigue colocar todas las cartas en los montones del palo, ordenados ascendentemente, y completados con sus respectivas 13 cartas por palo, el juego deberá mostrar por pantalla que el juego ha finalizado, y que el jugador ha ganado.
 
-![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1029740235271180339/Victoria.PNG)
+![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1062471734361600112/unnamed.png)
 
 <u>H8 - E2 - Derrota.</u>
 
 Dado un jugador en partida y dada una disposición de cartas en el tablero, tal que el jugador no pueda avanzar en la partida, el jugador deberá pulsar el botón “Rendirse”, para que finalice dicha partida.
 
-![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1029740235858386986/Derrota.PNG)
+![Mockup8](https://cdn.discordapp.com/attachments/1025044659275321430/1062471973583720478/unnamed_1.png)
 
 ### *H9-Editar perfil de usuario*
 “**Como** jugador, **quiero** poder acceder a mi perfil **para** poder editar los datos de mi perfil.”
