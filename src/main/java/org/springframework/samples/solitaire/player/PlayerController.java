@@ -171,7 +171,7 @@ public class PlayerController {
 	public String processUpdatePlayerForm(@Valid Player player, BindingResult result,
 			@PathVariable("playerId") int playerId) {
 		if (result.hasErrors()) {
-			return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
+			return "players/editProfile";
 		}
 		else {
 			player.setId(playerId);

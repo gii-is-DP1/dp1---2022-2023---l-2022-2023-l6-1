@@ -28,11 +28,11 @@ import javax.validation.constraints.NotEmpty;
 public class Person extends BaseEntity {
 
 	@Column(name = "first_name")
-	@NotEmpty
+	@NotEmpty(message = "May not be empty")
 	protected String firstName;
 
 	@Column(name = "last_name")
-	@NotEmpty
+	@NotEmpty(message = "May not be empty")
 	protected String lastName;
 
 	public String getFirstName() {
