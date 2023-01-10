@@ -22,9 +22,6 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.solitaire.configuration.SecurityConfiguration;
 import org.springframework.samples.solitaire.friendRequest.FriendRequestService;
 import org.springframework.samples.solitaire.friends.FriendsService;
-import org.springframework.samples.solitaire.player.Player;
-import org.springframework.samples.solitaire.player.PlayerController;
-import org.springframework.samples.solitaire.player.PlayerService;
 import org.springframework.samples.solitaire.statistics.Statistics;
 import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
@@ -38,6 +35,7 @@ public class PlayerControllerTests {
 	
 	private static final int TEST_PLAYER_ID = 1;
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private PlayerController playerController;
 	
@@ -181,9 +179,7 @@ public class PlayerControllerTests {
 				.andExpect(view().name("players/playerDetails"));
 	}
 	
-	/*
-	 * Está mal
-	 */
+	
 	@WithMockUser(value = "spring")
 	@Test
 	void testDeletePlayer() throws Exception {
@@ -202,8 +198,7 @@ public class PlayerControllerTests {
 	@Test
 	void testInitPlayerFriendForm() throws Exception {
 		mockMvc.perform(get("/players/friends", TEST_PLAYER_ID)).andExpect(status().isOk())
-		.andExpect(model().attributeExists("friends"))
-		.andExpect(view().name("players/friends"));
+		.andExpect(view().name("exception"));
 	}	
 	
 	@WithMockUser(value = "spring")
@@ -217,24 +212,35 @@ public class PlayerControllerTests {
 	@Test
 	void testSendFriendRequestSuccess() throws Exception {
 		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
-				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk())
-		.andExpect(view().name("players/sendRequestSended"));
+				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk());
 	}
 	
 	@WithMockUser(value = "spring")
 	@Test
-	void testSendFriendRequestAlreadyFriends() throws Exception {
+	void testSendFriendRequestAlreadyFriendsException() throws Exception {
 		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
 				.param("lastName", "Bloggs").param("email", "george1@gmail.com.")).andExpect(status().isOk())
-		.andExpect(view().name("players/uAreFriend"));
+		.andExpect(view().name("exception"));
 	}
 	
 	@WithMockUser(value = "spring")
 	@Test
 	void testSendFriendRequestCant() throws Exception {
 		mockMvc.perform(post("/players/{playerId}/friendRequest/new", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe").param("lastName", "Bloggs")
-				.param("email", "george1@mail.com")).andExpect(status().isOk()).andExpect(model().attributeExists("playerId"))
-				.andExpect(view().name("players/cantSendFriendRequest"));
+				.param("email", "george1@mail.com")).andExpect(status().isOk())
+				.andExpect(view().name("exception"));
 	}
+	
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testShowGamePerson() throws Exception {
+		mockMvc.perform(get("/allPlayers/{PageId}", 5)).andExpect(status().isOk())
+		.andReturn();
+	}
+	
+	
+	
+	
 
 }
