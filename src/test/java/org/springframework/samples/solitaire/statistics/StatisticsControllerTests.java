@@ -21,7 +21,9 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(controllers = StatisticsController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = StatisticsController.class, 
+excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), 
+excludeAutoConfiguration = SecurityConfiguration.class)
 public class StatisticsControllerTests {
 	private static final int TEST_STATISTIC_ID = 8;
 
@@ -71,8 +73,7 @@ public class StatisticsControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitStatsFormSuccess() throws Exception {
-		mockMvc.perform(get("/statistics/{playerId}", 8)).andExpect(status().isOk())
-		.andReturn();
+		mockMvc.perform(get("/statistics/{playerId}", 8)).andExpect(status().isOk()).andReturn();
 	}
 
 }

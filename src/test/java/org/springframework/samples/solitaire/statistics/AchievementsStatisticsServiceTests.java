@@ -73,8 +73,7 @@ public class AchievementsStatisticsServiceTests {
         this.statisticsService.saveStatistics(stats);
         this.achievementsService.save(ach);
 		this.achievementsStatisticsService.saveAchievementsStatistics(achievementsStastistics);
-		assertThat(achievementsStastistics.getAchievement().getDescription());
+	
+		assertThat(this.achievementsStatisticsService.findById(player.getId()).contains(achievementsStastistics));
 	}
-
-
 }
