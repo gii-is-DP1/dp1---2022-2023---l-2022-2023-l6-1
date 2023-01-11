@@ -164,6 +164,7 @@ public class PlayerController {
 	public String initUpdatePlayerForm(@PathVariable("playerId") int playerId, Model model) {
 		Player player = this.playerService.findPlayerById(playerId);
 		model.addAttribute(player);
+		
 		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -179,7 +180,7 @@ public class PlayerController {
 			Player playerOG = playerService.findPlayerById(playerId);
 		    player.getUser().setUsername(playerOG.getUser().getUsername());
 			this.playerService.savePlayer(player);
-			return "redirect:/players/myProfile";
+			return "redirect:/";
 		}
 	}
 	
@@ -212,9 +213,6 @@ public class PlayerController {
 	public String initUpdatePlayerForm(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Player player = this.playerService.findByUsername(username);
-		
-		
-		
 		
 		model.addAttribute(player);
 		return VIEWS_MY_PROFILE;
@@ -370,5 +368,6 @@ public class PlayerController {
 		modelMap.addAttribute("players", players.toList());
 		return view;
 	}
+	
 
 }

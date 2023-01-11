@@ -55,11 +55,11 @@ public class BoardController {
 	Integer i = 1;
 	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
+		
 		while(i==1) {
 			response.addHeader("Refresh", "1");
 			i++;
 		}
-		
 
 		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
 		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
@@ -76,36 +76,6 @@ public class BoardController {
 		model.put("board", boardService.findById(1)); 
 		return BOARD_1;
 	}
-	
-	
-	
-	
-	Integer j = 1;
-	@GetMapping(value = "/difficult2")
-	public String creationHardMode(Map<String, Object> model, HttpServletResponse response) {
-		
-		while(j==1) {
-			response.addHeader("Refresh", "1");
-			j++;
-		}
-
-		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
-		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
-		List<Card> monton3 = cardService.findAllCardsDeck(7, 0);
-		List<Card> monton4 = cardService.findAllCardsDeck(8, 0);
-
-		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
-		
-		if(TotalSize == 52) {
-			return "board/youWin";
-		}
-		
-		model.put("now", new Date());
-		model.put("board", boardService.findById(1));
-		return BOARD_2;
-	}
-
-	
 	
 	
 	
@@ -130,6 +100,7 @@ public class BoardController {
 		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
 		statistics.setGames(statistics.getGames()+1);
 		statisticsService.saveStatistics(statistics);
+
 		return "/board/youWin";
 	}
 
@@ -415,10 +386,10 @@ public class BoardController {
 		}
 		for(int c = 2; c<9;c++) {
 			Integer nF = 2;
-			for(int f = 2; f<=9;f++) {
+			for(int f = 2; f<9;f++) {
 				if(nF == c ) {
-					Random numRandom = new Random();
-					cardAux = cards.get(numRandom.nextInt(cards.size()+1));
+					int num = (int) (Math.random() * (cards.size())) ;
+					cardAux = cards.get(num);
 					cards.remove(cardAux);
 					cardAux.setIsShowed(true);
 					cardAux.setXPosition(c);
@@ -427,8 +398,8 @@ public class BoardController {
 					listaAuxResultado.add(cardAux);
 					break;
 				}else {
-					Random numRandom = new Random();
-					cardAux = cards.get(numRandom.nextInt(cards.size()+1));
+					int num = (int) (Math.random() * (cards.size())) ;
+					cardAux = cards.get(num);
 					cards.remove(cardAux);
 					cardAux.setIsShowed(false);
 					cardAux.setXPosition(c);
