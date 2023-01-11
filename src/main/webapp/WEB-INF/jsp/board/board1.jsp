@@ -32,7 +32,7 @@
                                         <c:if test="${card.isShowed == true && card1.isShowed == true && card.number > 1}">
                                             <c:choose>                                            	
                                                 <c:when test="${card1.number == card.number-1 && card1.color != card.color && card.getYPosition()>1 &&
-                                                 card1.getXPosition()!=card.getXPosition() && card1.getYPosition()!=card.getYPosition()+1}">
+                                                 card1.getXPosition()!=card.getXPosition()}">
                                                     <li>
                                                         ${card1.number}-${card1.suit}
                                                         <li>
