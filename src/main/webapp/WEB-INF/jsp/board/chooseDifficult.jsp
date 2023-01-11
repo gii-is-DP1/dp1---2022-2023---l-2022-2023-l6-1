@@ -19,7 +19,7 @@
 		<br>
 		<br>
 		<center>
-    		<a href="/startGame/difficult2" class="btn btn-warning btn-lg" >Hard Mode</a>
+    		<a href="/difficult2" class="btn btn-warning btn-lg" >Hard Mode</a>
 		</center>
 		</br>
 
