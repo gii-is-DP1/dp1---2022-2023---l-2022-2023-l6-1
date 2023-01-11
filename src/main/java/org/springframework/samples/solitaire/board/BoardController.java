@@ -95,7 +95,7 @@ public class BoardController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Player player = playerService.findByUsername(username);
 		Statistics statistics = statisticsService.findById(player.getId());
-		statistics.setGamesWon(statistics.getGamesLost()+1);
+		statistics.setGamesLost(statistics.getGamesLost()+1);
 		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
 		statisticsService.saveStatistics(statistics);
 		return "/board/giveUp";  
