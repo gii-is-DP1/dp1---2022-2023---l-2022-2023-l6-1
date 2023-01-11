@@ -13,17 +13,13 @@
 		
 		<br>
     	<center>
-    		<a href="/difficult1" class="btn btn-warning">Easy Mode</a>
+    		<a href="/difficult1" class="btn btn-warning btn-lg">Easy Mode</a>
 		</center>
 		</br>
 		<br>
-		<center>
-    		<a href="/startGame/difficult2" class="btn btn-warning">Medium Mode</a>
-		</center>
-		</br>
 		<br>
 		<center>
-    		<a href="/startGame/difficult3" class="btn btn-warning">Hard Mode</a>
+    		<a href="/startGame/difficult2" class="btn btn-warning btn-lg" >Hard Mode</a>
 		</center>
 		</br>
 

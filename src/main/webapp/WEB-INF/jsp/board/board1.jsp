@@ -33,11 +33,23 @@
                                             <c:choose>                                            	
                                                 <c:when test="${card1.number == card.number-1 && card1.color != card.color && card.getYPosition()>1 &&
                                                  card1.getXPosition()!=card.getXPosition()}">
-                                                    <li>
-                                                        ${card1.number}-${card1.suit}
+                                                  
+                                    				<li>
+                                                    <font color="black">
+                                                    		
+                                    						${card1.number}-${card1.suit}
+                                    				</font>
+                                    				</li>
                                                         <li>
-                                                        	<h5>Goes to</h5>
-                                                            <a href="<c:url value="/board/moveCardP/${card1.id}&${card.id}"/>" >${card.number}-${card.suit}</a>
+                                                        	<font color="green">
+                                                        	<center>
+                                                        			<h5>Goes to</h5>
+                                                        	</center>
+                                    						</font>
+                                    						<font color="white">
+                                    							<a style = "border:2px solid black;" class="btn btn-success btn-block" href="<c:url value="/board/moveCardP/${card1.id}&${card.id}"/>" >${card.number}-${card.suit}</a>
+                                    						</font>
+                                                       			
                                                         </li>
                                                     </li>
                                                 </c:when>                                              
@@ -45,22 +57,36 @@
                                         </c:if>                                   
                                     	<c:if test="${card1.number == card.number+1 && card1.suit == card.suit && card.isShowed == false && card1.isShowed == true && card.getYPosition() == 0 && (card.getXPosition() == 5 || card.getXPosition() == 6 || card.getXPosition() == 7 || card.getXPosition() == 8)}">                                  		
                                     		<li>
-                                    			<h5>To the pile</h5>
-                                    	 	  	<a href="<c:url value="/board/moveCard/${card1.id}"/>" >${card1.number}-${card1.suit}</a>
+                                    			<font color="blue">
+                                    				<h5>To the pile</h5>
+                                    			</font>
+                                    			<font color="white">
+                                    				<a style = "border:2px solid black;" class="btn btn-primary btn-block" href="<c:url value="/board/moveCard/${card1.id}"/>" >${card1.number}-${card1.suit}</a>
+                                    			</font>
+                                    	 	  	
                                     		</li>                                  		
                                   		</c:if>
                                     </c:forEach>
                                     
                                     <c:if test="${card.isShowed == true && card.number == 1}">
                                         <li>
-                                        	<h5>To the pile</h5>
-                                            <a href="<c:url value="/board/moveCard/${card.id}"/>" >${card.number}-${card.suit}</a>
-                                        </li>
+                                        	<font color="blue">
+                                        		<h5>To the pile</h5>
+                                    		</font>
+                                    		<font color="white">
+                                            	<a style = "border:2px solid black;" class="btn btn-primary btn-block" href="<c:url value="/board/moveCard/${card.id}"/>" >${card.number}-${card.suit}</a>
+                                        	</font>
+                                       </li>
                                     </c:if>
                                     <c:if test="${card.isShowed == true && card.number == 13 && card.getYPosition()!=2}">
                                         <li>
-                                        	<h5>To the top</h5>
-                                            <a href="<c:url value="/board/moveCard/${card.id}"/>" >${card.number}-${card.suit}</a>
+                                        		<font color="red">
+                                        			<h5>To the top</h5>
+                                    			</font>
+                                    			<font color="white">
+                                            		<a style = "border:2px solid black;" class="btn btn-danger btn-block" href="<c:url value="/board/moveCard/${card.id}"/>" >${card.number}-${card.suit}</a>
+                                        		</font>
+                                    			
                                         </li>
                                     </c:if>
                                 </c:forEach>
