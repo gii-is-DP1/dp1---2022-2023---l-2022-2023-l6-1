@@ -13,15 +13,10 @@
 		
 		<br>
     	<center>
-    		<a href="/difficult1" class="btn btn-warning btn-lg">Easy Mode</a>
+    		<a href="/difficult1" class="btn btn-warning btn-lg">Play!!</a>
 		</center>
 		</br>
-		<br>
-		<br>
-		<center>
-    		<a href="/difficult2" class="btn btn-warning btn-lg" >Hard Mode</a>
-		</center>
-		</br>
+		
 
 </petclinic:layout>
 </body>
