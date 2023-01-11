@@ -58,6 +58,7 @@ INSERT INTO players(id,first_name,last_name,email,username) VALUES (10, 'Roger',
 
 
 INSERT INTO board(id,background,height,width) VALUES (1,'resources/images/background.jpg',2500,960);
+INSERT INTO board(id,background,height,width) VALUES (2,'resources/images/background.jpg',2500,960);
 
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (1, 1, 'DIAMONDS', 'RED', 0,0 , FALSE, 1);
 INSERT INTO cards(id,number,suit, color, x_position, y_position, is_showed, board_id) VALUES (2, 2, 'DIAMONDS', 'RED', 0 ,0 , FALSE, 1);

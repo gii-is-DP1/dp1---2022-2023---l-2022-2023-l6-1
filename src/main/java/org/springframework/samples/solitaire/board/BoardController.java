@@ -33,7 +33,6 @@ public class BoardController {
 	private static final String VIEWS_BOARD = "board/chooseDifficult";
 	private static final String BOARD_1 = "board/board1";
 	private static final String BOARD_2 = "board/board2";
-	private static final String BOARD_3 = "board/board3";
 
 	@Autowired
 	BoardService boardService;
@@ -48,17 +47,11 @@ public class BoardController {
 	@GetMapping(value = "/startGame")
 	public String initCreationForm(Map<String, Object> model) { 
 		Board board = new Board();
-
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Player player = playerService.findByUsername(username);
-		Statistics statistics = statisticsService.findById(player.getId());
-
 		model.put("board", board);
 		model.put("playzone", startGame()); 
-		statistics.setGames(statistics.getGames()+1);
-		statisticsService.saveStatistics(statistics);
 		return VIEWS_BOARD;
 	}
+	
 	Integer i = 1;
 	@GetMapping(value = "/difficult1")
 	public String creationEasyMode(Map<String, Object> model, HttpServletResponse response) {
@@ -66,6 +59,10 @@ public class BoardController {
 			response.addHeader("Refresh", "1");
 			i++;
 		}
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = playerService.findByUsername(username);
+		Statistics statistics = statisticsService.findById(player.getId());
+
 		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
 		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
 		List<Card> monton3 = cardService.findAllCardsDeck(7, 0);
@@ -73,23 +70,52 @@ public class BoardController {
 
 		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
 
-
-
 		if(TotalSize == 52) {
 			return "board/youWin";
 		}
+		statistics.setGames(statistics.getGames()+1);
+		statisticsService.saveStatistics(statistics);
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1)); 
 		return BOARD_1;
 	}
-
+	
+	
+	
+	
+	Integer j = 1;
 	@GetMapping(value = "/difficult2")
-	public String creationMediumMode(Map<String, Object> model) {
-		Board board = new Board();
-		model.put("board", board);
+	public String creationHardMode(Map<String, Object> model, HttpServletResponse response) {
+		
+		while(j==1) {
+			response.addHeader("Refresh", "1");
+			j++;
+		}
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Player player = playerService.findByUsername(username);
+		Statistics statistics = statisticsService.findById(player.getId());
+
+		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
+		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
+		List<Card> monton3 = cardService.findAllCardsDeck(7, 0);
+		List<Card> monton4 = cardService.findAllCardsDeck(8, 0);
+
+		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
+		
+		if(TotalSize == 52) {
+			return "board/youWin";
+		}
+		statistics.setGames(statistics.getGames()+1);
+		statisticsService.saveStatistics(statistics);
+		model.put("now", new Date());
+		model.put("board", boardService.findById(1));
 		return BOARD_2;
 	}
 
+	
+	
+	
+	
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -347,8 +373,6 @@ public class BoardController {
 
 	@GetMapping(value = "/board/moveCardDeck")
 	public ModelAndView moveCardDeck(Map<String, Object> model ) {
-		//			Card card = this.cardService.findCardById(cardId);
-		//			Integer boardId = card.getBoard().getId();
 		List<Card> BarajaInicial = this.cardService.findAllCardsDeck(0, 0);
 		List<Card> Carta10 = this.cardService.findAllCardsDeck(1, 0);
 		if(BarajaInicial.size() > 0) {
@@ -376,17 +400,6 @@ public class BoardController {
 			}
 		}
 
-		//			}else if(BarajaInicial.size() == 0) {
-		//					lsAuxiliar = this.cardService.findAllCardsDeck(1, 0);
-		//					for(int i = 0; i< lsAuxiliar.size();i++) {
-		//						Card c = lsAuxiliar.get(i);
-		//						c.setXPosition(0);
-		//						c.setYPosition(0);
-		//						c.setIsShowed(false);
-		//						this.cardService.saveCard(c);
-		//						
-		//					}
-		//			}
 
 		model.put("board", boardService.findById(1));
 		return new ModelAndView("redirect:/difficult1");
@@ -418,7 +431,6 @@ public class BoardController {
 					cardAux.setYPosition(f);
 					cardService.saveCard(cardAux);
 					listaAuxResultado.add(cardAux);
-
 					break;
 				}else {
 					Random numRandom = new Random();
