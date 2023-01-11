@@ -166,7 +166,7 @@ public class PlayerControllerTests {
 		mockMvc.perform(post("/players/{playerId}/edit", TEST_PLAYER_ID).with(csrf()).param("firstName", "Joe")
 				.param("lastName", "Bloggs").param("email", "georgegmail.com.")).andExpect(status().isOk())
 				.andExpect(model().attributeHasErrors("player"))
-				.andExpect(view().name("players/createOrUpdatePlayerForm"));
+				.andExpect(view().name("players/editProfile"));
 	}
 
 	@WithMockUser(value = "spring")

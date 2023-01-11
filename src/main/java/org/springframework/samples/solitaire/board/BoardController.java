@@ -59,9 +59,7 @@ public class BoardController {
 			response.addHeader("Refresh", "1");
 			i++;
 		}
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Player player = playerService.findByUsername(username);
-		Statistics statistics = statisticsService.findById(player.getId());
+		
 
 		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
 		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
@@ -73,8 +71,7 @@ public class BoardController {
 		if(TotalSize == 52) {
 			return "board/youWin";
 		}
-		statistics.setGames(statistics.getGames()+1);
-		statisticsService.saveStatistics(statistics);
+		
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1)); 
 		return BOARD_1;
@@ -91,9 +88,6 @@ public class BoardController {
 			response.addHeader("Refresh", "1");
 			j++;
 		}
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Player player = playerService.findByUsername(username);
-		Statistics statistics = statisticsService.findById(player.getId());
 
 		List<Card> monton1 = cardService.findAllCardsDeck(5, 0);
 		List<Card> monton2 = cardService.findAllCardsDeck(6, 0);
@@ -105,8 +99,7 @@ public class BoardController {
 		if(TotalSize == 52) {
 			return "board/youWin";
 		}
-		statistics.setGames(statistics.getGames()+1);
-		statisticsService.saveStatistics(statistics);
+		
 		model.put("now", new Date());
 		model.put("board", boardService.findById(1));
 		return BOARD_2;
@@ -123,6 +116,7 @@ public class BoardController {
 		Statistics statistics = statisticsService.findById(player.getId());
 		statistics.setGamesLost(statistics.getGamesLost()+1);
 		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
+		statistics.setGames(statistics.getGames()+1);
 		statisticsService.saveStatistics(statistics);
 		return "/board/giveUp";  
 	}
@@ -134,8 +128,8 @@ public class BoardController {
 		Statistics statistics = statisticsService.findById(player.getId());
 		statistics.setGamesWon(statistics.getGamesWon()+1);
 		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
+		statistics.setGames(statistics.getGames()+1);
 		statisticsService.saveStatistics(statistics);
-
 		return "/board/youWin";
 	}
 
