@@ -90,13 +90,6 @@ public class BoardController {
 		return BOARD_2;
 	}
 
-	@GetMapping(value = "/difficult3")
-	public String creationHardMode(Map<String, Object> model) {
-		Board board = new Board();
-		model.put("board", board);
-		return BOARD_3;
-	}
-
 	@GetMapping(value = "/board/giveup")
 	public String creationGiveUp(Map<String, Object> model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
