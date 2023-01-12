@@ -69,7 +69,14 @@ public class BoardController {
 		Integer TotalSize = monton1.size() + monton2.size() + monton3.size() + monton4.size();
 
 		if(TotalSize == 52) {
-			return "board/youWin";
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			Player player = playerService.findByUsername(username);
+			Statistics statistics = statisticsService.findById(player.getId());
+			statistics.setGames(statistics.getGames()+1);
+			statistics.setGamesWon(statistics.getGamesWon()+1);
+			statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
+			statisticsService.saveStatistics(statistics);
+			return "redirect:/board/youwin";
 		}
 		
 		model.put("now", new Date());
@@ -93,13 +100,7 @@ public class BoardController {
 
 	@GetMapping(value = "/board/youwin")
 	public String creationYouWin(Map<String, Object> model) {
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Player player = playerService.findByUsername(username);
-		Statistics statistics = statisticsService.findById(player.getId());
-		statistics.setGamesWon(statistics.getGamesWon()+1);
-		statistics.setTotalScore((statistics.getGamesWon()*10-statistics.getGamesLost()*6)/statistics.getGames());
-		statistics.setGames(statistics.getGames()+1);
-		statisticsService.saveStatistics(statistics);
+		
 
 		return "/board/youWin";
 	}
