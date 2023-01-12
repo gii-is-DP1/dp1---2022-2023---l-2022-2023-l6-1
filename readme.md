@@ -70,7 +70,7 @@ Dado el formulario de inicio de sesión, el sistema no reconoce los datos en la 
 
 <u>H3 + E1 - Deja iniciar la partida con éxito.</u>
 
-Dado un jugador en el menú del juego, le aparecerán varios botones, si quiere iniciar una partida, el jugador pulsará el botón de “Iniciar partida” y seleccionará la dificultad (la dificultad determinará la cantidad de cartas que salen del mazo al pedirle carta a éste). Se le formará de manera exitosa una partida con el mazo con cartas aleatorias, la zona de juego con cartas aleatorias, y la zona donde se pondrá el montón de cartas del mismo palo.
+Dado un jugador en el menú del juego, le aparecerán varios botones, si quiere iniciar una partida, el jugador pulsará el botón de “StartGame”. Se le formará de manera exitosa una partida con el mazo con cartas aleatorias, la zona de juego con cartas aleatorias, y la zona donde se pondrá el montón de cartas del mismo palo.
 
 ![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1063102632522154054/image.png)
 ![Mockup3](https://cdn.discordapp.com/attachments/1025044659275321430/1057585538170892298/image.png)
