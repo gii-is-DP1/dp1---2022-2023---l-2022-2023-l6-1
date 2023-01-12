@@ -311,13 +311,13 @@ The following items should be installed in your system:
 
 ### Steps:
 
-1) On the command line
+1) On the command line 
 ```
 git clone https://github.com/gii-is-DP1/dp1--2022-2023-l6-1
 ```
 2) Inside Eclipse or STS
 ```
-File -> Import -> Maven -> Existing Maven project
+File -> Import -> Maven ->  Existing Maven project
 ```
 
 Then either build on the command line `./mvnw generate-resources` or using the Eclipse launcher (right click on project and `Run As -> Maven install`) to generate the css. Run the application main method by right clicking on it and choosing `Run As -> Java Application`.
