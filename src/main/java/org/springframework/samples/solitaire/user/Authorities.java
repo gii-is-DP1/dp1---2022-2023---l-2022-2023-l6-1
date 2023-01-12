@@ -25,4 +25,5 @@ public class Authorities extends BaseEntity{
 	String authority;
 	
 	
+	
 }
