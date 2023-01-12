@@ -34,6 +34,7 @@ import org.springframework.samples.solitaire.statistics.StatisticsService;
 import org.springframework.samples.solitaire.user.AuthoritiesService;
 import org.springframework.samples.solitaire.user.User;
 import org.springframework.samples.solitaire.user.UserService;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -162,10 +163,23 @@ public class PlayerController {
 	
 	@GetMapping(value = "/players/{playerId}/edit")
 	public String initUpdatePlayerForm(@PathVariable("playerId") int playerId, Model model) {
+		Player playerSC = this.playerService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		Collection<? extends GrantedAuthority> Lsadmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		Boolean admin = false;
+		for(GrantedAuthority GA: Lsadmin) {
+			if(GA.getAuthority().equals("admin")) {
+				admin = true;
+			}
+		}
+		Player playerURL = this.playerService.findPlayerById(playerId);
+		if(admin||playerSC.equals(playerURL)) {
 		Player player = this.playerService.findPlayerById(playerId);
 		model.addAttribute(player);
-		
 		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
+		}
+		else {
+			return VIEWS_HOME;
+		}
 	}
 
 	@PostMapping(value = "/players/{playerId}/edit")
@@ -249,6 +263,7 @@ public class PlayerController {
 
 	@GetMapping(value = "/players/{friendId}/deleteFriend")
 	public String initDeleteFriendForm(@PathVariable("friendId") int friendId, Model model) {
+		
 		
 		this.friendsService.deleteFriends(this.friendsService.findFriendById(friendId));
 		return VIEWS_HOME;
